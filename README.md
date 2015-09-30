@@ -34,14 +34,13 @@ Kunna se vilka hen jobbar med.
 Kunna få en inblick i företaget.
 Återgå till sökande genom att tas bort från företaget.
 
-<strong>Kategorisering:<br>
-Databas</strong><br>
+<strong>Kategorisering:</strong><br>
+Databas
 Adminhantering
 Cheferhantering
 Sökandehantering
 Arbetarhantering
 GUI
-
 
 <strong>Databas:</strong><br>
 User Model
@@ -53,20 +52,20 @@ string Name
 Company Model</strong><br>
 {
 int Id,
-Ienumerable<User> Management(), //Ledning
-Ienumerable<Department> Departments() //Avdelningar
+Ienumerable<'User'> Management(), //Ledning
+Ienumerable<'Department'> Departments() //Avdelningar
 }
 
 Department Model
 {
 int Id,
-Ienumerable<Group> Groups() //Grupper
+Ienumerable<'Group'> Groups() //Grupper
 }
 
 Group Model
 {
 int Id,
-Ienumerable<User> Users() //Användare
+Ienumerable<'User'> Users() //Användare
 }
 
 News Model
@@ -74,7 +73,6 @@ News Model
 int Id,
 string Text
 }
-
 
 <strong>Användar-historier<br>
 Adminhantering:</strong><br>
