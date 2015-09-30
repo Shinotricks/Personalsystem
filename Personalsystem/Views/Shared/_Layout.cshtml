@@ -9,6 +9,7 @@
 
 </head>
 <body>
+    <div class="bajskorv">@Html.Partial("_LoginPartial")</div>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -22,7 +23,7 @@
             <div class="navbar-collapse collapse">
                     @if (User.IsInRole("admin"))
                     {
-                        <ul class="nav navbar-nav">
+                        <ul class="nav navbar-nav navbar-right">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
@@ -31,13 +32,12 @@
                     }
                     else
                     {
-                        <ul class="nav navbar-nav">
+                        <ul class="nav navbar-nav navbar-right">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                         </ul>
                     }
-                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
