@@ -116,11 +116,11 @@ Som arbetare skall jag kunna få en inblick i företaget.
 Som arbetare skall jag kunna återgå till sökande genom att tas bort från företaget.
 
 <strong>Prioritering</strong><br>
-1 Databas 2 Admin- 3 Chefer- 4 Sökande- 5 Arbetarhantering 6 GUI
-Vad är viktigt för kunden?
-Vilka beroenden finns det?
-Vilka delar är tekniskt viktiga?
-Hur komplext är kravet?
+1 Databas 2 Admin- 3 Chefer- 4 Sökande- 5 Arbetarhantering 6 GUI<br>
+Vad är viktigt för kunden?<br>
+Vilka beroenden finns det?<br>
+Vilka delar är tekniskt viktiga?<br>
+Hur komplext är kravet?<br>
 
 <strong>Workitems</strong><br>
 Skapa en modell. 
