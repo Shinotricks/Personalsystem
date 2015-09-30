@@ -10,6 +10,10 @@ namespace Personalsystem.Controllers
     {
         public ActionResult Index()
         {
+            if (User.IsInRole("Admin"))
+            {
+                return View();
+            }
             return View();
         }
 
