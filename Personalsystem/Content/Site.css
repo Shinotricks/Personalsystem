@@ -16,6 +16,7 @@
     -moz-background-size: 100% 100%;
     -o-background-size: 100% 100%;
     background-size: 100% 100%;
+    margin: 0 0 20px 0;
 }
 
 .push-spaces
@@ -35,8 +36,8 @@
 
 .col-md-4 {
     background: #428bca;
-    border-right: 1px solid #fff; 
     padding: 15px;
+    border-right: 1px solid #FFF;
 }
 
 .row {
@@ -64,21 +65,26 @@
 
 .navbar-inverse .navbar-nav > li > a {
     text-transform: uppercase;
+    padding: 30px 30px 30px 30px;
 }
 
 .navbar-inverse .navbar-nav > li {
     background: #FFFFFF;
-    padding: 15px 0 15px 0;
     border-right: 1px solid #EFEFEF;
 }
 
 .navbar-inverse .navbar-nav > li:hover {
-    background: #EFEFEF;
-    padding: 15px 0 15px 0;
+    background: #428bca;
+    color: #FFF;
+}
+
+.navbar-inverse .navbar-nav > li > a:active {
+    background: #428bca;
+    color: #FFF;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover {
-    color:#000;
+    color:#FFF;
 }
 
 .nav navbar-nav {
@@ -105,15 +111,31 @@
     box-shadow: 0px 0px 10px #999;
 }
 
-.bajskorv {
-    padding: 0;
+.adminnav {
+    position: relative;
+    left: 1140px;
+    list-style-type: none;
     margin: 0;
-    background: #000;
-    display: inline;
-    position: sticky;
-    top: 5px;
-    right: 200px;
+    padding: 0;
+    overflow: hidden;
 }
+
+.adminnav > li {
+    float: left;
+}
+
+.adminnav > li > a:link, .adminnav > li > a:visited {
+    display: block;
+    width: 120px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #428bca;
+    text-align: center;
+    padding: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
 
 .navbar-collapse collapse {
 
