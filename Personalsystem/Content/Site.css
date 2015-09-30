@@ -1,6 +1,6 @@
 ﻿body {
     padding-bottom: 50px;
-    background: url('http://www.citygop.org/wp-content/uploads/2015/02/city-wallpaper-7.jpg') center top no-repeat fixed;
+    background: url('../Images/bg.jpg') center top no-repeat fixed;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -12,7 +12,7 @@
 }
 
 .jumbotron {
-    background: url('http://images.wisegeek.com/man-in-business-suit-talking-to-man-in-front-of-him.jpg') center no-repeat;
+    background: url('../Images/DisplayCase.png') center no-repeat;
     border-radius: 15px;
 }
 
@@ -24,6 +24,21 @@
     text-shadow: 0px 0px 5px #555;
     padding: 0 25px 0 50px;
     margin: 0;
+}
+
+.col-md-4 {
+    background: #5656f6;
+    margin: 0 5px 0 5px;
+    border-radius: 15px;
+    width: 32%;
+}
+
+.col-md-4 > h2 {
+    color: #FFF;
+}
+
+.col-md-4 > p {
+    color: #FFF;
 }
 
 .lead {
