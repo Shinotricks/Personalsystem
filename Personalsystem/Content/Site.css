@@ -7,13 +7,12 @@
 .body-content {
     background: #FFF;
     margin-top: 190px;
-    padding: 30px 30px 30px 30px;
+    padding: 0px;
     border-radius: 15px;
 }
 
 .jumbotron {
     background: url('../Images/DisplayCase.png') center no-repeat;
-    border-radius: 15px;
         -webkit-background-size: 100% 100%;
     -moz-background-size: 100% 100%;
     -o-background-size: 100% 100%;
@@ -37,9 +36,8 @@
 
 .col-md-4 {
     background: #5656f6;
-    margin: 0 5px 0 5px;
-    border-radius: 15px;
-    width: 32%;
+    width: 33%;
+    border-right: 1px solid #fff; 
 }
 
 .col-md-4 > h2 {
