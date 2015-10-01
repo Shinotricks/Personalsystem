@@ -1,4 +1,4 @@
-http://pastie.org/10452044
+Todo: Job model, company jobs list, user searched jobs list
 
 # Personalsystem
 <strong>Backlog:<br>
