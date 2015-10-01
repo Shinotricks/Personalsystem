@@ -7,19 +7,20 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Personalsystem.Models;
+using Personalsystem.Repositories;
 
 namespace Personalsystem.Controllers
 {
     public class CompanyController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
+        private PersonalsystemRepository repo = new PersonalsystemRepository();
+        
         // GET: Companies
         public ActionResult Index()
         {
-            return View(db.Companies.ToList());
+            return View(repo.Companies());
         }
-
+        /*
         // GET: Companies/Details/5
         public ActionResult Details(int? id)
         {
@@ -27,7 +28,7 @@ namespace Personalsystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
+            Company company = repo.Companies.Find(id);
             if (company == null)
             {
                 return HttpNotFound();
@@ -50,8 +51,8 @@ namespace Personalsystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Companies.Add(company);
-                db.SaveChanges();
+                repo.Companies.Add(company);
+                repo.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -114,12 +115,12 @@ namespace Personalsystem.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        */
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                repo.Dispose();
             }
             base.Dispose(disposing);
         }

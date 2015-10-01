@@ -7,20 +7,21 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Personalsystem.Models;
+using Personalsystem.Repositories;
 
 namespace Personalsystem.Controllers
 {
     public class DepartmentController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private PersonalsystemRepository repo = new PersonalsystemRepository();
 
         // GET: Departments
         public ActionResult Index()
         {
-            var departments = db.Departments.Include(d => d.Company);
-            return View(departments.ToList());
+            //var departments = db.Departments.Include(d => d.Company);
+            return View(repo.Departments());
         }
-
+/*
         // GET: Departments/Details/5
         public ActionResult Details(int? id)
         {
@@ -119,12 +120,12 @@ namespace Personalsystem.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+*/
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                repo.Dispose();
             }
             base.Dispose(disposing);
         }
