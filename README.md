@@ -54,7 +54,7 @@ string Name
 Company Model</strong><br>
 {
 int Id,
-Ienumerable<'User'> Management(), //Ledning
+Ienumerable<'Group'> Management(), //Ledning<br>
 Ienumerable<'Department'> Departments() //Avdelningar
 }
 
