@@ -75,6 +75,9 @@
     background: #FFFFFF;
     border-right: 1px solid #EFEFEF;
 }
+.navbar-inverse .navbar-nav > li:first-child {
+    border-left: 1px solid #EFEFEF;
+}
 
 .navbar-inverse .navbar-nav > li:hover {
     background: #428bca;
