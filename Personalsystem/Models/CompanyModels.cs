@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -7,26 +9,48 @@ namespace Personalsystem.Models
 {
     public class Company
     {
-        int Id { get; set; }
-        //todo: ledning
-        IEnumerable<Department> Departments;
+        [Key]
+        public int Id { get; set; }
+        [Required]
+        public string Name { get; set; }
+        [Required]
+        public string OwnerId { get; set; }
+        [ForeignKey("OwnerId")]
+        public virtual ApplicationUser Owner { get; set; }
+        public virtual ICollection<Department> Departments { get; set; }
     }
 
     public class Department
     {
-        int Id { get; set; }
-        IEnumerable<Group> Groups;
+        [Key]
+        public int Id { get; set; }
+        [Required]
+        public string Name { get; set; }
+        [Required]
+        public int CompanyId { get; set; }
+        [ForeignKey("CompanyId")]
+        public virtual Company Company { get; set; }
+        public virtual ICollection<Group> Groups { get; set; }
     }
 
     public class Group
     {
-        int Id { get; set; }
-        IEnumerable<ApplicationUser> Users;
+        [Key]
+        public int Id { get; set; }
+        [Required]
+        public string Name { get; set; }
+        [Required]
+        public int DepartmentId { get; set; }
+        [ForeignKey("DepartmentId")]
+        public virtual Department Department { get; set; }
+        public virtual ICollection<ApplicationUser> Users { get; set; }
     }
 
     public class News
     {
-        int Id { get; set; }
-        string Text { get; set; }
+        [Key]
+        public int Id { get; set; }
+        [Required]
+        public string Text { get; set; }
     }
 }
