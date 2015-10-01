@@ -175,6 +175,10 @@
     <Compile Include="Migrations\201510011301535_company.Designer.cs">
       <DependentUpon>201510011301535_company.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510011353356_job.cs" />
+    <Compile Include="Migrations\201510011353356_job.Designer.cs">
+      <DependentUpon>201510011353356_job.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CompanyModels.cs" />
     <Compile Include="Repositories\PersonalsystemRepository.cs" />
@@ -276,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510011301535_company.resx">
       <DependentUpon>201510011301535_company.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510011353356_job.resx">
+      <DependentUpon>201510011353356_job.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

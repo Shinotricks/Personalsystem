@@ -19,6 +19,7 @@ namespace Personalsystem.Models
 
         public virtual ICollection<Company> Companies { get; set; }
         public virtual ICollection<Group> Groups { get; set; }
+        public virtual ICollection<Job> JobsApplied { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -48,6 +49,8 @@ namespace Personalsystem.Models
         public System.Data.Entity.DbSet<Personalsystem.Models.Department> Departments { get; set; }
 
         public System.Data.Entity.DbSet<Personalsystem.Models.Group> Groups { get; set; }
+
+        public System.Data.Entity.DbSet<Personalsystem.Models.Job> Jobs { get; set; }
     }
 
     public class Adress
