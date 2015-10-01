@@ -13,10 +13,6 @@ namespace Personalsystem.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        [Required]
-        public string OwnerId { get; set; }
-        [ForeignKey("OwnerId")]
-        public virtual ApplicationUser Owner { get; set; }
         public virtual ICollection<Department> Departments { get; set; }
     }
 

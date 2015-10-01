@@ -10,112 +10,112 @@ using Personalsystem.Models;
 
 namespace Personalsystem.Controllers
 {
-    public class CompaniesController : Controller
+    public class GroupController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Companies
+        // GET: Groups
         public ActionResult Index()
         {
-            var companies = db.Companies.Include(c => c.Owner);
-            return View(companies.ToList());
+            var groups = db.Groups.Include(g => g.Department);
+            return View(groups.ToList());
         }
 
-        // GET: Companies/Details/5
+        // GET: Groups/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
-            if (company == null)
+            Group group = db.Groups.Find(id);
+            if (group == null)
             {
                 return HttpNotFound();
             }
-            return View(company);
+            return View(group);
         }
 
-        // GET: Companies/Create
+        // GET: Groups/Create
         public ActionResult Create()
         {
-            ViewBag.OwnerId = new SelectList(db.ApplicationUsers, "Id", "Email");
+            ViewBag.DepartmentId = new SelectList(db.Departments, "Id", "Name");
             return View();
         }
 
-        // POST: Companies/Create
+        // POST: Groups/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,OwnerId")] Company company)
+        public ActionResult Create([Bind(Include = "Id,Name,DepartmentId")] Group group)
         {
             if (ModelState.IsValid)
             {
-                db.Companies.Add(company);
+                db.Groups.Add(group);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.OwnerId = new SelectList(db.ApplicationUsers, "Id", "Email", company.OwnerId);
-            return View(company);
+            ViewBag.DepartmentId = new SelectList(db.Departments, "Id", "Name", group.DepartmentId);
+            return View(group);
         }
 
-        // GET: Companies/Edit/5
+        // GET: Groups/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
-            if (company == null)
+            Group group = db.Groups.Find(id);
+            if (group == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.OwnerId = new SelectList(db.ApplicationUsers, "Id", "Email", company.OwnerId);
-            return View(company);
+            ViewBag.DepartmentId = new SelectList(db.Departments, "Id", "Name", group.DepartmentId);
+            return View(group);
         }
 
-        // POST: Companies/Edit/5
+        // POST: Groups/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,OwnerId")] Company company)
+        public ActionResult Edit([Bind(Include = "Id,Name,DepartmentId")] Group group)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(company).State = EntityState.Modified;
+                db.Entry(group).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.OwnerId = new SelectList(db.ApplicationUsers, "Id", "Email", company.OwnerId);
-            return View(company);
+            ViewBag.DepartmentId = new SelectList(db.Departments, "Id", "Name", group.DepartmentId);
+            return View(group);
         }
 
-        // GET: Companies/Delete/5
+        // GET: Groups/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
-            if (company == null)
+            Group group = db.Groups.Find(id);
+            if (group == null)
             {
                 return HttpNotFound();
             }
-            return View(company);
+            return View(group);
         }
 
-        // POST: Companies/Delete/5
+        // POST: Groups/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Company company = db.Companies.Find(id);
-            db.Companies.Remove(company);
+            Group group = db.Groups.Find(id);
+            db.Groups.Remove(group);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -10,112 +10,107 @@ using Personalsystem.Models;
 
 namespace Personalsystem.Controllers
 {
-    public class DepartmentsController : Controller
+    public class CompanyController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Departments
+        // GET: Companies
         public ActionResult Index()
         {
-            var departments = db.Departments.Include(d => d.Company);
-            return View(departments.ToList());
+            return View(db.Companies.ToList());
         }
 
-        // GET: Departments/Details/5
+        // GET: Companies/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Departments.Find(id);
-            if (department == null)
+            Company company = db.Companies.Find(id);
+            if (company == null)
             {
                 return HttpNotFound();
             }
-            return View(department);
+            return View(company);
         }
 
-        // GET: Departments/Create
+        // GET: Companies/Create
         public ActionResult Create()
         {
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name");
             return View();
         }
 
-        // POST: Departments/Create
+        // POST: Companies/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,CompanyId")] Department department)
+        public ActionResult Create([Bind(Include = "Id,Name")] Company company)
         {
             if (ModelState.IsValid)
             {
-                db.Departments.Add(department);
+                db.Companies.Add(company);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", department.CompanyId);
-            return View(department);
+            return View(company);
         }
 
-        // GET: Departments/Edit/5
+        // GET: Companies/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Departments.Find(id);
-            if (department == null)
+            Company company = db.Companies.Find(id);
+            if (company == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", department.CompanyId);
-            return View(department);
+            return View(company);
         }
 
-        // POST: Departments/Edit/5
+        // POST: Companies/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,CompanyId")] Department department)
+        public ActionResult Edit([Bind(Include = "Id,Name")] Company company)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(department).State = EntityState.Modified;
+                db.Entry(company).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", department.CompanyId);
-            return View(department);
+            return View(company);
         }
 
-        // GET: Departments/Delete/5
+        // GET: Companies/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Departments.Find(id);
-            if (department == null)
+            Company company = db.Companies.Find(id);
+            if (company == null)
             {
                 return HttpNotFound();
             }
-            return View(department);
+            return View(company);
         }
 
-        // POST: Departments/Delete/5
+        // POST: Companies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Department department = db.Departments.Find(id);
-            db.Departments.Remove(department);
+            Company company = db.Companies.Find(id);
+            db.Companies.Remove(company);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
