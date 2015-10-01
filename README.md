@@ -1,5 +1,3 @@
-Todo: Job model, company jobs list, user searched jobs list
-
 # Personalsystem
 <strong>Backlog:<br>
 Personalsystem</strong><br>
