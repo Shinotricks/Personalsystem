@@ -1,6 +1,7 @@
 ﻿body {
     padding-bottom: 50px;
     background: url('../Images/bg.jpg') center top no-repeat fixed;
+    font-family: Helvetica, sans-serif;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -9,6 +10,16 @@
     margin-top: 140px;
     padding: 40px;
     border-radius: 10px;
+}
+
+.footer-content {
+    background: #FFF;
+    margin-top: 20px;
+    padding: 8px 0 0 0;
+    border-radius: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
 }
 
 .jumbotron {
