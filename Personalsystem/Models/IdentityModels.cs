@@ -42,6 +42,14 @@ namespace Personalsystem.Models
         }
 
         public DbSet<Adress> Adresses { get; set; }
+
+        public System.Data.Entity.DbSet<Personalsystem.Models.Company> Companies { get; set; }
+
+        public System.Data.Entity.DbSet<Personalsystem.Models.ApplicationUser> ApplicationUsers { get; set; }
+
+        public System.Data.Entity.DbSet<Personalsystem.Models.Department> Departments { get; set; }
+
+        public System.Data.Entity.DbSet<Personalsystem.Models.Group> Groups { get; set; }
     }
 
     public class Adress
