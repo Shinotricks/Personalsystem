@@ -169,10 +169,10 @@
       <DependentUpon>201509291231502_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Adress.cs" />
+    <Compile Include="Models\CompanyModels.cs" />
+    <Compile Include="Viewmodels\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Viewmodels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -239,7 +239,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Repositories\" />
-    <Folder Include="Viewmodels\" />
     <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
