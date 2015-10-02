@@ -13,8 +13,6 @@ namespace Personalsystem.Controllers
 {
     public class CompanyController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
         private PersonalsystemRepository repo = new PersonalsystemRepository();
         
         // GET: Companies
@@ -53,14 +51,13 @@ namespace Personalsystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Companies.Add(company);
-                db.SaveChanges();
+                repo.CreateCompany(company);
                 return RedirectToAction("Index");
             }
 
             return View(company);
         }
-/*
+
         // GET: Companies/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -68,7 +65,7 @@ namespace Personalsystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
+            Company company = repo.GetSpecificCompany(id);
             if (company == null)
             {
                 return HttpNotFound();
@@ -85,8 +82,7 @@ namespace Personalsystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(company).State = EntityState.Modified;
-                db.SaveChanges();
+                repo.EditCompany(company);
                 return RedirectToAction("Index");
             }
             return View(company);
@@ -99,7 +95,7 @@ namespace Personalsystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
+            Company company = repo.GetSpecificCompany(id);
             if (company == null)
             {
                 return HttpNotFound();
@@ -112,12 +108,13 @@ namespace Personalsystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Company company = db.Companies.Find(id);
-            db.Companies.Remove(company);
-            db.SaveChanges();
+            Company company = repo.GetSpecificCompany(id);
+            
+            repo.RemoveCompany(company);
+
             return RedirectToAction("Index");
         }
-        */
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

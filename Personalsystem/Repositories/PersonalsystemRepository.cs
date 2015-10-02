@@ -8,7 +8,7 @@ namespace Personalsystem.Repositories
 {
     public class PersonalsystemRepository
     {
-        private ApplicationDbContext db;
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public PersonalsystemRepository()
         {
@@ -26,6 +26,29 @@ namespace Personalsystem.Repositories
             return db.Companies.Single(d => d.Id == companyId);
         }
 
+        public Company CreateCompany(Company company)
+        {
+            db.Companies.Add(company);
+            db.SaveChanges();
+
+            return company;
+        }
+
+        public Company EditCompany(Company company)
+        {
+            db.Entry(company).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
+            return company;
+        }
+
+        public Company RemoveCompany(Company company)
+        {
+            db.Companies.Remove(company);
+            db.SaveChanges();
+
+            return company;
+        }
         #endregion
 
         #region Department Methods
