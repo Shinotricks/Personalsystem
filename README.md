@@ -52,7 +52,7 @@ string Name
 Company Model</strong><br>
 {
 int Id,
-string Name<br>
+string Name,<br>
 Ienumerable<'Department'> Departments() //Avdelningar<br>
 Ienumerable<'Job'> Jobs() //Jobb
 }
@@ -60,14 +60,14 @@ Ienumerable<'Job'> Jobs() //Jobb
 Department Model
 {
 int Id,
-string Name<br>
+string Name,<br>
 Ienumerable<'Group'> Groups() //Grupper
 }
 
 Group Model
 {
 int Id,
-string Name<br>
+string Name,<br>
 Ienumerable<'User'> Users() //Användare
 }
 
@@ -80,9 +80,9 @@ string Text
 Job Model
 {
 int Id,
-string Name
-string Description<br>
-DateTime Published
+string Name,
+string Description,<br>
+DateTime Published,
 DateTime Deadline
 }
 
