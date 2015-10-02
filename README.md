@@ -53,7 +53,7 @@ Company Model</strong><br>
 {
 int Id,
 string Name<br>
-Ienumerable<'Department'> Departments() //Avdelningar
+Ienumerable<'Department'> Departments() //Avdelningar<br>
 Ienumerable<'Job'> Jobs() //Jobb
 }
 
@@ -81,7 +81,7 @@ Job Model
 {
 int Id,
 string Name<br>
-string Description
+string Description<br>
 DateTime Published
 DateTime Deadline<br>
 }
