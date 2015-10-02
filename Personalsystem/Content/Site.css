@@ -8,18 +8,30 @@
 .body-content {
     background: #FFF;
     margin-top: 140px;
-    padding: 40px;
+    padding: 20px;
     border-radius: 10px;
 }
 
 .footer-content {
     background: #FFF;
     margin-top: 20px;
-    padding: 8px 0 0 0;
+    padding: 20px;
     border-radius: 10px;
-    text-align: center;
     text-transform: uppercase;
-    font-weight: 600;
+    font-size: 0.8em;
+}
+
+.footer-content > .col-md-12 > p{
+    border-top: 1px solid #000;
+}
+
+.footer-content > .col-md-3 > h4 {
+    font-size: 1.3em;
+}
+
+.footer-content > .col-md-3 > ul {
+    list-style-type: none;
+    padding: 0;
 }
 
 .jumbotron {
@@ -28,7 +40,7 @@
     -moz-background-size: 100% 100%;
     -o-background-size: 100% 100%;
     background-size: 100% 100%;
-    margin: 0 0 40px 0;
+    margin: 0 0 20px 0;
 }
 
 .push-spaces
@@ -123,7 +135,7 @@
 }
 
 .navbar-fixed-top {
-    margin-top: 10px;
+    margin-top: 0px;
     background: #FFF;
     border: 0;
     box-shadow: 0px 0px 10px #999;
@@ -139,10 +151,22 @@
     overflow: hidden;
     background-color: #428bca;
     width: 100%;
+    font-size: 0.8em;
 }
 
 .adminnav > li {
     float: right;
+    margin-right: 0px;
+    margin-left: 0px;
+    border-right: 1px solid #EFEFEF;
+}
+
+.adminnav > li > a:hover {
+background: #FFF;
+}
+
+.adminnav > li:last-child {
+    border-left: 1px solid #EFEFEF;
 }
 
 .adminnav > li > a:link, .adminnav > li > a:visited {
