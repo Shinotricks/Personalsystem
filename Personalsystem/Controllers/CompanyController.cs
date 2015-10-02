@@ -13,8 +13,6 @@ namespace Personalsystem.Controllers
 {
     public class CompanyController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
         private PersonalsystemRepository repo = new PersonalsystemRepository();
         
         // GET: Companies
@@ -53,8 +51,7 @@ namespace Personalsystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Companies.Add(company);
-                db.SaveChanges();
+                repo.CreateCompany(company);
                 return RedirectToAction("Index");
             }
 

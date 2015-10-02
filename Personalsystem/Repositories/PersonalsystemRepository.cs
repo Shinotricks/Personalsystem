@@ -26,6 +26,14 @@ namespace Personalsystem.Repositories
             return db.Companies.Single(d => d.Id == companyId);
         }
 
+        public Company CreateCompany(Company company)
+        {
+            db.Companies.Add(company);
+            db.SaveChanges();
+
+            return company;
+        }
+
         #endregion
 
         #region Department Methods
