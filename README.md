@@ -77,6 +77,15 @@ int Id,
 string Text
 }
 
+Job Model
+{
+int Id,
+string Name<br>
+string Description
+DateTime Published
+DateTime Deadline<br>
+}
+
 <strong>Användar-historier<br>
 Adminhantering:</strong><br>
 Som användare vill jag kunna skapa ett företag i systemet (blir då admin).
