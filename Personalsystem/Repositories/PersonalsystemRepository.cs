@@ -20,6 +20,12 @@ namespace Personalsystem.Repositories
         {
             return db.Companies.ToList();
         }
+
+        public Company GetSpecificCompany(int? companyId)
+        {
+            return db.Companies.Single(d => d.Id == companyId);
+        }
+
         #endregion
 
         #region Department Methods
@@ -27,6 +33,12 @@ namespace Personalsystem.Repositories
         {
             return db.Departments.ToList();
         }
+
+        public Department GetSpecificDepartment(int? departmentId)
+        {
+            return db.Departments.Single(d => d.Id == departmentId);
+        }
+
         #endregion
 
         #region Group Methods

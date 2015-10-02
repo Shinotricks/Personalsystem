@@ -13,6 +13,8 @@ namespace Personalsystem.Controllers
 {
     public class DepartmentController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         private PersonalsystemRepository repo = new PersonalsystemRepository();
 
         // GET: Departments
@@ -21,7 +23,7 @@ namespace Personalsystem.Controllers
             //var departments = db.Departments.Include(d => d.Company);
             return View(repo.Departments());
         }
-/*
+
         // GET: Departments/Details/5
         public ActionResult Details(int? id)
         {
@@ -29,7 +31,7 @@ namespace Personalsystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Departments.Find(id);
+            Department department = repo.GetSpecificDepartment(id);
             if (department == null)
             {
                 return HttpNotFound();
@@ -109,7 +111,7 @@ namespace Personalsystem.Controllers
             }
             return View(department);
         }
-
+/*
         // POST: Departments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

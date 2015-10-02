@@ -64,6 +64,17 @@ namespace Personalsystem.Migrations
 
             userManager.AddToRole(context.Users.Single(u => u.Email == "admin@adminsson.dk").Id, "admin");
             userManager.AddToRole(context.Users.Single(u => u.Email == "user@usersson.dk").Id, "applicant");
+
+            context.Companies.AddOrUpdate(
+                new Models.Company { Id = 1, Name = "Horse & Country" }
+                );
+
+            context.Departments.AddOrUpdate(
+                new Models.Department { Id = 1, Name = "Economy", CompanyId  = 1 }
+                );
+            context.Groups.AddOrUpdate(
+                new Models.Group { Id = 1, Name = "Group 1", DepartmentId = 1 }
+                );
         }
     }
 }

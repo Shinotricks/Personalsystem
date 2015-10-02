@@ -13,6 +13,8 @@ namespace Personalsystem.Controllers
 {
     public class CompanyController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         private PersonalsystemRepository repo = new PersonalsystemRepository();
         
         // GET: Companies
@@ -20,7 +22,7 @@ namespace Personalsystem.Controllers
         {
             return View(repo.Companies());
         }
-        /*
+
         // GET: Companies/Details/5
         public ActionResult Details(int? id)
         {
@@ -28,7 +30,7 @@ namespace Personalsystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = repo.Companies.Find(id);
+            Company company = repo.GetSpecificCompany(id);
             if (company == null)
             {
                 return HttpNotFound();
@@ -51,14 +53,14 @@ namespace Personalsystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                repo.Companies.Add(company);
-                repo.SaveChanges();
+                db.Companies.Add(company);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             return View(company);
         }
-
+/*
         // GET: Companies/Edit/5
         public ActionResult Edit(int? id)
         {
