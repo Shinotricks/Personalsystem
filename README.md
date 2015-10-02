@@ -52,19 +52,22 @@ string Name
 Company Model</strong><br>
 {
 int Id,
-Ienumerable<'Group'> Management(), //Ledning<br>
+string Name<br>
 Ienumerable<'Department'> Departments() //Avdelningar
+Ienumerable<'Job'> Jobs() //Jobb
 }
 
 Department Model
 {
 int Id,
+string Name<br>
 Ienumerable<'Group'> Groups() //Grupper
 }
 
 Group Model
 {
 int Id,
+string Name<br>
 Ienumerable<'User'> Users() //Användare
 }
 
