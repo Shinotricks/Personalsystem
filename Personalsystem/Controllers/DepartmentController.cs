@@ -16,13 +16,24 @@ namespace Personalsystem.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         private PersonalsystemRepository repo = new PersonalsystemRepository();
+                // GET: Departments
+                public ActionResult Index()
+                {
+                    //var departments = db.Departments.Include(d => d.Company);
+                    return View(repo.Departments());
+                }
+                /*
+                // GET: Departments
+                public ActionResult Index(int? id)
+                        {
+                            if (id == null)
+                            {
+                                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                            }
 
-        // GET: Departments
-        public ActionResult Index()
-        {
-            //var departments = db.Departments.Include(d => d.Company);
-            return View(repo.Departments());
-        }
+                            return View(repo.GetDepartmentsByCompanyId(id));
+                        }
+                */
 
         // GET: Departments/Details/5
         public ActionResult Details(int? id)

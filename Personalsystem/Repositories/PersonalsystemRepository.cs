@@ -57,6 +57,11 @@ namespace Personalsystem.Repositories
             return db.Departments.ToList();
         }
 
+        public IEnumerable<Department> GetDepartmentsByCompanyId(int? id)
+        {
+            return db.Departments.Where(i => i.CompanyId == id).ToList();
+        }
+
         public Department GetSpecificDepartment(int? departmentId)
         {
             return db.Departments.Single(d => d.Id == departmentId);
