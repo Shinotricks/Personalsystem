@@ -80,10 +80,10 @@ string Text
 Job Model
 {
 int Id,
-string Name<br>
+string Name
 string Description<br>
 DateTime Published
-DateTime Deadline<br>
+DateTime Deadline
 }
 
 <strong>Användar-historier<br>
