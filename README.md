@@ -175,7 +175,7 @@ Skapa en funktion som lägger till ett företags ledning.<br>
 Skapa en funktion som lägger till ett företags avdelningar.<br>
 Skapa en funktion som lägger till en avdelnings grupper.<br>
 Skapa en funktion som lägger till (bjuder in) personal i företaget (admin).<br>
-Skapa en vy för att visa företaget.<br>
+Skapa en viewmodel för att visa företaget.<br>
 Lägga till arbetstid till arbetare.<br>
 Som admin skall jag kunna ändra roll på andra användare(kopplade till företaget) till chef eller arbetare.<br>
 Som admin skall jag kunna vara owner och kunna lägga till fler admin.<br>
