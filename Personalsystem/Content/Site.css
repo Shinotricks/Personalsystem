@@ -21,17 +21,24 @@
     font-size: 0.8em;
 }
 
-.footer-content > .col-md-12 > p{
+.footer-content > p {
+    /*height: 80px;
+    /*border-top: 1px solid #000;
+    border-top-width: 10px 0 0 0;*/
     border-top: 1px solid #000;
+    margin-top: 110px;
+    padding-top: 5px;
 }
 
 .footer-content > .col-md-3 > h4 {
     font-size: 1.3em;
+    padding-bottom: 0px;
 }
 
 .footer-content > .col-md-3 > ul {
     list-style-type: none;
     padding: 0;
+    padding-bottom: 0px;
 }
 
 .jumbotron {
