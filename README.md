@@ -176,14 +176,14 @@ Skapa en vy för att kunna få en inblick i företaget.<br>
 <strong>Sprintbacklog:</strong><br>
 Skapa en funktion som lägger till ett företags ledning.<br>
 Skapa en funktion som lägger till ett företags avdelningar.<br>
+Skapa en viewmodel för att visa företaget.<br><br>
 Skapa en funktion som lägger till en avdelnings grupper.<br>
 Skapa en funktion som lägger till (bjuder in) personal i företaget (admin).<br>
-Skapa en viewmodel för att visa företaget.<br>
-Lägga till arbetstid till arbetare.<br>
-Som admin skall jag kunna ändra roll på andra användare(kopplade till företaget) till chef eller arbetare.<br>
+Som admin skall jag kunna ändra roll på andra användare(kopplade till företaget) till chef eller arbetare.<br><br>
 Som admin skall jag kunna vara owner och kunna lägga till fler admin.<br>
 Som admin skall jag kunna lägga ut nyheter.<br>
-Som admin skall jag kunna bestämma vilka nyheter som ska vara interna eller externa.<br>
+Som admin skall jag kunna bestämma vilka nyheter som ska vara interna eller externa.<br><br>
 Som admin skall jag kunna återgå till sökande genom att tas bort från företaget.<br>
+Lägga till arbetstid till arbetare.<br>
 Skapa viewmodel till admin.<br>
 Skapa viewmodel till chef.<br>
