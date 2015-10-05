@@ -174,18 +174,22 @@ Skapa en vy för att kunna se vilka jag jobbar med.<br>
 Skapa en vy för att kunna få en inblick i företaget.<br>
 
 <strong>Sprintbacklog:</strong><br>
-Lägga till arbetstid till arbetare.<br>Durim
+<strong>Durim</strong><br>
+Lägga till arbetstid till arbetare.<br>
 Skapa viewmodel till admin.<br>
 Skapa viewmodel till chef.<br>
 Skapa en viewmodel för att visa företaget.<br><br>
-Skapa en funktion som lägger till ett företags ledning.<br>Peter
+<strong>Peter</strong><br>
+Skapa en funktion som lägger till ett företags ledning.<br>
 Skapa en funktion som lägger till ett företags avdelningar.<br>
 Skapa en funktion som lägger till en avdelnings grupper.<br>
 Skapa en funktion som lägger till (bjuder in) personal i företaget (admin).<br><br>
+<strong>Aron</strong><br>
 Som admin skall jag kunna ändra roll på andra användare(kopplade till företaget) till chef eller arbetare.<br>
 Som admin skall jag kunna vara owner och kunna lägga till fler admin.<br>
 Skapa en funktion för att automatiskt läggas till i gruppen sökande när jag skapar mitt konto.<br>
 Som admin, chef eller arbetare skall jag kunna återgå till sökande genom att tas bort från företaget.<br><br>
+<strong>Christoffer</strong><br>
 Skapa en vy som visar olika ansökningar som ligger under ett ansvarsområde.<br>
 Skapa en vy för att visa ansökningar.<br>
 Som admin och chef skall jag kunna lägga ut nyheter.<br>
