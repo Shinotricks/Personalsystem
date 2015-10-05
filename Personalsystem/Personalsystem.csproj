@@ -179,6 +179,10 @@
     <Compile Include="Migrations\201510011353356_job.Designer.cs">
       <DependentUpon>201510011353356_job.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510051254328_nullableint.cs" />
+    <Compile Include="Migrations\201510051254328_nullableint.Designer.cs">
+      <DependentUpon>201510051254328_nullableint.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CompanyModels.cs" />
     <Compile Include="Repositories\PersonalsystemRepository.cs" />
@@ -283,6 +287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510011353356_job.resx">
       <DependentUpon>201510011353356_job.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510051254328_nullableint.resx">
+      <DependentUpon>201510051254328_nullableint.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
