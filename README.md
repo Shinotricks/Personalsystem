@@ -174,11 +174,11 @@ Skapa en vy för att kunna se vilka jag jobbar med.<br>
 Skapa en vy för att kunna få en inblick i företaget.<br>
 
 <strong>Sprintbacklog:</strong><br>
-Lägga till arbetstid till arbetare.<br>
+Lägga till arbetstid till arbetare.<br>Durim
 Skapa viewmodel till admin.<br>
 Skapa viewmodel till chef.<br>
 Skapa en viewmodel för att visa företaget.<br><br>
-Skapa en funktion som lägger till ett företags ledning.<br>
+Skapa en funktion som lägger till ett företags ledning.<br>Peter
 Skapa en funktion som lägger till ett företags avdelningar.<br>
 Skapa en funktion som lägger till en avdelnings grupper.<br>
 Skapa en funktion som lägger till (bjuder in) personal i företaget (admin).<br><br>
