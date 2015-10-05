@@ -4,7 +4,7 @@
     ViewBag.Title = "Companies";
 }
 
-<h2>ViewBag.Title</h2>
+<h2>Companies</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -20,7 +20,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.ActionLink(item.Name, "../Department", new { id=item.Id})
+            @Html.ActionLink(item.Name, "../Department/Departments", new { id=item.Id})
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

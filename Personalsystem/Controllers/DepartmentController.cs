@@ -13,8 +13,6 @@ namespace Personalsystem.Controllers
 {
     public class DepartmentController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
         private PersonalsystemRepository repo = new PersonalsystemRepository();
                 // GET: Departments
                 public ActionResult Index()
@@ -33,7 +31,6 @@ namespace Personalsystem.Controllers
 
                             return View(repo.GetDepartmentsByCompanyId(id));
                         }
-                */
 
         // GET: Departments/Details/5
         public ActionResult Details(int? id)
@@ -53,7 +50,7 @@ namespace Personalsystem.Controllers
         // GET: Departments/Create
         public ActionResult Create()
         {
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name");
+            ViewBag.CompanyId = new SelectList(repo.Companies, "Id", "Name");
             return View();
         }
 
