@@ -153,7 +153,7 @@ Skapa en funktion som kan ta bort admin (owner).<br>
 Skapa en funktion som kan lägga ut nyheter.<br>
 Skapa en funktion som kan lägga till vilka nyheter som ska vara interna eller externa.<br>
 Skapa en funktion som kan ta bort användaren från företaget.<br>
-Skapa en funktion som visar olika ansökningar som ligger under ett ansvarsområde.<br>
+Skapa en vy som visar olika ansökningar som ligger under ett ansvarsområde.<br>
 Skapa en vy för att visa ansökningar.<br>
 Skapa en funktion som kan godkänna en ansökning och skicka ett meddelande till den sökande där hen kan välja att ta platsen eller avstå.<br>
 Skapa en funktion som kan avböja en ansökning och komma till en ruta där man kan komponera en förklaring och skicka denna till den sökande.<br>
@@ -174,6 +174,7 @@ Skapa en vy för att kunna se vilka jag jobbar med.<br>
 Skapa en vy för att kunna få en inblick i företaget.<br>
 
 <strong>Sprintbacklog:</strong><br>
+Lägga till arbetstid till arbetare.<br>
 Skapa viewmodel till admin.<br>
 Skapa viewmodel till chef.<br>
 Skapa en viewmodel för att visa företaget.<br><br>
@@ -183,7 +184,9 @@ Skapa en funktion som lägger till en avdelnings grupper.<br>
 Skapa en funktion som lägger till (bjuder in) personal i företaget (admin).<br><br>
 Som admin skall jag kunna ändra roll på andra användare(kopplade till företaget) till chef eller arbetare.<br>
 Som admin skall jag kunna vara owner och kunna lägga till fler admin.<br>
-Som admin skall jag kunna återgå till sökande genom att tas bort från företaget.<br><br>
+Skapa en funktion för att automatiskt läggas till i gruppen sökande när jag skapar mitt konto.<br>
+Som admin, chef eller arbetare skall jag kunna återgå till sökande genom att tas bort från företaget.<br><br>
+Skapa en vy som visar olika ansökningar som ligger under ett ansvarsområde.<br>
+Skapa en vy för att visa ansökningar.<br>
 Som admin och chef skall jag kunna lägga ut nyheter.<br>
 Som admin skall jag kunna bestämma vilka nyheter som ska vara interna eller externa.<br>
-Lägga till arbetstid till arbetare.<br>
