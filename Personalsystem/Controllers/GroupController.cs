@@ -21,7 +21,6 @@ namespace Personalsystem.Controllers
             //var groups = repo.Groups.Include(g => g.Department);
             return View(repo.Groups());
         }
-/*
         // GET: Groups/Details/5
         public ActionResult Details(int? id)
         {
@@ -29,18 +28,17 @@ namespace Personalsystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group group = db.Groups.Find(id);
+            Group group = repo.GetSpecificGroup(id);
             if (group == null)
             {
                 return HttpNotFound();
             }
             return View(group);
         }
-
         // GET: Groups/Create
         public ActionResult Create()
         {
-            ViewBag.DepartmentId = new SelectList(db.Departments, "Id", "Name");
+            //ViewBag.DepartmentId = new SelectList(repo.Groups, "Id", "Name");
             return View();
         }
 
@@ -53,12 +51,11 @@ namespace Personalsystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Groups.Add(group);
-                db.SaveChanges();
+                repo.CreateGroup(group);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DepartmentId = new SelectList(db.Departments, "Id", "Name", group.DepartmentId);
+            //ViewBag.DepartmentId = new SelectList(repo.GetGroupsByDepartmentId, "Id", "Name", group.DepartmentId);
             return View(group);
         }
 
@@ -69,12 +66,12 @@ namespace Personalsystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group group = db.Groups.Find(id);
+            Group group = repo.GetSpecificGroup(id);
             if (group == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.DepartmentId = new SelectList(db.Departments, "Id", "Name", group.DepartmentId);
+            //ViewBag.DepartmentId = new SelectList(db.Departments, "Id", "Name", group.DepartmentId);
             return View(group);
         }
 
@@ -87,11 +84,10 @@ namespace Personalsystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(group).State = EntityState.Modified;
-                db.SaveChanges();
+                repo.EditGroup(group);
                 return RedirectToAction("Index");
             }
-            ViewBag.DepartmentId = new SelectList(db.Departments, "Id", "Name", group.DepartmentId);
+            //ViewBag.DepartmentId = new SelectList(db.Departments, "Id", "Name", group.DepartmentId);
             return View(group);
         }
 
@@ -102,7 +98,7 @@ namespace Personalsystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group group = db.Groups.Find(id);
+            Group group = repo.GetSpecificGroup(id);
             if (group == null)
             {
                 return HttpNotFound();
@@ -115,12 +111,10 @@ namespace Personalsystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Group group = db.Groups.Find(id);
-            db.Groups.Remove(group);
-            db.SaveChanges();
+            Group group = repo.GetSpecificGroup(id);
+            repo.RemoveGroup(group);
             return RedirectToAction("Index");
         }
-*/
         protected override void Dispose(bool disposing)
         {
             if (disposing)

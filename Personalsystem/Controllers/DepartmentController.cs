@@ -14,24 +14,24 @@ namespace Personalsystem.Controllers
     public class DepartmentController : Controller
     {
         private PersonalsystemRepository repo = new PersonalsystemRepository();
-                // GET: Departments
-                public ActionResult Index()
+        // GET: Departments
+        public ActionResult Index()
+        {
+            //var departments = repo.GetDepartmentsByCompanyId(Company);
+            return View(repo.Departments());
+        }
+        /*
+        // GET: Departments
+        public ActionResult Index(int? id)
                 {
-                    //var departments = db.Departments.Include(d => d.Company);
-                    return View(repo.Departments());
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    }
+
+                    return View(repo.GetDepartmentsByCompanyId(id));
                 }
-                /*
-                // GET: Departments
-                public ActionResult Index(int? id)
-                        {
-                            if (id == null)
-                            {
-                                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                            }
-
-                            return View(repo.GetDepartmentsByCompanyId(id));
-                        }
-
+         */
         // GET: Departments/Details/5
         public ActionResult Details(int? id)
         {
@@ -46,11 +46,10 @@ namespace Personalsystem.Controllers
             }
             return View(department);
         }
-
         // GET: Departments/Create
         public ActionResult Create()
         {
-            ViewBag.CompanyId = new SelectList(repo.Companies, "Id", "Name");
+            //ViewBag.CompanyId = new SelectList(repo.Companies, "Id", "Name");
             return View();
         }
 
@@ -63,15 +62,13 @@ namespace Personalsystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Departments.Add(department);
-                db.SaveChanges();
+                repo.CreateDepartment(department);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", department.CompanyId);
+            //ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", department.CompanyId);
             return View(department);
         }
-
         // GET: Departments/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -79,12 +76,12 @@ namespace Personalsystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Departments.Find(id);
+            Department department = repo.GetSpecificDepartment(id);
             if (department == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", department.CompanyId);
+            //ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", department.CompanyId);
             return View(department);
         }
 
@@ -97,13 +94,13 @@ namespace Personalsystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(department).State = EntityState.Modified;
-                db.SaveChanges();
+                repo.EditDepartment(department);
                 return RedirectToAction("Index");
             }
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", department.CompanyId);
+            //ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", department.CompanyId);
             return View(department);
         }
+
 
         // GET: Departments/Delete/5
         public ActionResult Delete(int? id)
@@ -112,25 +109,22 @@ namespace Personalsystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Departments.Find(id);
+            Department department = repo.GetSpecificDepartment(id);
             if (department == null)
             {
                 return HttpNotFound();
             }
             return View(department);
         }
-/*
         // POST: Departments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Department department = db.Departments.Find(id);
-            db.Departments.Remove(department);
-            db.SaveChanges();
+            Department department = repo.GetSpecificDepartment(id);
+            repo.RemoveDepartment(department);
             return RedirectToAction("Index");
         }
-*/
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -75,12 +75,64 @@ namespace Personalsystem.Repositories
             return db.Departments.Single(d => d.Id == departmentId);
         }
 
+        public Department CreateDepartment(Department department)
+        {
+            db.Departments.Add(department);
+            db.SaveChanges();
+
+            return department;
+        }
+
+        public Department EditDepartment(Department department)
+        {
+            db.Entry(department).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
+            return department;
+        }
+
+        public Department RemoveDepartment(Department department)
+        {
+            db.Departments.Remove(department);
+            db.SaveChanges();
+
+            return department;
+        }
         #endregion
 
         #region Group Methods
         public IEnumerable<Group> Groups()
         {
             return db.Groups.ToList();
+        }
+        public IEnumerable<Group> GetGroupsByDepartmentId(int? id)
+        {
+            return db.Groups.Where(i => i.DepartmentId == id).ToList();
+        }
+
+        public Group GetSpecificGroup(int? groupId)
+        {
+            return db.Groups.Single(d => d.Id == groupId);
+        }
+
+        public Group CreateGroup(Group group)
+        {
+            db.Groups.Add(group);
+            db.SaveChanges();
+
+            return group;
+        }
+
+        public void EditGroup(Group group)
+        {
+            db.Entry(group).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+        }
+
+        public  void RemoveGroup(Group group)
+        {
+            db.Groups.Remove(group);
+            db.SaveChanges();
         }
         #endregion
 
