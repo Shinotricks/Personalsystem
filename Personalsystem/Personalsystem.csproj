@@ -159,6 +159,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
@@ -167,25 +168,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201509291231502_initial.cs" />
-    <Compile Include="Migrations\201509291231502_initial.Designer.cs">
-      <DependentUpon>201509291231502_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510011301535_company.cs" />
-    <Compile Include="Migrations\201510011301535_company.Designer.cs">
-      <DependentUpon>201510011301535_company.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510011353356_job.cs" />
-    <Compile Include="Migrations\201510011353356_job.Designer.cs">
-      <DependentUpon>201510011353356_job.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201510051254328_nullableint.cs" />
     <Compile Include="Migrations\201510051254328_nullableint.Designer.cs">
       <DependentUpon>201510051254328_nullableint.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510060935058_KeyFix.cs" />
+    <Compile Include="Migrations\201510060935058_KeyFix.Designer.cs">
+      <DependentUpon>201510060935058_KeyFix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CompanyModels.cs" />
     <Compile Include="Repositories\PersonalsystemRepository.cs" />
+    <Compile Include="TODOLIST\Todolist.cs" />
     <Compile Include="Viewmodels\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Viewmodels\ManageViewModels.cs" />
@@ -267,10 +261,12 @@
     <Content Include="Views\Group\Edit.cshtml" />
     <Content Include="Views\Group\Index.cshtml" />
     <Content Include="Views\Department\CompanyDepartments.cshtml" />
+    <Content Include="Views\Job\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Jobs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -280,17 +276,11 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201509291231502_initial.resx">
-      <DependentUpon>201509291231502_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510011301535_company.resx">
-      <DependentUpon>201510011301535_company.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510011353356_job.resx">
-      <DependentUpon>201510011353356_job.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510051254328_nullableint.resx">
       <DependentUpon>201510051254328_nullableint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510060935058_KeyFix.resx">
+      <DependentUpon>201510060935058_KeyFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

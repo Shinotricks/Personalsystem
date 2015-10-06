@@ -44,8 +44,8 @@ namespace Personalsystem.Models
         [ForeignKey("DepartmentId")]
         public virtual Department Department { get; set; }
         public virtual ICollection<ApplicationUser> Users { get; set; }
-        public int? ScheduleId { get; set; }
-        [ForeignKey("ScheduleId")]
+        [ForeignKey("Schedule")]
+        public int? ScheduleId   { get; set; }
         public virtual ICollection<ScheduleWeek> Schedule { get; set; }
     }
 

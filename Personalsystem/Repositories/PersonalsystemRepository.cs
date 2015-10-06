@@ -15,6 +15,14 @@ namespace Personalsystem.Repositories
             db = new ApplicationDbContext();
         }
 
+        #region Jobstuff
+        public IEnumerable<Job> Jobs()
+        {
+            return db.Jobs.ToList();
+        }
+
+        #endregion  
+
         #region Company Methods
         public IEnumerable<Company> Companies()
         {
