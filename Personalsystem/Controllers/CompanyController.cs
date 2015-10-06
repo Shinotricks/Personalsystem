@@ -22,6 +22,7 @@ namespace Personalsystem.Controllers
         }
 
         // GET: Companies/Details/5
+        [Authorize(Roles = "admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +38,7 @@ namespace Personalsystem.Controllers
         }
 
         // GET: Companies/Create
+        [Authorize(Roles="admin, applicant")]
         public ActionResult Create()
         {
             return View();
@@ -59,6 +61,7 @@ namespace Personalsystem.Controllers
         }
 
         // GET: Companies/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -89,6 +92,7 @@ namespace Personalsystem.Controllers
         }
 
         // GET: Companies/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
