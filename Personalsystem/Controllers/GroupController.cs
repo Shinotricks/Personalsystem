@@ -21,6 +21,7 @@ namespace Personalsystem.Controllers
             //var groups = repo.Groups.Include(g => g.Department);
             return View(repo.Groups());
         }
+
         // GET: Groups/Details/5
         public ActionResult Details(int? id)
         {

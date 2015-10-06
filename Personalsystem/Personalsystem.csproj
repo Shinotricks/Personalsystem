@@ -176,6 +176,10 @@
     <Compile Include="Migrations\201510060935058_KeyFix.Designer.cs">
       <DependentUpon>201510060935058_KeyFix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510061243535_Fourth.cs" />
+    <Compile Include="Migrations\201510061243535_Fourth.Designer.cs">
+      <DependentUpon>201510061243535_Fourth.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CompanyModels.cs" />
     <Compile Include="Repositories\PersonalsystemRepository.cs" />
@@ -281,6 +285,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510060935058_KeyFix.resx">
       <DependentUpon>201510060935058_KeyFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510061243535_Fourth.resx">
+      <DependentUpon>201510061243535_Fourth.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

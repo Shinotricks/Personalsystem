@@ -10,18 +10,28 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Personalsystem.Models;
 using Personalsystem.Viewmodels;
+using Personalsystem.Repositories;
 
 namespace Personalsystem.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private PersonalsystemRepository repo = new PersonalsystemRepository();
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
         public AccountController()
         {
         }
+        // GET: Users
+        public ActionResult Index()
+        {
+            //var groups = repo.Groups.Include(g => g.Department);
+            return View(repo.Users());
+        }
+
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
