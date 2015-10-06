@@ -11,110 +11,110 @@ using Personalsystem.Repositories;
 
 namespace Personalsystem.Controllers
 {
-    public class JobController : Controller
+    public class JobsController : Controller
     {
         private PersonalsystemRepository repo = new PersonalsystemRepository();
-        
-        // GET: Companies
+
+        // GET: Jobs
         public ActionResult Index()
         {
             return View(repo.Jobs());
         }
 
-        // GET: Companies/Details/5
+        // GET: Jobs/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = repo.GetSpecificCompany(id);
-            if (company == null)
+            Job job = repo.JobDetails(id);
+            if (job == null)
             {
                 return HttpNotFound();
             }
-            return View(company);
+            return View(job);
         }
-
-        // GET: Companies/Create
+        
+        // GET: Jobs/Create
         public ActionResult Create()
         {
             return View();
-        }
-
-        // POST: Companies/Create
+        } 
+        // POST: Jobs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name")] Company company)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,Published,Deadline,CompanyId")] Job job)
         {
             if (ModelState.IsValid)
             {
-                repo.CreateCompany(company);
+                repo.CreateJob(job);
                 return RedirectToAction("Index");
             }
-
-            return View(company);
+            return View(job);
         }
-
-        // GET: Companies/Edit/5
+        /*
+        // GET: Jobs/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = repo.GetSpecificCompany(id);
-            if (company == null)
+            Job job = db.Jobs.Find(id);
+            if (job == null)
             {
                 return HttpNotFound();
             }
-            return View(company);
+            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", job.CompanyId);
+            return View(job);
         }
 
-        // POST: Companies/Edit/5
+        // POST: Jobs/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] Company company)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,Published,Deadline,CompanyId")] Job job)
         {
             if (ModelState.IsValid)
             {
-                repo.EditCompany(company);
+                db.Entry(job).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(company);
+            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", job.CompanyId);
+            return View(job);
         }
 
-        // GET: Companies/Delete/5
+        // GET: Jobs/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = repo.GetSpecificCompany(id);
-            if (company == null)
+            Job job = db.Jobs.Find(id);
+            if (job == null)
             {
                 return HttpNotFound();
             }
-            return View(company);
+            return View(job);
         }
 
-        // POST: Companies/Delete/5
+        // POST: Jobs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Company company = repo.GetSpecificCompany(id);
-            
-            repo.RemoveCompany(company);
-
+            Job job = db.Jobs.Find(id);
+            db.Jobs.Remove(job);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        */
         protected override void Dispose(bool disposing)
         {
             if (disposing)

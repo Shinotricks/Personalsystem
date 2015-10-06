@@ -15,10 +15,29 @@ namespace Personalsystem.Repositories
             db = new ApplicationDbContext();
         }
 
+        #region AccountStuff
+        public IEnumerable<ApplicationUser> ApplicationUser()
+        {
+            return db.Users.ToList();
+        }
+        #endregion  
+
         #region Jobstuff
         public IEnumerable<Job> Jobs()
         {
             return db.Jobs.ToList();
+        }
+
+        public Job JobDetails(int? JobId)
+        {
+            return db.Jobs.Single(d => d.Id == JobId);
+        }
+
+        public Job CreateJob(Job job)
+        {
+            db.Jobs.Add(job);
+            db.SaveChanges();
+            return job;
         }
 
         #endregion  
