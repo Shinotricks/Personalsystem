@@ -23,7 +23,7 @@ namespace Personalsystem.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        [Display(Name="Department Name")]
+        [Display(Name = "Department Name")]
         public string Name { get; set; }
         [Required]
         public int CompanyId { get; set; }
@@ -44,6 +44,9 @@ namespace Personalsystem.Models
         [ForeignKey("DepartmentId")]
         public virtual Department Department { get; set; }
         public virtual ICollection<ApplicationUser> Users { get; set; }
+        public int? ScheduleId { get; set; }
+        [ForeignKey("ScheduleId")]
+        public virtual ICollection<ScheduleWeek> Schedule { get; set; }
     }
 
     public class News
@@ -71,4 +74,24 @@ namespace Personalsystem.Models
         [ForeignKey("CompanyId")]
         public virtual Company Company { get; set; }
     }
+
+    public class ScheduleDay
+    {
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
+    }
+
+    public class ScheduleWeek
+    {
+        [Key]
+        public int Id { get; set; }
+        public ScheduleDay Monday { get; set; }
+        public ScheduleDay Tuesday { get; set; }
+        public ScheduleDay Wednesday { get; set; }
+        public ScheduleDay Thursday { get; set; }
+        public ScheduleDay Friday { get; set; }
+        public ScheduleDay Saturday { get; set; }
+        public ScheduleDay Sunday { get; set; }
+    }
+
 }
