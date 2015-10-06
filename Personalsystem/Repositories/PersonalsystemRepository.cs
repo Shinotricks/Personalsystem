@@ -121,7 +121,7 @@ namespace Personalsystem.Repositories
             db.SaveChanges();
         }
 
-        public  void RemoveGroup(Group group)
+        public void RemoveGroup(Group group)
         {
             db.Groups.Remove(group);
             db.SaveChanges();
