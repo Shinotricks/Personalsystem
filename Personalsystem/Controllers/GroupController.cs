@@ -22,11 +22,6 @@ namespace Personalsystem.Controllers
             return View(repo.GetGroupsByDepartmentId(id));
         }
 
-        public ActionResult Users(int? id)
-        {
-            return View(repo.UserViewModelsByGroupId(id));
-        }
-
         // GET: Groups/Details/5
         public ActionResult Details(int? id)
         {
