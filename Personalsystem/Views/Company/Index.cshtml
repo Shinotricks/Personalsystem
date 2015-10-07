@@ -8,7 +8,7 @@
 
 @if (User.IsInRole("applicant") || User.IsInRole("admin"))
 {
-    <p>
+    <p class="subadmin">
         @Html.ActionLink("Create New", "Create")
     </p>
 }

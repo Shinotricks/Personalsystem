@@ -157,8 +157,34 @@
     padding: 0;
     overflow: hidden;
     background-color: #428bca;
-    width: 100%;
+    width: 1920px;
     font-size: 0.8em;
+    float: right;
+}
+
+.bluenav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #428bca;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.subadmin, .subadmin > a {
+    display: block;
+    width: 100%;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #428bca;
+    text-align: center;
+    padding: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+    float: right;
+    font-size: 0.9em;
+
 }
 
 .adminnav > li {
@@ -224,4 +250,10 @@ textarea {
     margin-left: auto;
     margin-right:auto;
   }
+}
+
+h2 {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.9em;
 }
