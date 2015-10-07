@@ -89,6 +89,10 @@ namespace Personalsystem.Viewmodels
         [Required]
         [Display(Name = "Zip Code")]
         public string ZipCode { get; set; }
+
+        [Required]
+        [Display(Name = "Management member")]
+        public bool IsMember { get; set; }
     }
 
     public class RegisterViewModel

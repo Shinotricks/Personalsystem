@@ -30,6 +30,9 @@
         <th>
             @Html.DisplayNameFor(model => model.City)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsMember)
+        </th>
         <th></th>
     </tr>
 
@@ -53,6 +56,9 @@
             </td>
             <td>
                 @Html.DisplayFor(model => item.City)
+            </td>
+            <td>
+                @Html.CheckBoxFor(model => item.IsMember)
             </td>
             @*<td>
                     @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

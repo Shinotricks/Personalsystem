@@ -35,6 +35,10 @@ namespace Personalsystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Group group = repo.GetSpecificGroup(id);
+
+            //ApplicationUser TestUser = new ApplicationUser { Email = "user2@usersson.dk", UserName = "user2@usersson.dk", PhoneNumber = "23456789" }; 
+            //    repo.AddUserToGroup(1,TestUser);
+            
             if (group == null)
             {
                 return HttpNotFound();

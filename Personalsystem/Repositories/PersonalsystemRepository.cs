@@ -197,6 +197,17 @@ namespace Personalsystem.Repositories
             return db.Groups.Single(d => d.Id == groupId);
         }
 
+        public Group AddUserToGroup(int? groupId, ApplicationUser newUser)
+        {
+            Group NewUserGroup = GetSpecificGroup(groupId);
+
+            ApplicationUser user = new ApplicationUser { Companies = new List<Company>() };
+            db.Users.Add(newUser);
+            db.SaveChanges();
+
+            return NewUserGroup;
+        }
+
         public Group CreateGroup(Group group)
         {
             db.Groups.Add(group);
