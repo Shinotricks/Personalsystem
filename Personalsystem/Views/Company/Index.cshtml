@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<Personalsystem.Models.Company>
-
 @{
     ViewBag.Title = "Companies";
 }
@@ -30,7 +29,6 @@
         </tr>
         <tr>
             <td>
-                <p>Departments</p>
                 @foreach (var dep in item.Departments)
                 {
                     @Html.ActionLink(dep.Name, "../Department/Index/", new { id = dep.Id })
