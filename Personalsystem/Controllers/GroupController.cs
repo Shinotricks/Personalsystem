@@ -16,10 +16,15 @@ namespace Personalsystem.Controllers
         private PersonalsystemRepository repo = new PersonalsystemRepository();
 
         // GET: Groups
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
             //var groups = repo.Groups.Include(g => g.Department);
-            return View(repo.Groups());
+            return View(repo.GetGroupsByDepartmentId(id));
+        }
+
+        public ActionResult Users(int? id)
+        {
+            return View(repo.UserViewModelsByGroupId(id));
         }
 
         // GET: Groups/Details/5

@@ -24,7 +24,7 @@
     {
         <tr>
             <td>
-                @Html.ActionLink(item.Name, "../Department/Departments", new { id = item.Id })
+                @Html.ActionLink(item.Name, "../Department/index/", new { id = item.Id })
             </td>
             @if (User.IsInRole("admin"))
             {

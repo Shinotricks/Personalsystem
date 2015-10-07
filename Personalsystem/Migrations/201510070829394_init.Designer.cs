@@ -7,13 +7,13 @@ namespace Personalsystem.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
-    public sealed partial class nullableint : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(nullableint));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201510051254328_nullableint"; }
+            get { return "201510070829394_init"; }
         }
         
         string IMigrationMetadata.Source

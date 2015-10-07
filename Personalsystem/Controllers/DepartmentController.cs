@@ -15,12 +15,13 @@ namespace Personalsystem.Controllers
     {
         private PersonalsystemRepository repo = new PersonalsystemRepository();
         // GET: Departments
+        /*
         public ActionResult Index()
         {
             //var departments = repo.GetDepartmentsByCompanyId(Company);
             return View(repo.Departments());
         }
-        /*
+        */
         // GET: Departments
         public ActionResult Index(int? id)
                 {
@@ -31,7 +32,7 @@ namespace Personalsystem.Controllers
 
                     return View(repo.GetDepartmentsByCompanyId(id));
                 }
-         */
+         
         // GET: Departments/Details/5
         public ActionResult Details(int? id)
         {

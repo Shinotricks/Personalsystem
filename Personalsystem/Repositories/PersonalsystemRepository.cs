@@ -23,6 +23,37 @@ namespace Personalsystem.Repositories
 
 
         }
+
+        public IEnumerable<UserViewModel> UserViewModelsByGroupId(int? id)
+        {
+            List<UserViewModel> viewModels = new List<UserViewModel>();
+            foreach (ApplicationUser user in db.Groups.Single(u=>u.Id == id).Users.ToList())
+            {
+                if (user.Adress != null)
+                {
+                    viewModels.Add(new UserViewModel
+                    {
+                        City = user.Adress.City,
+                        Email = user.Email,
+                        Number = user.PhoneNumber,
+                        Street = user.Adress.Street,
+                        StreetNumber = user.Adress.StreetNumber,
+                        ZipCode = user.Adress.ZipCode
+                    });
+                }
+                else
+                {
+                    viewModels.Add(new UserViewModel
+                    {
+                        Email = user.Email,
+                        Number = user.PhoneNumber
+                    });
+                }
+            }
+            return viewModels;
+
+        }
+
         public IEnumerable<UserViewModel> UserViewModels()
         {
             List<UserViewModel> viewModels = new List<UserViewModel>();
