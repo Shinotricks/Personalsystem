@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Departments</h2>
+<h2>Departments for @ViewBag.Company</h2>
 
 @if (User.IsInRole("applicant") || User.IsInRole("admin"))
 {
