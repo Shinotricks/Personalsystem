@@ -62,6 +62,35 @@ namespace Personalsystem.Viewmodels
         public bool RememberMe { get; set; }
     }
 
+    public class UserViewModel
+    {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Required]
+        [Phone]
+        [Display(Name = "Phone Number")]
+        public string Number { get; set; }
+
+        [Required]
+        [Display(Name = "Street")]
+        public string Street { get; set; }
+
+        [Required]
+        [Display(Name = "Street Number")]
+        public string StreetNumber { get; set; }
+
+        [Required]
+        [Display(Name = "City")]
+        public string City { get; set; }
+
+        [Required]
+        [Display(Name = "Zip Code")]
+        public string ZipCode { get; set; }
+    }
+
     public class RegisterViewModel
     {
         [Required]
@@ -79,7 +108,7 @@ namespace Personalsystem.Viewmodels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-        
+
     }
 
     public class ResetPasswordViewModel

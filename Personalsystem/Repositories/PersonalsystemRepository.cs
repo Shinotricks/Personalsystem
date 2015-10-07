@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Personalsystem.Models;
+using Personalsystem.Viewmodels;
 
 namespace Personalsystem.Repositories
 {
@@ -16,11 +17,42 @@ namespace Personalsystem.Repositories
         }
 
         #region AccountStuff
-        public IEnumerable<ApplicationUser> ApplicationUser()
+        public IEnumerable<ApplicationUser> ApplicationUsers()
         {
             return db.Users.ToList();
+
+
         }
-        #endregion  
+        public IEnumerable<UserViewModel> UserViewModels()
+        {
+            List<UserViewModel> viewModels = new List<UserViewModel>();
+            foreach (ApplicationUser user in db.Users.ToList())
+            {
+                if (user.Adress != null)
+                {
+                    viewModels.Add(new UserViewModel
+                        {
+                            City = user.Adress.City,
+                            Email = user.Email,
+                            Number = user.PhoneNumber,
+                            Street = user.Adress.Street,
+                            StreetNumber = user.Adress.StreetNumber,
+                            ZipCode = user.Adress.ZipCode
+                        });
+                }
+                else
+                {
+                    viewModels.Add(new UserViewModel
+                    {
+                        Email = user.Email,
+                        Number = user.PhoneNumber
+                    });
+                }
+            }
+            return viewModels;
+
+        }
+        #endregion
 
         #region Jobstuff
         public IEnumerable<Job> Jobs()
@@ -40,7 +72,7 @@ namespace Personalsystem.Repositories
             return job;
         }
 
-        #endregion  
+        #endregion
 
         #region Company Methods
         public IEnumerable<Company> Companies()

@@ -26,10 +26,10 @@ namespace Personalsystem.Controllers
         {
         }
         // GET: Users
-        public ActionResult Index()
+        public ActionResult index()
         {
             //var groups = repo.Groups.Include(g => g.Department);
-            return View(repo.Users());
+            return View(repo.UserViewModels());
         }
 
 
