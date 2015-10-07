@@ -9,8 +9,7 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <div class="navbar navbar-inverse navbar-fixed-top container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -20,29 +19,29 @@
                 <img class="logotype" style="width:170px;" src="~/Images/Pacdnet.png" />
             </div>
             <div class="navbar-collapse collapse">
-                    @if (User.IsInRole("admin"))
-                    {
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("Admin", "Admin", "Admin")</li>
-                        </ul>
-                    }
-                    else
-                    {
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>@Html.ActionLink("Company", "Index", "Company")</li>
-                            <li>@Html.ActionLink("Jobs", "Index", "Jobs")</li>
-                            <li>@Html.ActionLink("Account", "Index", "Account")</li>
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        </ul>
-                    }
-            </div>
+                @if (User.IsInRole("admin"))
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Hem", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Företag", "Index", "Company")</li>
+                        <li>@Html.ActionLink("Lediga jobb", "Index", "Jobs")</li>
+                        <li>@Html.ActionLink("Om tjänsten", "About", "Home")</li>
+                        <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+                    </ul>
+                }
+                else
+                {
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Hem", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Företag", "Index", "Company")</li>
+                        <li>@Html.ActionLink("Lediga jobb", "Index", "Jobs")</li>
+                        <li>@Html.ActionLink("Om tjänsten", "About", "Home")</li>
+                        <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+                    </ul>
+                }
         </div>
-        <row><div class="container">@Html.Partial("_LoginPartial")</div></row>
+        <div class="container bluenav">@Html.Partial("_LoginPartial")</div>
     </div>
     <div class="container body-content">
         @RenderBody()
@@ -85,7 +84,7 @@
             </ul>
         </div>
         <p>&copy; @DateTime.Now.Year Pacdnet - All Rights Reserved • <a href="https://www.youtube.com/watch?v=wZZ7oFKsKzY">INFO@PACDNET.SE</a></p>
-</footer>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

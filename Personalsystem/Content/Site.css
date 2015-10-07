@@ -1,22 +1,26 @@
-﻿body {
+﻿/*=============================== BODY STUFF */
+
+body {
     padding-bottom: 50px;
     background: url('../Images/bg.jpg') center top no-repeat fixed;
     font-family: Helvetica, sans-serif;
 }
 
-/* Set padding to keep content from hitting the edges */
 .body-content {
     background: #FFF;
     margin-top: 140px;
     padding: 20px;
-    border-radius: 13px;
 }
+
+.container {
+}
+
+/*=============================== FOOTER STUFF */
 
 .footer-content {
     background: #FFF;
     margin-top: 20px;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 20px 20px 10px 20px;
     text-transform: uppercase;
     font-size: 0.8em;
 }
@@ -25,21 +29,55 @@
     /*height: 80px;
     /*border-top: 1px solid #000;
     border-top-width: 10px 0 0 0;*/
-    border-top: 1px solid #000;
     margin-top: 110px;
     padding-top: 5px;
+    background: #428bca;
+    color: #FFF;
+    padding: 10px 15px;
 }
 
 .footer-content > .col-md-3 > h4 {
     font-size: 1.3em;
+    color: #214565;
+    border-bottom: 1px solid #999;
     /*padding-bottom: 0px;*/
 }
 
 .footer-content > .col-md-3 > ul {
     list-style-type: none;
     padding: 0;
+    color: #777;
     /*padding-bottom: 0px;*/
 }
+
+.push-spaces
+{
+    height: 250px;
+}
+
+/*=============================== LOGOTYPE STUFF */
+.logotype {
+    width: 170px;
+    margin-top: 22px;
+    padding-right: 15px;
+    margin-left: 15px;
+}
+
+/*=============================== JUMBOTRON STUFF */
+.container .jumbotron {
+}
+
+.jumbotron h1 {
+    color: #FFF;
+    text-shadow: 0px 0px 2px #555;
+}
+
+.lead {
+    color: #FFF;
+    font-weight: 600;
+    text-shadow: 0px 0px 2px #555;
+}
+
 
 .jumbotron {
     background: url('../Images/DisplayCase.png') center no-repeat;
@@ -50,22 +88,11 @@
     margin: 0 0 20px 0;
 }
 
-.push-spaces
-{
-    height: 250px;
+.btn-lg {
+    margin: 0 0 0 0;
 }
 
-.container .jumbotron {
-    border-radius: 10px;
-}
-
-.jumbotron h1 {
-    color: #FFF;
-    text-shadow: 0px 0px 5px #555;
-    padding: 0 25px 0 50px;
-    margin: 0 auto;
-}
-
+/*=============================== CALL TO ACTION STUFF */
 .col-md-4 {
     background: #428bca;
     padding: 15px;
@@ -85,16 +112,7 @@
     color: #FFF;
 }
 
-.lead {
-    color: #FFF;
-    font-weight: 600;
-    text-shadow: 0px 0px 5px #555;
-    padding: 0 25px 0 50px;
-}
-
-.btn-lg {
-    margin: 0 25px 0 50px;
-}
+/*=============================== NAVBAR STUFF */
 
 .navbar-inverse .navbar-nav > li > a {
     text-transform: uppercase;
@@ -119,46 +137,71 @@
     color: #FFF;
 }
 
-.navbar-inverse .navbar-nav > li > a:hover {
-    color:#FFF;
-}
-
 .nav navbar-nav {
     float: right;
+
 }
 
-.logotype {
-    width: 170px;
-    margin-top: 22px;
-    padding-right: 15px;
-    margin-left: 15px;
+.navbar-fixed-top {
+    margin-top: 20px;
+    background: #FFF;
+    border: 0;
+    box-shadow: 0px 0px 10px #999;
+    }
+
+.navbar-collapse collapse {
+
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
+/*=============================== BUTTON DESIGN */
+.btn-default {
+    text-transform: uppercase;
+    width: 100%;
+    margin-top: 12px;
+    background-color: #214565;
+    color: #fff;
+    border: 0;
+}
+
 .dl-horizontal dt {
     white-space: normal;
 }
 
-.navbar-fixed-top {
-    margin-top: 0px;
-    background: #FFF;
-    border: 0;
-    box-shadow: 0px 0px 10px #999;
-}
-
-.container {
-}
-
+/*=============================== ADMIN NAV */
 .adminnav {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #428bca;
-    width: 100%;
+    width: 1920px;
     font-size: 0.8em;
+    float: right;
+}
+
+.bluenav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #428bca;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.subadmin, .subadmin > a {
+    display: block;
+    width: 100%;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #428bca;
+    text-align: center;
+    padding: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+    float: right;
+    font-size: 0.9em;
+
 }
 
 .adminnav > li {
@@ -176,6 +219,10 @@ background: #FFF;
     border-left: 1px solid #EFEFEF;
 }
 
+    .adminnav > li:first-child {
+        border-right: 0px solid #EFEFEF;
+    }
+
 .adminnav > li > a:link, .adminnav > li > a:visited {
     display: block;
     width: 120px;
@@ -183,15 +230,10 @@ background: #FFF;
     color: #FFFFFF;
     background-color: #428bca;
     text-align: center;
-    padding: 4px;
+    padding: 6px 5px 5px 5px;
     text-decoration: none;
     text-transform: uppercase;
     float: right;
-}
-
-
-.navbar-collapse collapse {
-
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -224,4 +266,10 @@ textarea {
     margin-left: auto;
     margin-right:auto;
   }
+}
+
+h2 {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.9em;
 }

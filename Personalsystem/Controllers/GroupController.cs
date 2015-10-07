@@ -18,12 +18,11 @@ namespace Personalsystem.Controllers
         // GET: Groups
         public ActionResult Index(int? id)
         {
-            //var groups = repo.Groups.Include(g => g.Department);
-            return View(repo.GetGroupsByDepartmentId(id));
-        }
-
-        public ActionResult Users(int? id)
-        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ViewBag.Group = repo.GetSpecificGroup(id).Name;
             return View(repo.UserViewModelsByGroupId(id));
         }
 

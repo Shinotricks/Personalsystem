@@ -14,25 +14,18 @@ namespace Personalsystem.Controllers
     public class DepartmentController : Controller
     {
         private PersonalsystemRepository repo = new PersonalsystemRepository();
-        // GET: Departments
-        /*
-        public ActionResult Index()
-        {
-            //var departments = repo.GetDepartmentsByCompanyId(Company);
-            return View(repo.Departments());
-        }
-        */
+
         // GET: Departments
         public ActionResult Index(int? id)
-                {
-                    if (id == null)
-                    {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                    }
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ViewBag.Company = repo.GetSpecificCompany(id).Name;
+            return View(repo.GetDepartmentsByCompanyId(id));
+        }
 
-                    return View(repo.GetDepartmentsByCompanyId(id));
-                }
-         
         // GET: Departments/Details/5
         public ActionResult Details(int? id)
         {

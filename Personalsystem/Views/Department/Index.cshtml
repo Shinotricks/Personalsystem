@@ -1,41 +1,40 @@
 ﻿@model IEnumerable<Personalsystem.Models.Department>
-
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Departments</h2>
+<h2>Departments for @ViewBag.Company</h2>
 
 @if (User.IsInRole("applicant") || User.IsInRole("admin"))
 {
-    <p>
+    <p class="subadmin">
         @Html.ActionLink("Create New", "Create")
     </p>
 }
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+@foreach (var item in Model)
+{
+    <table class="table">
         <tr>
-            <td>
-                @Html.ActionLink(item.Name, "../Group/index/", new { id = item.Id })
-            </td>
+            <th>
+                @Html.DisplayName(item.Name)
+            </th>
             @if (User.IsInRole("admin"))
             {
-                <td>
+                <th>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                     @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
+                </th>
             }
         </tr>
-    }
-
-</table>
+        <tr>
+            <td>
+                @foreach (var group in item.Groups)
+                {
+                    @Html.ActionLink(group.Name, "../Group/Index/", new { id = group.Id })
+                }
+            </td>
+            <td></td>
+        </tr>
+    </table>
+}
