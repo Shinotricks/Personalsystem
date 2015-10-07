@@ -57,6 +57,7 @@ namespace Personalsystem.Models
         public string Text { get; set; }
     }
 
+    // THIS IS VACANCIES, MEANING, JOBS THAT USERS CAN APPLY TO
     public class Job
     {
         [Key]
@@ -73,6 +74,17 @@ namespace Personalsystem.Models
         public int CompanyId { get; set; }
         [ForeignKey("CompanyId")]
         public virtual Company Company { get; set; }
+    }
+
+    // THIS IS FOR APPLYING TO VACANCIES
+    public class JobApplication
+    {
+        [Key]
+        public int Id { get; set; }
+        [Required]
+        public string ApplicationText { get; set; }
+        [Required]
+        public DateTime Published { get; set; }
     }
 
     public class ScheduleDay
