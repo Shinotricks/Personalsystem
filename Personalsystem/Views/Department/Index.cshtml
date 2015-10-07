@@ -7,34 +7,34 @@
 
 @if (User.IsInRole("applicant") || User.IsInRole("admin"))
 {
-    <p>
+    <p class="subadmin">
         @Html.ActionLink("Create New", "Create")
     </p>
 }
-    @foreach (var item in Model)
-    {
-        <table class="table">
-            <tr>
+@foreach (var item in Model)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName(item.Name)
+            </th>
+            @if (User.IsInRole("admin"))
+            {
                 <th>
-                    @Html.DisplayName(item.Name)
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </th>
-                @if (User.IsInRole("admin"))
+            }
+        </tr>
+        <tr>
+            <td>
+                @foreach (var group in item.Groups)
                 {
-                    <th>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                    </th>
+                    @Html.ActionLink(group.Name, "../Group/Index/", new { id = group.Id })
                 }
-            </tr>
-            <tr>
-                <td>
-                    @foreach (var group in item.Groups)
-                    {
-                        @Html.ActionLink(group.Name, "../Group/Users/", new { id = group.Id })
-                    }
-                </td>
-                <td></td>
-            </tr>
-        </table>
-    }
+            </td>
+            <td></td>
+        </tr>
+    </table>
+}

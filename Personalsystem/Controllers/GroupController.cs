@@ -19,7 +19,7 @@ namespace Personalsystem.Controllers
         public ActionResult Index(int? id)
         {
             //var groups = repo.Groups.Include(g => g.Department);
-            return View(repo.GetGroupsByDepartmentId(id));
+            return View(repo.UserViewModelsByGroupId(id));
         }
 
         // GET: Groups/Details/5
