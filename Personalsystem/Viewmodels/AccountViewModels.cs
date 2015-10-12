@@ -93,6 +93,10 @@ namespace Personalsystem.Viewmodels
         [Required]
         [Display(Name = "Management member")]
         public bool IsMember { get; set; }
+
+        [Required]
+        [Display(Name = "User Role")]
+        public string UserRole { get; set; }
     }
 
     public class RegisterViewModel

@@ -38,7 +38,8 @@ namespace Personalsystem.Repositories
                         Number = user.PhoneNumber,
                         Street = user.Adress.Street,
                         StreetNumber = user.Adress.StreetNumber,
-                        ZipCode = user.Adress.ZipCode
+                        ZipCode = user.Adress.ZipCode,
+                        //UserRole = user.Roles.Single(r => r.UserId == user.Id)
                     });
                 }
                 else
@@ -68,7 +69,8 @@ namespace Personalsystem.Repositories
                             Number = user.PhoneNumber,
                             Street = user.Adress.Street,
                             StreetNumber = user.Adress.StreetNumber,
-                            ZipCode = user.Adress.ZipCode
+                            ZipCode = user.Adress.ZipCode,
+                            //UserRole = user.Id.RoleId.First()   
                         });
                 }
                 else
@@ -192,20 +194,25 @@ namespace Personalsystem.Repositories
             return db.Groups.Where(i => i.DepartmentId == id).ToList();
         }
 
+        public ApplicationUser GetSpecificUser(string userId)
+        {
+            return db.Users.Single(d => d.Id == userId);
+        }
+
         public Group GetSpecificGroup(int? groupId)
         {
             return db.Groups.Single(d => d.Id == groupId);
         }
 
-        public Group AddUserToGroup(int? groupId, ApplicationUser newUser)
+        public void AddUserToGroup(int? groupId, string AppId)
         {
-            Group NewUserGroup = GetSpecificGroup(groupId);
-
-            ApplicationUser user = new ApplicationUser { Companies = new List<Company>() };
-            db.Users.Add(newUser);
+            Group NewUserGroup = GetSpecificGroup(groupId); //Hämtat grupp
+            ApplicationUser appUser = GetSpecificUser(AppId); //Hämta user från ID
+            NewUserGroup.Users.Add(appUser); //Lägg till User i Gruppens lista av Users
+            appUser.Groups.Add(NewUserGroup); //Lägg till Grupp i Users lista av Grupper
+            db.Entry(NewUserGroup).State = System.Data.Entity.EntityState.Modified; //Entity state Modified
+            db.Entry(appUser).State = System.Data.Entity.EntityState.Modified; //Entity state Modified
             db.SaveChanges();
-
-            return NewUserGroup;
         }
 
         public Group CreateGroup(Group group)

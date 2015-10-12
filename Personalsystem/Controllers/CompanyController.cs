@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Personalsystem.Models;
 using Personalsystem.Repositories;
+using Personalsystem.Viewmodels;
 
 namespace Personalsystem.Controllers
 {
@@ -21,8 +22,28 @@ namespace Personalsystem.Controllers
             return View(repo.Companies());
         }
 
+        // GET: Departments/Details/5
+        public ActionResult DetailsForDepartment(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Department department = repo.GetSpecificDepartment(id);
+            if (department == null)
+            {
+                return HttpNotFound();
+            }
+            //SKapa VM instans
+            GroupCreateViewModel DepVM = new GroupCreateViewModel();
+            //Bind detta ID till Viewmodell
+            DepVM.DepartmentId = department.Id;
+            //Returna View med VM
+            return View(DepVM);
+        }
+
         // GET: Companies/Details/5
-        [Authorize(Roles = "admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,8 +57,48 @@ namespace Personalsystem.Controllers
             }
             return View(company);
         }
+        
+        // GET: Department/CreateDepartment
+        [Authorize(Roles = "admin, applicant")]
+        public ActionResult CreateDepartmentForCompany(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Company company = repo.GetSpecificCompany(id);
+            if (company == null)
+            {
+                return HttpNotFound();
+            }
+            //SKapa VM instans
+            DepartmentCreateViewModel DepVM = new DepartmentCreateViewModel();
+            //Bind detta ID till Viewmodell
+            DepVM.CompanyId = company.Id;
+            //Returna View med VM
+            return View(DepVM);
+        }
 
-        // GET: Companies/Create
+        // POST: Department/CreateDepartment
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateDepartmentForCompany([Bind(Include = "CompanyID, Name")] DepartmentCreateViewModel depVM)
+        {
+            if (ModelState.IsValid)
+            {
+                //Gör om VM till riktigt objekt
+                Department dep = new Department();
+                dep.CompanyId = depVM.CompanyId;
+                dep.Name = depVM.Name;
+                //Använd repo för att lägga till i db
+                repo.CreateDepartment(dep);
+                //Återvänd till företagsdetalj
+                return RedirectToAction("Details", new { id = depVM.CompanyId});
+            }
+            return View();
+        }
+
+        // GET: Company/Create
         [Authorize(Roles="admin, applicant")]
         public ActionResult Create()
         {

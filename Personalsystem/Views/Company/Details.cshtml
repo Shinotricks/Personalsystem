@@ -1,26 +1,44 @@
 ﻿@model Personalsystem.Models.Company
-
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Index";
 }
 
-<h2>Details</h2>
+<h2>Departments for @Model.Name</h2>
 
-<div>
-    <h4>Company</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@if (User.IsInRole("applicant") || User.IsInRole("admin"))
+{
+    <p class="subadmin">
+        @Html.ActionLink("Create New", "CreateDepartmentForCompany", new { id= Model.Id })
+    </p>
+}
+@foreach (var item in Model.Departments)
+{
+    <table class="table" >
+        <tr>
+            <th class ="col-md-5">
+                @Html.DisplayName(item.Name)
+            </th>
+            @if (User.IsInRole("admin"))
+            {
+                <th class="col-md-7">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </th>
+            }
+            else
+            {
+                <th></th>
+            }
+        </tr>
+        <tr>
+            <td>
+                @foreach (var group in item.Groups)
+                {
+                    @Html.ActionLink(group.Name, "../Group/Users", new { id = group.Id })
+                }
+            </td>
+            <td></td>
+        </tr>
+    </table>
+}

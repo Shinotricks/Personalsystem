@@ -15,16 +15,20 @@
 {
     <table class="table">
         <tr>
-            <th>
+            <th class ="col-md-5">
                 @Html.DisplayName(item.Name)
             </th>
             @if (User.IsInRole("admin"))
             {
-                <th>
+                <th class="col-md-7">
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                     @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </th>
+            }
+            else
+            {
+                <th></th>
             }
         </tr>
         <tr>
@@ -32,6 +36,7 @@
                 @foreach (var dep in item.Departments)
                 {
                     @Html.ActionLink(dep.Name, "../Department/Index/", new { id = dep.Id })
+                    <br />
                 }
             </td>
             <td></td>

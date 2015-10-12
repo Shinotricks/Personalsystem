@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Personalsystem.Models;
 using Personalsystem.Repositories;
+using Personalsystem.Viewmodels;
 
 namespace Personalsystem.Controllers
 {
@@ -40,10 +41,51 @@ namespace Personalsystem.Controllers
             }
             return View(department);
         }
+
+        // GET: Group/CreateGroup
+        [Authorize(Roles = "admin, applicant")]
+        public ActionResult CreateGroupForDepartment(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Department department = repo.GetSpecificDepartment(id);
+            if (department == null)
+            {
+                return HttpNotFound();
+            }
+            //SKapa VM instans
+            GroupCreateViewModel GroupVM = new GroupCreateViewModel();
+            //Bind detta ID till Viewmodell
+            GroupVM.DepartmentId = department.Id;
+            //Returna View med VM
+            return View(GroupVM);
+        }
+
+        // POST: Group/CreateGroup
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateGroupForDepartment([Bind(Include = "DepartmentId, Name")] GroupCreateViewModel groupVM)
+        {
+            if (ModelState.IsValid)
+            {
+                //Gör om VM till riktigt objekt
+                Group group = new Group();
+                group.DepartmentId = groupVM.DepartmentId;
+                group.Name = groupVM.Name;
+                //Använd repo för att lägga till i db
+                repo.CreateGroup(group);
+                //Återvänd till företagsdetalj
+                return RedirectToAction("Details", new { id = groupVM.DepartmentId });
+            }
+            return View();
+        }
+
         // GET: Departments/Create
         public ActionResult Create()
         {
-            //ViewBag.CompanyId = new SelectList(repo.Companies, "Id", "Name");
+            //ViewBag.CompanyId = repo.GetSpecificCompany(id);
             return View();
         }
 
