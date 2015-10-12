@@ -131,6 +131,9 @@ Skapa en vy för att kunna få en inblick i företaget.<br>
 
 <strong>Sprintbacklog:</strong><br>
 <strong>Durim</strong><br>
+Skapa en funktion som lägger ut arbetsscheman till avdelningar med flera grupper om gruppens personal skall jobba på olika tider.<br>
+Arbetsscheman tas fram enbart om arbetstiden avviker från en fast arbetsperiod varje dag (8-17).<br>
+Skapa en funktion som lägger ut arbetsschema till avdelningar med enbart en grupp om gruppens personal skall jobba på olika tider.<br>
 Skapa viewmodel till chef.<br>
 Snygga till arbetstider view<br><br>
 <strong>Peter</strong><br>
