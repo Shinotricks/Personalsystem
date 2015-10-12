@@ -44,50 +44,6 @@ Sökandehantering
 Arbetarhantering
 GUI
 
-<strong>Databas:</strong><br>
-User Model
-{
-int Id,
-string Name 
-}
-
-Company Model</strong><br>
-{
-int Id,
-string Name,<br>
-Ienumerable<'Department'> Departments() //Avdelningar<br>
-Ienumerable<'Job'> Jobs() //Jobb
-}
-
-Department Model
-{
-int Id,
-string Name,<br>
-Ienumerable<'Group'> Groups() //Grupper
-}
-
-Group Model
-{
-int Id,
-string Name,<br>
-Ienumerable<'User'> Users() //Användare
-}
-
-News Model
-{
-int Id,
-string Text
-}
-
-Job Model
-{
-int Id,
-string Name,
-string Description,<br>
-DateTime Published,
-DateTime Deadline
-}
-
 <strong>Användar-historier<br>
 Adminhantering:</strong><br>
 Som användare vill jag kunna skapa ett företag i systemet (blir då admin).<br>
@@ -137,16 +93,16 @@ Vilka delar är tekniskt viktiga?<br>
 Hur komplext är kravet?<br>
 
 <strong>Workitems</strong><br>
-Skapa en modell.<br> 
-Skapa en controller för modeller.<br>
-Skapa en repository.<br>
-Skapa en vy för att visa en startmeny-modell.<br>
-Skapa en funktion som lägger till ett företag.<br>
+<strike>Skapa en modell.</strike><br> 
+<strike>Skapa en controller för modeller.</strike><br>
+<strike>Skapa en repository.</strike><br>
+<strike>Skapa en vy för att visa en startmeny-modell.</strike><br>
+<strike>Skapa en funktion som lägger till ett företag.</strike><br>
 Skapa en funktion som lägger till ett företags ledning.<br>
-Skapa en funktion som lägger till ett företags avdelningar.<br>
-Skapa en funktion som lägger till en avdelnings grupper.<br>
+<strike>Skapa en funktion som lägger till ett företags avdelningar.</strike><br>
+<strike>Skapa en funktion som lägger till en avdelnings grupper.</strike><br>
 Skapa en funktion som lägger till (bjuder in) personal i företaget.<br>
-Skapa en vy för att visa företaget.<br>
+<strike>Skapa en vy för att visa företaget.</strike><br>
 Skapa en funktion som kan ändra roll på andra användare(kopplade till företaget) till chef eller arbetare.<br>
 Skapa en funktion som kan lägga till fler admin.<br>
 Skapa en funktion som kan ta bort admin (owner).<br>
@@ -161,28 +117,23 @@ Skapa en funktion som kan kalla till intervju och komma till en ruta där man ka
 Skapa en funktion som lägger ut arbetsscheman till avdelningar med flera grupper om gruppens personal skall jobba på olika tider.<br>
 Arbetsscheman tas fram enbart om arbetstiden avviker från en fast arbetsperiod varje dag (8-17).<br>
 Skapa en funktion som lägger ut arbetsschema till avdelningar med enbart en grupp om gruppens personal skall jobba på olika tider.<br>
-Skapa en vy för arbetsscheman.<br>
+<strike>Skapa en vy för arbetsscheman.</strike><br>
 Skapa en funktion för att kunna ladda upp CV till min användarprofil.<br>
 Skapa en funktion för att kunna ladda upp konsultprofil till min användarprofil.<br>
 Skapa en funktion för att söka lediga platser genom att klicka på en ”Sök den här tjänsten” knapp som låter användaren fylla i ett personligt brev till platsen.<br>
-Skapa en funktion för att automatiskt läggas till i gruppen sökande när jag skapar mitt konto.<br>
+<strike>Skapa en funktion för att automatiskt läggas till i gruppen sökande när jag skapar mitt konto.</strike><br>
 Skapa en funktion för att kunna välja bland de företag som använder sig av systemet och se om det finns några vakanser.<br>
 Skapa en funktion för att kunna söka existerande vakanser.<br>
-Skapa en vy för att kunna se vakanser.<br>
-Skapa en vy för att kunna se när jag skall jobba.<br>
+<strike>Skapa en vy för att kunna se vakanser.</strike><br>
+<strike>Skapa en vy för att kunna se när jag skall jobba.</strike><br>
 Skapa en vy för att kunna se vilka jag jobbar med.<br>
 Skapa en vy för att kunna få en inblick i företaget.<br>
 
 <strong>Sprintbacklog:</strong><br>
 <strong>Durim</strong><br>
-Lägga till arbetstid till arbetare.<br>
-Skapa viewmodel till admin.<br>
 Skapa viewmodel till chef.<br>
-Skapa en viewmodel för att visa företaget.<br><br>
+Snygga till arbetstider view<br><br>
 <strong>Peter</strong><br>
-Skapa en funktion som lägger till ett företags ledning.<br>
-Skapa en funktion som lägger till ett företags avdelningar.<br>
-Skapa en funktion som lägger till en avdelnings grupper.<br>
 Skapa en funktion som lägger till (bjuder in) personal i företaget (admin).<br><br>
 <strong>Aron</strong><br>
 Som admin skall jag kunna ändra roll på andra användare(kopplade till företaget) till chef eller arbetare.<br>
