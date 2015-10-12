@@ -138,6 +138,7 @@ Skapa viewmodel till chef.<br>
 Snygga till arbetstider view<br><br>
 <strong>Peter</strong><br>
 Skapa en funktion som lägger till (bjuder in) personal i företaget (admin).<br>
+Skapa en funktion som kan ändra roll på andra användare(kopplade till företaget) till chef eller arbetare.<br>
 Skapa en funktion som lägger till ett företags ledning.<br><br>
 <strong>Aron</strong><br>
 Som admin skall jag kunna ändra roll på andra användare(kopplade till företaget) till chef eller arbetare.<br>
