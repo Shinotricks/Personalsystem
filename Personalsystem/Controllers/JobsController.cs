@@ -28,7 +28,7 @@ namespace Personalsystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Job job = repo.JobDetails(id);
+            Job job = repo.GetJob(id);
             if (job == null)
             {
                 return HttpNotFound();
@@ -55,7 +55,6 @@ namespace Personalsystem.Controllers
             }
             return View(job);
         }
-        /*
         // GET: Jobs/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -63,40 +62,23 @@ namespace Personalsystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Job job = db.Jobs.Find(id);
+            Job job = repo.GetJob(id);
             if (job == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", job.CompanyId);
             return View(job);
         }
 
-        // POST: Jobs/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,Published,Deadline,CompanyId")] Job job)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(job).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", job.CompanyId);
-            return View(job);
-        }
-
-        // GET: Jobs/Delete/5
+        // GET JOBS/DELETE
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Job job = db.Jobs.Find(id);
+            Job job = repo.GetJob(id);
             if (job == null)
             {
                 return HttpNotFound();
@@ -104,17 +86,18 @@ namespace Personalsystem.Controllers
             return View(job);
         }
 
-        // POST: Jobs/Delete/5
+        // POST DELETE
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Job job = db.Jobs.Find(id);
-            db.Jobs.Remove(job);
-            db.SaveChanges();
+            Job job  = repo.GetJob(id);
+
+            repo.DeleteJob(job);
+
             return RedirectToAction("Index");
         }
-        */
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -127,6 +127,10 @@ body {
     border-left: 1px solid #EFEFEF;
 }
 
+    .navbar-inverse .navbar-nav > li:last-child {
+        border-right: 0px solid #EFEFEF;
+    }
+
 .navbar-inverse .navbar-nav > li:hover {
     background: #428bca;
     color: #FFF;
