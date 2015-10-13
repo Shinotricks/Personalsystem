@@ -89,20 +89,41 @@ namespace Personalsystem.Repositories
         #endregion
 
         #region Jobstuff
+        // CREATE A LIST OF TYPE JOB, CALLED JOBS
         public IEnumerable<Job> Jobs()
         {
             return db.Jobs.ToList();
         }
 
-        public Job JobDetails(int? JobId)
+        // SELECT A SPECIFIC JOB FROM MATCHING ID
+        public Job GetJob(int? JobId)
         {
             return db.Jobs.Single(d => d.Id == JobId);
         }
 
+        // CREATE NEW JOB AND ADD TO DATABASE
         public Job CreateJob(Job job)
         {
             db.Jobs.Add(job);
             db.SaveChanges();
+            return job;
+        }
+
+        // EDIT SPECIFIC JOB
+        public Job EditJob(Job job)
+        {
+            db.Entry(job).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
+            return job;
+        }
+
+        // DELETE JOB
+        public Job DeleteJob (Job job)
+        {
+            db.Jobs.Remove(job);
+            db.SaveChanges();
+
             return job;
         }
 
