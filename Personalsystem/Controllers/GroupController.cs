@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Personalsystem.Models;
 using Personalsystem.Repositories;
+using Personalsystem.Viewmodels;
 
 namespace Personalsystem.Controllers
 {
@@ -22,14 +23,21 @@ namespace Personalsystem.Controllers
         }
 
         // GET: Users
-        public ActionResult Users(int? id)
+        public ActionResult Users(int? id, int? CmpnyId)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.Group = repo.GetSpecificGroup(id).Name;
-            return View(repo.UserViewModelsByGroupId(id));
+            Group group = repo.GetSpecificGroup(id);
+            if (group == null)
+            {
+                return HttpNotFound();
+            }
+            UserViewModel userVM = new UserViewModel();
+            ViewBag.CompanyId = CmpnyId; 
+            ViewBag.Group = group.Name;
+            return View(repo.UserViewModelsByGroupId(id, CmpnyId));
         }
 
         // GET: Groups/Details/5

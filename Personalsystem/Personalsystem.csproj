@@ -278,7 +278,7 @@
     <Content Include="Views\Group\Users.cshtml" />
     <Content Include="Views\Company\CreateDepartmentForCompany.cshtml" />
     <Content Include="Views\Department\CreateGroupForDepartment.cshtml" />
-    <Content Include="Views\Company\DetailsForDepartment.cshtml" />
+    <Content Include="Views\Department\DetailsForDepartment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -9,7 +9,7 @@
 @if (User.IsInRole("applicant") || User.IsInRole("admin"))
 {
     <p class="subadmin">
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New", "CreateGroupForDepartment", "Department", new { id=ViewBag.DepartmentId}, null )
     </p>
 }
 <table class="table">
@@ -24,7 +24,7 @@
     {
         <tr>
             <td>
-                @Html.ActionLink(item.Name, "../Group/Users/", new { id = item.Id })
+                @Html.ActionLink(item.Name, "../Group/Users/", new { id = item.Id }, null)
             </td>
             @if (User.IsInRole("admin"))
             {

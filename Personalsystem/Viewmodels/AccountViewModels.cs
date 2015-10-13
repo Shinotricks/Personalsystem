@@ -97,6 +97,10 @@ namespace Personalsystem.Viewmodels
         [Required]
         [Display(Name = "User Role")]
         public string UserRole { get; set; }
+
+        [Required]
+        [Display(Name = "Company ID")]
+        public int CompanyId { get; set; }
     }
 
     public class RegisterViewModel

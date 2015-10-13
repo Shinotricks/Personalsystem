@@ -24,7 +24,7 @@ namespace Personalsystem.Repositories
 
         }
 
-        public IEnumerable<UserViewModel> UserViewModelsByGroupId(int? id)
+        public IEnumerable<UserViewModel> UserViewModelsByGroupId(int? id, int? Cid)
         {
             List<UserViewModel> viewModels = new List<UserViewModel>();
             foreach (ApplicationUser user in db.Groups.Single(u=>u.Id == id).Users.ToList())
@@ -39,6 +39,7 @@ namespace Personalsystem.Repositories
                         Street = user.Adress.Street,
                         StreetNumber = user.Adress.StreetNumber,
                         ZipCode = user.Adress.ZipCode,
+                        CompanyId = (int) Cid
                         //UserRole = user.Roles.Single(r => r.UserId == user.Id)
                     });
                 }
@@ -152,6 +153,35 @@ namespace Personalsystem.Repositories
         public IEnumerable<Department> GetDepartmentsByCompanyId(int? id)
         {
             return db.Departments.Where(i => i.CompanyId == id).ToList();
+        }
+
+        public IEnumerable<DetailsDepartmentViewModel> DetailsDepartmentViewModelByDepartmentId(int? id)
+        {
+            List<DetailsDepartmentViewModel> viewModels = new List<DetailsDepartmentViewModel>();
+            foreach (Group group in db.Departments.Single(u => u.Id == id).Groups.ToList())
+            {
+                viewModels.Add(new DetailsDepartmentViewModel
+                {
+                    Name = group.Name,
+                    DepartmentId = (int) id
+                });
+            }
+            return viewModels;
+
+        }
+
+        public IEnumerable<DetailsDepartmentViewModel> DetailsDepartmentViewModel()
+        {
+            List<DetailsDepartmentViewModel> viewModels = new List<DetailsDepartmentViewModel>();
+            foreach (Group group in db.Groups.ToList())
+            {
+                viewModels.Add(new DetailsDepartmentViewModel
+                {
+                    Name = group.Name
+                });
+            }
+            return viewModels;
+
         }
 
         public Department GetSpecificDepartment(int? departmentId)

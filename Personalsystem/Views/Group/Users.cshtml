@@ -4,7 +4,7 @@
     ViewBag.Title = "Group Users";
 }
 
-<h2>Group Users</h2>
+<h3>Users for @ViewBag.CompanyId </h3>
 
 <table class="table">
     <tr>
@@ -55,6 +55,6 @@
     }
 </table>
 
-@*<div>
-    @Html.ActionLink("Back to List", "../Department/Index/", model.)
-</div>*@
+<div>
+    @Html.ActionLink("Back to List", "../Department/Index/", new { id = ViewBag.CompanyId }, null)
+</div>

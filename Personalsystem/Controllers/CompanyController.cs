@@ -22,27 +22,6 @@ namespace Personalsystem.Controllers
             return View(repo.Companies());
         }
 
-        // GET: Departments/Details/5
-        public ActionResult DetailsForDepartment(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Department department = repo.GetSpecificDepartment(id);
-            if (department == null)
-            {
-                return HttpNotFound();
-            }
-            //SKapa VM instans
-            GroupCreateViewModel DepVM = new GroupCreateViewModel();
-            //Bind detta ID till Viewmodell
-            DepVM.DepartmentId = department.Id;
-            //Returna View med VM
-            return View(DepVM);
-        }
-
         // GET: Companies/Details/5
         public ActionResult Details(int? id)
         {

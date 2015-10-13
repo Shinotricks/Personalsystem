@@ -16,6 +16,12 @@ namespace Personalsystem.Controllers
     {
         private PersonalsystemRepository repo = new PersonalsystemRepository();
 
+        //// GET: Departments
+        //public ActionResult Index()
+        //{
+        //    return View(repo.Departments());
+        //}
+
         // GET: Departments
         public ActionResult Index(int? id)
         {
@@ -23,8 +29,43 @@ namespace Personalsystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            ViewBag.CompanyId = id;
             ViewBag.Company = repo.GetSpecificCompany(id).Name;
             return View(repo.GetDepartmentsByCompanyId(id));
+        }
+
+        // GET: Departments
+        public ActionResult DetailsForDepartment(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ViewBag.Group = repo.GetSpecificDepartment(id).Name;
+            return View(repo.DetailsDepartmentViewModelByDepartmentId(id));
+            //return View(repo.DetailsDepartmentViewModelByDepartmentId(id));
+        }
+
+        // GET: Departments/Details/5
+        public ActionResult UsersDetailsForDepartment(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Department department = repo.GetSpecificDepartment(id);
+            if (department == null)
+            {
+                return HttpNotFound();
+            }
+            //SKapa VM instans
+            List<DetailsDepartmentViewModel> DepVM = new List<DetailsDepartmentViewModel>();
+            //Bind detta ID till Viewmodell
+            //DepVM.FirstOrDefault().Groups = department.Groups;
+            //DepVM.Add(department.Id, department.Groups(department.Id ));
+            //Returna View med VM
+            return View(DepVM);
         }
 
         // GET: Departments/Details/5

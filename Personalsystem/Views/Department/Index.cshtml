@@ -8,7 +8,7 @@
 @if (User.IsInRole("applicant") || User.IsInRole("admin"))
 {
     <p class="subadmin">
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New", "CreateDepartmentForCompany", "Company", new { id=ViewBag.CompanyId},null)
     </p>
 }
 @foreach (var item in Model)
@@ -22,7 +22,7 @@
             {
                 <th class="col-md-7">
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "../Company/DetailsForDepartment", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "DetailsForDepartment", new { id = item.Id }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </th>
             }
@@ -35,7 +35,8 @@
             <td>
                 @foreach (var group in item.Groups)
                 {
-                    @Html.ActionLink(group.Name, "../Group/Users", new { id = group.Id })
+                    @Html.ActionLink(group.Name, "../Group/Users", new { id = group.Id, CmpnyId = ViewBag.CompanyId })
+                    <br />
                 }
             </td>
             <td></td>
