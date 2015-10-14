@@ -123,6 +123,25 @@ namespace Personalsystem.Controllers
             return View();
         }
 
+        public ActionResult CreateSchedule(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var groups = repo.GetGroupsByDepartmentId(id);
+            if (groups == null)
+            {
+                return HttpNotFound();
+            }
+            var viewModel = new CreateScheduleViewModel
+            {
+                Groups = groups
+            };
+
+            return View(viewModel);
+        }
+
         // GET: Departments/Create
         public ActionResult Create()
         {

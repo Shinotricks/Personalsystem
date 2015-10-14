@@ -39,6 +39,46 @@ namespace Personalsystem.Controllers
             ViewBag.Group = group.Name;
             return View(repo.UserViewModelsByGroupId(id, CmpnyId));
         }
+        // GET: Schedule
+        public ActionResult Schedule(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            if (repo.GetSpecificGroup(id).Schedule.Count == 0)
+            {
+                var week = new ScheduleWeek();
+                week.Monday = new ScheduleDay
+                {
+                    Start = new DateTime(2015, 10, 08, 9, 0, 0),
+                    End = new DateTime(2015, 10, 08, 4, 0, 0)
+                };
+                week.Tuesday = new ScheduleDay
+                {
+                    Start = new DateTime(2015, 10, 09, 9, 0, 0),
+                    End = new DateTime(2015, 10, 09, 4, 0, 0)
+                };
+                week.Wednesday = new ScheduleDay
+                {
+                    Start = new DateTime(2015, 10, 10, 9, 0, 0),
+                    End = new DateTime(2015, 10, 10, 4, 0, 0)
+                };
+                week.Thursday = new ScheduleDay
+                {
+                    Start = new DateTime(2015, 10, 11, 9, 0, 0),
+                    End = new DateTime(2015, 10, 11, 4, 0, 0)
+                };
+                week.Friday = new ScheduleDay
+                {
+                    Start = new DateTime(2015, 10, 12, 9, 0, 0),
+                    End = new DateTime(2015, 10, 12, 4, 0, 0)
+                };
+                repo.AddScheduleToGroup(week, id);
+            }
+            return View(repo.GetSpecificGroup(id).Schedule);
+        }
 
         // GET: Groups/Details/5
         public ActionResult Details(int? id)
