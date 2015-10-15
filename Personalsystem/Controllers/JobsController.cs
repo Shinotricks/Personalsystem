@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Personalsystem.Models;
 using Personalsystem.Repositories;
+using Personalsystem.Viewmodels;
 
 namespace Personalsystem.Controllers
 {
@@ -39,21 +40,34 @@ namespace Personalsystem.Controllers
         // GET: Jobs/Create
         public ActionResult Create()
         {
-            return View();
+            CreateJobViewModel tempVM = new CreateJobViewModel();
+            tempVM.Company = repo.Companies().Select(c => new SelectListItem
+            {
+                Text = c.Name,
+                Value = c.Id.ToString()
+            });
+            return View(tempVM);
         } 
         // POST: Jobs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,Published,Deadline,CompanyId")] Job job)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,Published,Deadline,CompanyId")] CreateJobViewModel jobVM)
         {
             if (ModelState.IsValid)
             {
-                repo.CreateJob(job);
-                return RedirectToAction("Index");
+                //Gör om VM till riktigt objekt
+                Job j = new Job();
+                j.Name = jobVM.Name;
+                j.Description = jobVM.Description;
+                j.Deadline = jobVM.Deadline;
+                //Använd repo för att lägga till i db
+                repo.CreateJob(j);
+                //Återvänd till företagsdetalj
+                return RedirectToAction("Index", new { id = j.Id });
             }
-            return View(job);
+            return View(jobVM);
         }
         // GET: Jobs/Edit/5
         public ActionResult Edit(int? id)
