@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h3>Groups for @ViewBag.DepartmentName</h3>
 
 @if (User.IsInRole("applicant") || User.IsInRole("admin"))
 {
@@ -39,3 +39,6 @@
     }
 
 </table>
+<div>
+    @Html.ActionLink("Back to Departments", "../Department/Index/", new { id = ViewBag.DepartmentId })
+</div>

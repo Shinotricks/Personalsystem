@@ -11,35 +11,32 @@
         @Html.ActionLink("Create New", "Create")
     </p>
 }
-@foreach (var item in Model)
-{
-    <table class="table">
-        <tr>
-            <th class ="col-md-5">
-                @Html.DisplayName(item.Name)
-            </th>
-            @if (User.IsInRole("admin"))
-            {
-                <th class="col-md-7">
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id })
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </th>
-            }
-            else
-            {
-                <th></th>
-            }
-        </tr>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        @if (User.IsInRole("admin"))
+        {
+            <th></th>
+        }
+    </tr>
+
+    @foreach (var item in Model)
+    {
         <tr>
             <td>
-                @foreach (var dep in item.Departments)
-                {
-                    @Html.ActionLink(dep.Name, "../Department/Index/", new { id = dep.Id })
-                    <br />
-                }
+                @Html.ActionLink(item.Name, "../Department/Index/", new { id = item.Id })
             </td>
-            <td></td>
+            @if (User.IsInRole("admin"))
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            }
         </tr>
-    </table>
-}
+    }
+
+</table>

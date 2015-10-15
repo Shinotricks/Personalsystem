@@ -17,8 +17,14 @@ namespace Personalsystem.Controllers
         private PersonalsystemRepository repo = new PersonalsystemRepository();
 
         // GET: Groups
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ViewBag.DepartmentId = id;
+            ViewBag.DepartmentName = repo.GetSpecificDepartment(id).Name;
             return View(repo.Groups());
         }
 
@@ -32,7 +38,7 @@ namespace Personalsystem.Controllers
             var group = repo.GetSpecificGroup(id);
 
             ViewBag.GroupName = group.Name;
-            ViewBag.CompanyId = repo.GetSpecificCompany(group.Department.CompanyId).Id;
+            ViewBag.DepartmentId = group.DepartmentId;
             return View(repo.UserViewModelsByGroupId(id));
         }
         // GET: Schedule
@@ -187,6 +193,7 @@ namespace Personalsystem.Controllers
             return View(group);
         }
         // GET: Groups/Create
+        [Authorize(Roles = "admin, applicant")]
         public ActionResult Create()
         {
             //ViewBag.DepartmentId = new SelectList(repo.Groups, "Id", "Name");
