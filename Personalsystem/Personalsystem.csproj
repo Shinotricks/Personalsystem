@@ -183,14 +183,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201510150750479_init.cs" />
-    <Compile Include="Migrations\201510150750479_init.Designer.cs">
-      <DependentUpon>201510150750479_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510150819324_Secondary.cs" />
-    <Compile Include="Migrations\201510150819324_Secondary.Designer.cs">
-      <DependentUpon>201510150819324_Secondary.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CompanyModels.cs" />
     <Compile Include="Repositories\PersonalsystemRepository.cs" />
@@ -304,6 +296,8 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Group\Users.cshtml" />
     <Content Include="Views\Department\CreateSchedule.cshtml" />
+    <Content Include="Views\Group\InviteUserForGroup.cshtml" />
+    <Content Include="Views\Group\ChangeRoleOfUserInGroup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Admin\" />
@@ -311,14 +305,6 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510150750479_init.resx">
-      <DependentUpon>201510150750479_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510150819324_Secondary.resx">
-      <DependentUpon>201510150819324_Secondary.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

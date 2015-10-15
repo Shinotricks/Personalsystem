@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Personalsystem.Models;
 using Personalsystem.Viewmodels;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Personalsystem.Repositories
 {
@@ -20,8 +21,11 @@ namespace Personalsystem.Repositories
         public IEnumerable<ApplicationUser> ApplicationUsers()
         {
             return db.Users.ToList();
+        }
 
-
+        public List<IdentityRole> Roles()
+        {
+            return db.Roles.ToList();
         }
 
         public IEnumerable<UserViewModel> UserViewModelsByGroupId(int? id)
@@ -265,6 +269,16 @@ namespace Personalsystem.Repositories
             db.SaveChanges();
         }
 
+        public void ChangeRoleOfUserInGroup(int? groupId, string userId)
+        {
+            Group NewRoleInGroup = GetSpecificGroup(groupId); //Hämtat grupp
+            ApplicationUser appUser = GetSpecificUser(userId); //Hämta user från ID
+            NewRoleInGroup.Users.Add(appUser); //Lägg till User med ändrad roll i Gruppens lista av Users
+            appUser.Groups.Add(NewRoleInGroup); //Lägg till Grupp i Users lista av Grupper med ändrad roll
+            db.Entry(NewRoleInGroup).State = System.Data.Entity.EntityState.Modified; //Entity state Modified
+            db.Entry(appUser).State = System.Data.Entity.EntityState.Modified; //Entity state Modified
+            db.SaveChanges();
+        }
         public Group CreateGroup(Group group)
         {
             db.Groups.Add(group);
