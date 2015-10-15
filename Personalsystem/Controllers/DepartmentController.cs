@@ -34,40 +34,6 @@ namespace Personalsystem.Controllers
             return View(repo.GetDepartmentsByCompanyId(id));
         }
 
-        // GET: Departments
-        public ActionResult DetailsForDepartment(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ViewBag.Group = repo.GetSpecificDepartment(id).Name;
-            return View(repo.DetailsDepartmentViewModelByDepartmentId(id));
-            //return View(repo.DetailsDepartmentViewModelByDepartmentId(id));
-        }
-
-        // GET: Departments/Details/5
-        public ActionResult UsersDetailsForDepartment(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Department department = repo.GetSpecificDepartment(id);
-            if (department == null)
-            {
-                return HttpNotFound();
-            }
-            //SKapa VM instans
-            List<DetailsDepartmentViewModel> DepVM = new List<DetailsDepartmentViewModel>();
-            //Bind detta ID till Viewmodell
-            //DepVM.FirstOrDefault().Groups = department.Groups;
-            //DepVM.Add(department.Id, department.Groups(department.Id ));
-            //Returna View med VM
-            return View(DepVM);
-        }
-
         // GET: Departments/Details/5
         public ActionResult Details(int? id)
         {
@@ -81,46 +47,6 @@ namespace Personalsystem.Controllers
                 return HttpNotFound();
             }
             return View(department);
-        }
-
-        // GET: Group/CreateGroup
-        [Authorize(Roles = "admin, applicant")]
-        public ActionResult CreateGroupForDepartment(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Department department = repo.GetSpecificDepartment(id);
-            if (department == null)
-            {
-                return HttpNotFound();
-            }
-            //SKapa VM instans
-            GroupCreateViewModel GroupVM = new GroupCreateViewModel();
-            //Bind detta ID till Viewmodell
-            GroupVM.DepartmentId = department.Id;
-            //Returna View med VM
-            return View(GroupVM);
-        }
-
-        // POST: Group/CreateGroup
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreateGroupForDepartment([Bind(Include = "DepartmentId, Name")] GroupCreateViewModel groupVM)
-        {
-            if (ModelState.IsValid)
-            {
-                //Gör om VM till riktigt objekt
-                Group group = new Group();
-                group.DepartmentId = groupVM.DepartmentId;
-                group.Name = groupVM.Name;
-                //Använd repo för att lägga till i db
-                repo.CreateGroup(group);
-                //Återvänd till företagsdetalj
-                return RedirectToAction("Details", new { id = groupVM.DepartmentId });
-            }
-            return View();
         }
 
         public ActionResult CreateSchedule(int? id)
@@ -143,9 +69,9 @@ namespace Personalsystem.Controllers
         }
 
         // GET: Departments/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            //ViewBag.CompanyId = repo.GetSpecificCompany(id);
+            ViewBag.CompanyId = id;
             return View();
         }
 

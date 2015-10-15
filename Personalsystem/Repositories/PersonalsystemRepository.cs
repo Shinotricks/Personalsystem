@@ -24,7 +24,7 @@ namespace Personalsystem.Repositories
 
         }
 
-        public IEnumerable<UserViewModel> UserViewModelsByGroupId(int? id, int? Cid)
+        public IEnumerable<UserViewModel> UserViewModelsByGroupId(int? id)
         {
             List<UserViewModel> viewModels = new List<UserViewModel>();
             foreach (ApplicationUser user in db.Groups.Single(u => u.Id == id).Users.ToList())
@@ -38,8 +38,7 @@ namespace Personalsystem.Repositories
                         Number = user.PhoneNumber,
                         Street = user.Adress.Street,
                         StreetNumber = user.Adress.StreetNumber,
-                        ZipCode = user.Adress.ZipCode,
-                        CompanyId = (int)Cid
+                        ZipCode = user.Adress.ZipCode
                         //UserRole = user.Roles.Single(r => r.UserId == user.Id)
                     });
                 }

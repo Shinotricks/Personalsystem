@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using Personalsystem.Models;
 using Personalsystem.Repositories;
-using Personalsystem.Viewmodels;
 
 namespace Personalsystem.Controllers
 {
@@ -23,21 +22,17 @@ namespace Personalsystem.Controllers
         }
 
         // GET: Users
-        public ActionResult Users(int? id, int? CmpnyId)
+        public ActionResult Users(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group group = repo.GetSpecificGroup(id);
-            if (group == null)
-            {
-                return HttpNotFound();
-            }
-            UserViewModel userVM = new UserViewModel();
-            ViewBag.CompanyId = CmpnyId; 
-            ViewBag.Group = group.Name;
-            return View(repo.UserViewModelsByGroupId(id, CmpnyId));
+            var group = repo.GetSpecificGroup(id);
+
+            ViewBag.GroupName = group.Name;
+            ViewBag.CompanyId = repo.GetSpecificCompany(group.Department.CompanyId).Id;
+            return View(repo.UserViewModelsByGroupId(id));
         }
         // GET: Schedule
         public ActionResult Schedule(int? id)
@@ -91,7 +86,7 @@ namespace Personalsystem.Controllers
 
             //ApplicationUser TestUser = new ApplicationUser { Email = "user2@usersson.dk", UserName = "user2@usersson.dk", PhoneNumber = "23456789" }; 
             //    repo.AddUserToGroup(1,TestUser);
-            
+
             if (group == null)
             {
                 return HttpNotFound();
