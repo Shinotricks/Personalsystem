@@ -189,6 +189,7 @@
     <Compile Include="TODOLIST\Todolist.cs" />
     <Compile Include="Viewmodels\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Viewmodels\JobViewModel.cs" />
     <Compile Include="Viewmodels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
