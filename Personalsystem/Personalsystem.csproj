@@ -183,10 +183,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201510150750479_init.cs" />
-    <Compile Include="Migrations\201510150750479_init.Designer.cs">
-      <DependentUpon>201510150750479_init.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CompanyModels.cs" />
     <Compile Include="Repositories\PersonalsystemRepository.cs" />
@@ -274,12 +270,10 @@
     <Content Include="Views\Company\Delete.cshtml" />
     <Content Include="Views\Company\Details.cshtml" />
     <Content Include="Views\Company\Edit.cshtml" />
-    <Content Include="Views\Company\Index.cshtml" />
     <Content Include="Views\Department\Create.cshtml" />
     <Content Include="Views\Department\Delete.cshtml" />
     <Content Include="Views\Department\Details.cshtml" />
     <Content Include="Views\Department\Edit.cshtml" />
-    <Content Include="Views\Department\Index.cshtml" />
     <Content Include="Views\Group\Create.cshtml" />
     <Content Include="Views\Group\Delete.cshtml" />
     <Content Include="Views\Group\Details.cshtml" />
@@ -293,6 +287,8 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Group\Users.cshtml" />
     <Content Include="Views\Department\CreateSchedule.cshtml" />
+    <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\Department\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -301,11 +297,6 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510150750479_init.resx">
-      <DependentUpon>201510150750479_init.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
