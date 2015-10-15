@@ -36,46 +36,6 @@ namespace Personalsystem.Controllers
             }
             return View(company);
         }
-        
-        // GET: Department/CreateDepartment
-        [Authorize(Roles = "admin, applicant")]
-        public ActionResult CreateDepartmentForCompany(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Company company = repo.GetSpecificCompany(id);
-            if (company == null)
-            {
-                return HttpNotFound();
-            }
-            //SKapa VM instans
-            DepartmentCreateViewModel DepVM = new DepartmentCreateViewModel();
-            //Bind detta ID till Viewmodell
-            DepVM.CompanyId = company.Id;
-            //Returna View med VM
-            return View(DepVM);
-        }
-
-        // POST: Department/CreateDepartment
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreateDepartmentForCompany([Bind(Include = "CompanyID, Name")] DepartmentCreateViewModel depVM)
-        {
-            if (ModelState.IsValid)
-            {
-                //Gör om VM till riktigt objekt
-                Department dep = new Department();
-                dep.CompanyId = depVM.CompanyId;
-                dep.Name = depVM.Name;
-                //Använd repo för att lägga till i db
-                repo.CreateDepartment(dep);
-                //Återvänd till företagsdetalj
-                return RedirectToAction("Details", new { id = depVM.CompanyId});
-            }
-            return View();
-        }
 
         // GET: Company/Create
         [Authorize(Roles="admin, applicant")]

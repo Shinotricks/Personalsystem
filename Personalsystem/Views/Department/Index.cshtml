@@ -1,28 +1,28 @@
-﻿@model IEnumerable<Personalsystem.Models.Company>
+﻿@model IEnumerable<Personalsystem.Models.Department>
 @{
-    ViewBag.Title = "Companies";
+    ViewBag.Title = "Index";
 }
 
-<h3>Companies</h3>
+<h3>Departments for @ViewBag.Company</h3>
 
 @if (User.IsInRole("applicant") || User.IsInRole("admin"))
 {
     <p class="subadmin">
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New", "Create", new { id = ViewBag.CompanyId })
     </p>
 }
 @foreach (var item in Model)
 {
     <table class="table">
         <tr>
-            <th class ="col-md-5">
+            <th class="col-md-5">
                 @Html.DisplayName(item.Name)
             </th>
             @if (User.IsInRole("admin"))
             {
                 <th class="col-md-7">
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </th>
             }
@@ -33,9 +33,9 @@
         </tr>
         <tr>
             <td>
-                @foreach (var dep in item.Departments)
+                @foreach (var group in item.Groups)
                 {
-                    @Html.ActionLink(dep.Name, "../Department/Index/", new { id = dep.Id })
+                    @Html.ActionLink(group.Name, "../Group/Users/", new { id = group.Id })
                     <br />
                 }
             </td>
@@ -43,3 +43,7 @@
         </tr>
     </table>
 }
+
+<div>
+    @Html.ActionLink("Back to Companies", "../Company/Index/")
+</div>

@@ -51,6 +51,8 @@ namespace Personalsystem.Models
         public System.Data.Entity.DbSet<Personalsystem.Models.Group> Groups { get; set; }
 
         public System.Data.Entity.DbSet<Personalsystem.Models.Job> Jobs { get; set; }
+
+        public System.Data.Entity.DbSet<Personalsystem.Models.ScheduleWeek> ScheduleWeeks { get; set; }
     }
 
     public class Adress
