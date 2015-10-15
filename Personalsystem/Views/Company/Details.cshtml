@@ -36,6 +36,7 @@
                 @foreach (var group in item.Groups)
                 {
                     @Html.ActionLink(group.Name, "../Group/Users", new { id = group.Id })
+                    @Html.Raw(" | ");
                 }
             </td>
             <td></td>

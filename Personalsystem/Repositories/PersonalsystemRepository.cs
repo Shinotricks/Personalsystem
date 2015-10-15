@@ -27,6 +27,7 @@ namespace Personalsystem.Repositories
         public IEnumerable<UserViewModel> UserViewModelsByGroupId(int? id, int? Cid)
         {
             List<UserViewModel> viewModels = new List<UserViewModel>();
+            Group group = db.Groups.Single(g => g.Id == id); 
             foreach (ApplicationUser user in db.Groups.Single(u=>u.Id == id).Users.ToList())
             {
                 if (user.Adress != null)
@@ -39,6 +40,7 @@ namespace Personalsystem.Repositories
                         Street = user.Adress.Street,
                         StreetNumber = user.Adress.StreetNumber,
                         ZipCode = user.Adress.ZipCode,
+                        Name = group.Name,
                         CompanyId = (int) Cid
                         //UserRole = user.Roles.Single(r => r.UserId == user.Id)
                     });
@@ -163,6 +165,7 @@ namespace Personalsystem.Repositories
 
             return company;
         }
+
         #endregion
 
         #region Department Methods
@@ -262,6 +265,17 @@ namespace Personalsystem.Repositories
             NewUserGroup.Users.Add(appUser); //Lägg till User i Gruppens lista av Users
             appUser.Groups.Add(NewUserGroup); //Lägg till Grupp i Users lista av Grupper
             db.Entry(NewUserGroup).State = System.Data.Entity.EntityState.Modified; //Entity state Modified
+            db.Entry(appUser).State = System.Data.Entity.EntityState.Modified; //Entity state Modified
+            db.SaveChanges();
+         }
+
+        public void ChangeRoleOfUserInCompany(int? groupId, string userId)
+        {
+            Group NewRoleInGroup = GetSpecificGroup(groupId); //Hämtat grupp
+            ApplicationUser appUser = GetSpecificUser(userId); //Hämta user från ID
+            NewRoleInGroup.Users.Add(appUser); //Lägg till User med ändrad roll i Gruppens lista av Users
+            appUser.Groups.Add(NewRoleInGroup); //Lägg till Grupp i Users lista av Grupper med ändrad roll
+            db.Entry(NewRoleInGroup).State = System.Data.Entity.EntityState.Modified; //Entity state Modified
             db.Entry(appUser).State = System.Data.Entity.EntityState.Modified; //Entity state Modified
             db.SaveChanges();
         }

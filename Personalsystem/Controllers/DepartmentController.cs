@@ -46,7 +46,7 @@ namespace Personalsystem.Controllers
             //return View(repo.DetailsDepartmentViewModelByDepartmentId(id));
         }
 
-        // GET: Departments/Details/5
+        // GET: Users/Details/Department
         public ActionResult UsersDetailsForDepartment(int? id)
         {
             if (id == null)
@@ -60,9 +60,9 @@ namespace Personalsystem.Controllers
                 return HttpNotFound();
             }
             //SKapa VM instans
-            List<DetailsDepartmentViewModel> DepVM = new List<DetailsDepartmentViewModel>();
+            DetailsDepartmentViewModel DepVM = new DetailsDepartmentViewModel();
             //Bind detta ID till Viewmodell
-            //DepVM.FirstOrDefault().Groups = department.Groups;
+            DepVM.DepartmentId = department.Id;
             //DepVM.Add(department.Id, department.Groups(department.Id ));
             //Returna View med VM
             return View(DepVM);

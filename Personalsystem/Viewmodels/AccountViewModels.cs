@@ -101,6 +101,10 @@ namespace Personalsystem.Viewmodels
         [Required]
         [Display(Name = "Company ID")]
         public int CompanyId { get; set; }
+
+        [Required]
+        [Display(Name = "Group Name")]
+        public string Name { get; set; }
     }
 
     public class RegisterViewModel

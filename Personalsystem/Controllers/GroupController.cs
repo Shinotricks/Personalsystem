@@ -17,9 +17,10 @@ namespace Personalsystem.Controllers
         private PersonalsystemRepository repo = new PersonalsystemRepository();
 
         // GET: Groups
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            return View(repo.Groups());
+            ViewBag.departmentName = repo.GetSpecificDepartment(id).Name;
+            return View(repo.GetGroupsByDepartmentId(id));
         }
 
         // GET: Users
@@ -35,9 +36,57 @@ namespace Personalsystem.Controllers
                 return HttpNotFound();
             }
             UserViewModel userVM = new UserViewModel();
-            ViewBag.CompanyId = CmpnyId; 
-            ViewBag.Group = group.Name;
+            //ViewBag.CompanyId = CmpnyId;
+            //userVM.CompanyId = (int) CmpnyId;
+            //userVM.Name = group.Name;
+            //ViewBag.Group = group.Name;
             return View(repo.UserViewModelsByGroupId(id, CmpnyId));
+        }
+
+        // GET: Group/InviteUsers
+        [Authorize(Roles = "admin, applicant")]
+        public ActionResult InviteUsersForGroup(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Group group = repo.GetSpecificGroup(id);
+            if (group == null)
+            {
+                return HttpNotFound();
+            }
+            //SKapa VM instans
+            UsersInviteViewModel inviteVM = new UsersInviteViewModel();
+            //Bind detta ID till Viewmodell
+
+            inviteVM.Id = group.Id;
+            //inviteVM.Name = group.Name;
+            inviteVM.Users = repo.ApplicationUsers().Select(u => new SelectListItem
+            {
+                Text = u.UserName,
+                Value = u.Id
+            });
+            //Returna View med VM
+            return View(inviteVM);
+        }
+
+        // POST: Group/InviteUsers
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult InviteUsersForGroup([Bind(Include = "Id, SelectedUser")] UsersInviteViewModel invitedUsers)
+        {
+            if (ModelState.IsValid)
+            {
+                //ViewBag.groupName = invitedUsers.Name;
+                repo.AddUserToGroup(invitedUsers.Id, invitedUsers.SelectedUser);
+                return RedirectToAction("../Group/Index");
+            }
+
+            //ViewBag.DepartmentId = new SelectList(repo.GetGroupsByDepartmentId, "Id", "Name", group.DepartmentId);
+            return View(invitedUsers);
         }
 
         // GET: Groups/Details/5
