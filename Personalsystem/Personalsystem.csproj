@@ -197,6 +197,10 @@
     <Compile Include="Viewmodels\ScheduleViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-Personalsystem-20150929020746.mdf" />
+    <Content Include="App_Data\aspnet-Personalsystem-20150929020746_log.ldf">
+      <DependentUpon>aspnet-Personalsystem-20150929020746.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -233,7 +237,9 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -271,10 +277,12 @@
     <Content Include="Views\Company\Delete.cshtml" />
     <Content Include="Views\Company\Details.cshtml" />
     <Content Include="Views\Company\Edit.cshtml" />
+    <Content Include="Views\Company\Index.cshtml" />
     <Content Include="Views\Department\Create.cshtml" />
     <Content Include="Views\Department\Delete.cshtml" />
     <Content Include="Views\Department\Details.cshtml" />
     <Content Include="Views\Department\Edit.cshtml" />
+    <Content Include="Views\Department\Index.cshtml" />
     <Content Include="Views\Group\Create.cshtml" />
     <Content Include="Views\Group\Delete.cshtml" />
     <Content Include="Views\Group\Details.cshtml" />
@@ -288,11 +296,10 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Group\Users.cshtml" />
     <Content Include="Views\Department\CreateSchedule.cshtml" />
-    <Content Include="Views\Company\Index.cshtml" />
-    <Content Include="Views\Department\Index.cshtml" />
+    <Content Include="Views\Group\InviteUserForGroup.cshtml" />
+    <Content Include="Views\Group\ChangeRoleOfUserInGroup.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Personalsystem.Models;
 using Personalsystem.Repositories;
+using Personalsystem.Viewmodels;
 
 namespace Personalsystem.Controllers
 {
@@ -79,6 +80,98 @@ namespace Personalsystem.Controllers
                 repo.AddScheduleToGroup(week, id);
             }
             return View(repo.GetSpecificGroup(id).Schedule);
+        }
+
+// GET: Group/InviteUsers
+        [Authorize(Roles = "admin, applicant")]
+        public ActionResult InviteUsersForGroup(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Group group = repo.GetSpecificGroup(id);
+            if (group == null)
+            {
+                return HttpNotFound();
+            }
+            //SKapa VM instans
+            UserInviteViewModel inviteVM = new UserInviteViewModel();
+            //Bind detta ID till Viewmodell
+
+            inviteVM.Id = group.Id;
+            //inviteVM.Name = group.Name;
+            inviteVM.Users = repo.ApplicationUsers().Select(u => new SelectListItem
+            {
+                Text = u.UserName,
+                Value = u.Id
+            });
+            //Returna View med VM
+            return View(inviteVM);
+        }
+
+        // POST: Group/InviteUser
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult InviteUserForGroup([Bind(Include = "Id, SelectedUser")] UserInviteViewModel invitedUser)
+        {
+            if (ModelState.IsValid)
+            {
+                //ViewBag.groupName = invitedUsers.Name;
+                repo.AddUserToGroup(invitedUser.Id, invitedUser.SelectedUser);
+                return RedirectToAction("../Group/Index");
+            }
+
+            //ViewBag.DepartmentId = new SelectList(repo.GetGroupsByDepartmentId, "Id", "Name", group.DepartmentId);
+            return View(invitedUser);
+        }
+
+        // GET: Group/ChangeRoleOfUserInGroup
+        [Authorize(Roles = "admin, applicant")]
+        public ActionResult ChangeRoleOfUserInGroup(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Group group = repo.GetSpecificGroup(id);
+            if (group == null)
+            {
+                return HttpNotFound();
+            }
+            //SKapa VM instans
+            UserChangeRoleViewModel changeVM = new UserChangeRoleViewModel();
+            //Bind detta ID till Viewmodell
+
+            changeVM.Id = group.Id;
+            //inviteVM.Name = group.Name;
+            changeVM.Roles = repo.Roles().Select(u => new SelectListItem
+            {
+                Text = u.Name,
+                Value = u.Id
+            });
+            //Returna View med VM
+            return View(changeVM);
+        }
+
+        // POST: Group/ChangeRoleOfUserInGroup
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeRoleOfUserInGroup([Bind(Include = "Id, SelectedRole")] UserChangeRoleViewModel changedRole)
+        {
+            if (ModelState.IsValid)
+            {
+                //ViewBag.groupName = invitedUsers.Name;
+                repo.AddUserToGroup(changedRole.Id, changedRole.SelectedRole);
+                return RedirectToAction("../Group/Index");
+            }
+
+            //ViewBag.DepartmentId = new SelectList(repo.GetGroupsByDepartmentId, "Id", "Name", group.DepartmentId);
+            return View(changedRole);
         }
 
         // GET: Groups/Details/5

@@ -69,7 +69,7 @@ namespace Personalsystem.Viewmodels
         public virtual ICollection<Department> Departments { get; set; }
         public virtual ICollection<Group> Groups { get; set; }
     }
-    public class UsersInviteViewModel
+    public class UserInviteViewModel
     {
         [Required]
         [Display(Name = "Group Id")]
@@ -81,6 +81,20 @@ namespace Personalsystem.Viewmodels
 
         public IEnumerable<SelectListItem> Users { get; set; }
         public string SelectedUser { get; set; }
+
+    }
+    public class UserChangeRoleViewModel
+    {
+        [Required]
+        [Display(Name = "Group Id")]
+        public int Id { get; set; }
+
+        //[Required]
+        //[Display(Name = "Group Name")]
+        //public string Name { get; set; }
+
+        public IEnumerable<SelectListItem> Roles { get; set; }
+        public string SelectedRole { get; set; }
 
     }
 }
