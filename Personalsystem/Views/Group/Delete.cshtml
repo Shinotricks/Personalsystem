@@ -29,7 +29,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
@@ -37,5 +38,5 @@
         </div>
     }
     <br />
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Groups", "Index", new { id = Model.DepartmentId })
 </div>
