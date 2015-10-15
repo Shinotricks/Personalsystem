@@ -9,7 +9,7 @@
 @if (User.IsInRole("applicant") || User.IsInRole("admin"))
 {
     <p class="subadmin">
-        @Html.ActionLink("Create New", "Create", "Department", new { id = ViewBag.DepartmentId }, null)
+        @Html.ActionLink("Create New", "Create", "Group", new { id = ViewBag.DepartmentId }, null)
     </p>
 }
 <table class="table">

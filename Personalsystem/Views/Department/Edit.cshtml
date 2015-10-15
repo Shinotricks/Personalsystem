@@ -10,8 +10,10 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <h4>@Html.DisplayNameFor(model => model.Company.Name)
-    <strong>@Html.DisplayFor(model => model.Company.Name)</strong></h4>
+    <h4>
+        @Html.DisplayNameFor(model => model.Company.Name)
+    <strong>@Html.DisplayFor(model => model.Company.Name)</strong>
+</h4>
 
     <div class="form-horizontal">
         <h3>Department</h3>
@@ -28,12 +30,12 @@
         </div>
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.CompanyId, "CompanyId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CompanyId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CompanyId, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                @Html.LabelFor(model => model.CompanyId, "CompanyId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("CompanyId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CompanyId, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -44,7 +46,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "../Department/Index/1")
+    @Html.ActionLink("Back to Departments", "Index", new { id = Model.CompanyId })
 </div>
 
 @section Scripts {
