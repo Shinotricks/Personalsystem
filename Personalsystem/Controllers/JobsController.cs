@@ -53,7 +53,7 @@ namespace Personalsystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,Published,Deadline,CompanyId")] CreateJobViewModel jobVM)
+        public ActionResult Create([Bind(Include = "Name,Description,Deadline,SelectedCompany")] CreateJobViewModel jobVM)
         {
             if (ModelState.IsValid)
             {
@@ -61,11 +61,13 @@ namespace Personalsystem.Controllers
                 Job j = new Job();
                 j.Name = jobVM.Name;
                 j.Description = jobVM.Description;
-                j.Deadline = jobVM.Deadline;
+                j.Deadline = (DateTime)jobVM.Deadline;
+                j.Published = DateTime.Now;
+                j.CompanyId = jobVM.SelectedCompany;
                 //Använd repo för att lägga till i db
                 repo.CreateJob(j);
-                //Återvänd till företagsdetalj
-                return RedirectToAction("Index", new { id = j.Id });
+                //Återvänd
+                return RedirectToAction("Index");
             }
             return View(jobVM);
         }
@@ -73,7 +75,7 @@ namespace Personalsystem.Controllers
         public ActionResult Edit(int? id)
         {
             if (id == null)
-            {
+            { 
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Job job = repo.GetJob(id);

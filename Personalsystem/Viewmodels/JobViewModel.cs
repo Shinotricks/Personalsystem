@@ -16,5 +16,6 @@ namespace Personalsystem.Viewmodels
             public DateTime Deadline { get; set; }
 
             public IEnumerable<SelectListItem> Company { get; set; }
+            public int SelectedCompany { get; set; }
     }
 }
