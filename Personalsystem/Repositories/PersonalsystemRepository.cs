@@ -24,10 +24,10 @@ namespace Personalsystem.Repositories
 
         }
 
-        public IEnumerable<UserViewModel> UserViewModelsByGroupId(int? id, int? Cid)
+        public IEnumerable<UserViewModel> UserViewModelsByGroupId(int? id)
         {
             List<UserViewModel> viewModels = new List<UserViewModel>();
-            foreach (ApplicationUser user in db.Groups.Single(u=>u.Id == id).Users.ToList())
+            foreach (ApplicationUser user in db.Groups.Single(u => u.Id == id).Users.ToList())
             {
                 if (user.Adress != null)
                 {
@@ -38,8 +38,7 @@ namespace Personalsystem.Repositories
                         Number = user.PhoneNumber,
                         Street = user.Adress.Street,
                         StreetNumber = user.Adress.StreetNumber,
-                        ZipCode = user.Adress.ZipCode,
-                        CompanyId = (int) Cid
+                        ZipCode = user.Adress.ZipCode
                         //UserRole = user.Roles.Single(r => r.UserId == user.Id)
                     });
                 }
@@ -119,7 +118,7 @@ namespace Personalsystem.Repositories
         }
 
         // DELETE JOB
-        public Job DeleteJob (Job job)
+        public Job DeleteJob(Job job)
         {
             db.Jobs.Remove(job);
             db.SaveChanges();
@@ -184,7 +183,7 @@ namespace Personalsystem.Repositories
                 viewModels.Add(new DetailsDepartmentViewModel
                 {
                     Name = group.Name,
-                    DepartmentId = (int) id
+                    DepartmentId = (int)id
                 });
             }
             return viewModels;
@@ -283,6 +282,12 @@ namespace Personalsystem.Repositories
         public void RemoveGroup(Group group)
         {
             db.Groups.Remove(group);
+            db.SaveChanges();
+        }
+
+        public void AddScheduleToGroup(ScheduleWeek week, int? groupId)
+        {
+            db.Groups.Single(i => i.Id == groupId).Schedule.Add(week);
             db.SaveChanges();
         }
         #endregion

@@ -3,12 +3,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Departments for @ViewBag.Company</h2>
+<h3>Departments for @ViewBag.Company</h3>
 
 @if (User.IsInRole("applicant") || User.IsInRole("admin"))
 {
     <p class="subadmin">
-        @Html.ActionLink("Create New", "CreateDepartmentForCompany", "Company", new { id=ViewBag.CompanyId},null)
+        @Html.ActionLink("Create New", "Create", new { id = ViewBag.CompanyId })
     </p>
 }
 @foreach (var item in Model)
@@ -22,7 +22,7 @@
             {
                 <th class="col-md-7">
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "DetailsForDepartment", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </th>
             }
@@ -35,7 +35,7 @@
             <td>
                 @foreach (var group in item.Groups)
                 {
-                    @Html.ActionLink(group.Name, "../Group/Users", new { id = group.Id, CmpnyId = ViewBag.CompanyId })
+                    @Html.ActionLink(group.Name, "../Group/Users/", new { id = group.Id })
                     <br />
                 }
             </td>
@@ -43,3 +43,7 @@
         </tr>
     </table>
 }
+
+<div>
+    @Html.ActionLink("Back to Companies", "../Company/Index/")
+</div>

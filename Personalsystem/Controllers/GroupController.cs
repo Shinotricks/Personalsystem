@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using Personalsystem.Models;
 using Personalsystem.Repositories;
-using Personalsystem.Viewmodels;
 
 namespace Personalsystem.Controllers
 {
@@ -23,21 +22,57 @@ namespace Personalsystem.Controllers
         }
 
         // GET: Users
-        public ActionResult Users(int? id, int? CmpnyId)
+        public ActionResult Users(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group group = repo.GetSpecificGroup(id);
-            if (group == null)
+            var group = repo.GetSpecificGroup(id);
+
+            ViewBag.GroupName = group.Name;
+            ViewBag.CompanyId = repo.GetSpecificCompany(group.Department.CompanyId).Id;
+            return View(repo.UserViewModelsByGroupId(id));
+        }
+        // GET: Schedule
+        public ActionResult Schedule(int? id)
+        {
+            if (id == null)
             {
-                return HttpNotFound();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserViewModel userVM = new UserViewModel();
-            ViewBag.CompanyId = CmpnyId; 
-            ViewBag.Group = group.Name;
-            return View(repo.UserViewModelsByGroupId(id, CmpnyId));
+
+            if (repo.GetSpecificGroup(id).Schedule.Count == 0)
+            {
+                var week = new ScheduleWeek();
+                week.Monday = new ScheduleDay
+                {
+                    Start = new DateTime(2015, 10, 08, 9, 0, 0),
+                    End = new DateTime(2015, 10, 08, 4, 0, 0)
+                };
+                week.Tuesday = new ScheduleDay
+                {
+                    Start = new DateTime(2015, 10, 09, 9, 0, 0),
+                    End = new DateTime(2015, 10, 09, 4, 0, 0)
+                };
+                week.Wednesday = new ScheduleDay
+                {
+                    Start = new DateTime(2015, 10, 10, 9, 0, 0),
+                    End = new DateTime(2015, 10, 10, 4, 0, 0)
+                };
+                week.Thursday = new ScheduleDay
+                {
+                    Start = new DateTime(2015, 10, 11, 9, 0, 0),
+                    End = new DateTime(2015, 10, 11, 4, 0, 0)
+                };
+                week.Friday = new ScheduleDay
+                {
+                    Start = new DateTime(2015, 10, 12, 9, 0, 0),
+                    End = new DateTime(2015, 10, 12, 4, 0, 0)
+                };
+                repo.AddScheduleToGroup(week, id);
+            }
+            return View(repo.GetSpecificGroup(id).Schedule);
         }
 
         // GET: Groups/Details/5
@@ -51,7 +86,7 @@ namespace Personalsystem.Controllers
 
             //ApplicationUser TestUser = new ApplicationUser { Email = "user2@usersson.dk", UserName = "user2@usersson.dk", PhoneNumber = "23456789" }; 
             //    repo.AddUserToGroup(1,TestUser);
-            
+
             if (group == null)
             {
                 return HttpNotFound();
