@@ -73,7 +73,7 @@ namespace Personalsystem.Models
         [Required]
         public int CompanyId { get; set; }
         [ForeignKey("CompanyId")]
-        public virtual ICollection<Company> Company { get; set; }
+        public virtual Company Company { get; set; }
     }
 
     // THIS IS FOR APPLYING TO VACANCIES
