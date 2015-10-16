@@ -41,6 +41,26 @@ namespace Personalsystem.Controllers
             ViewBag.DepartmentId = group.DepartmentId;
             return View(repo.UserViewModelsByGroupId(id));
         }
+
+        public ActionResult CreateSchedule(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var group = repo.GetSpecificGroup(id);
+            if (group == null)
+            {
+                return HttpNotFound();
+            }
+            var viewModel = new CreateScheduleGroupViewModel
+            {
+                Group = group
+            };
+
+            return View(viewModel);
+        }
+
         // GET: Schedule
         public ActionResult Schedule(int? id)
         {
