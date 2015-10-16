@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Personalsystem.Models;
 using Personalsystem.Repositories;
 using Personalsystem.Viewmodels;
+using Microsoft.AspNet.Identity;
 
 namespace Personalsystem.Controllers
 {
@@ -53,6 +54,8 @@ namespace Personalsystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userID = User.Identity.GetUserId();
+                repo.AddUserRole(userID,"Admin");
                 repo.CreateCompany(company);
                 return RedirectToAction("Index");
             }

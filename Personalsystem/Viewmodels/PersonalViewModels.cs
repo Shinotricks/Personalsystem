@@ -85,16 +85,13 @@ namespace Personalsystem.Viewmodels
     }
     public class UserChangeRoleViewModel
     {
-        [Required]
-        [Display(Name = "Group Id")]
-        public int Id { get; set; }
+        [Display(Name = "Group Name")]
+        public string Name { get; set; }
 
-        //[Required]
-        //[Display(Name = "Group Name")]
-        //public string Name { get; set; }
-
+        public IEnumerable<SelectListItem> Users { get; set; }
+        public string SelectedUser { get; set; }
         public IEnumerable<SelectListItem> Roles { get; set; }
         public string SelectedRole { get; set; }
-
+        public string OldRole { get; set; }
     }
 }

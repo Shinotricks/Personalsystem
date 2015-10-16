@@ -5,6 +5,11 @@ using System.Web;
 using Personalsystem.Models;
 using Personalsystem.Viewmodels;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Web.Mvc;
+using System.Threading.Tasks;
+using System.Globalization;
+using Microsoft.AspNet.Identity;
+using Personalsystem.Controllers;
 
 namespace Personalsystem.Repositories
 {
@@ -17,6 +22,31 @@ namespace Personalsystem.Repositories
             db = new ApplicationDbContext();
         }
 
+        public void AddUserRole(string id, string role)
+        {
+            UserStore<ApplicationUser> userStore = new UserStore<ApplicationUser>(db);
+            Microsoft.AspNet.Identity.UserManager<ApplicationUser> userManager = new Microsoft.AspNet.Identity.UserManager<ApplicationUser>(userStore);
+
+            userManager.AddToRole(id, role);
+            
+            db.SaveChanges();
+                //return userManager;
+        }
+
+        public void RemoveUserRole(string id, string role)
+        {
+            UserStore<ApplicationUser> userStore = new UserStore<ApplicationUser>(db);
+            Microsoft.AspNet.Identity.UserManager<ApplicationUser> userManager = new Microsoft.AspNet.Identity.UserManager<ApplicationUser>(userStore);
+            //var oldRole = System.Web.Security.Roles.GetRolesForUser().Single();
+            var account = new AccountController();
+            var oldRole = account.UserManager.GetRoles(id);
+
+            userManager.RemoveFromRole(id, role);
+            db.SaveChanges();
+            //return userManager;
+        }
+
+
         #region AccountStuff
         public IEnumerable<ApplicationUser> ApplicationUsers()
         {
@@ -27,7 +57,7 @@ namespace Personalsystem.Repositories
         {
             return db.Roles.ToList();
         }
-
+         
         public IEnumerable<UserViewModel> UserViewModelsByGroupId(int? id)
         {
             List<UserViewModel> viewModels = new List<UserViewModel>();
@@ -269,16 +299,16 @@ namespace Personalsystem.Repositories
             db.SaveChanges();
         }
 
-        public void ChangeRoleOfUserInGroup(int? groupId, string userId)
-        {
-            Group NewRoleInGroup = GetSpecificGroup(groupId); //Hämtat grupp
-            ApplicationUser appUser = GetSpecificUser(userId); //Hämta user från ID
-            NewRoleInGroup.Users.Add(appUser); //Lägg till User med ändrad roll i Gruppens lista av Users
-            appUser.Groups.Add(NewRoleInGroup); //Lägg till Grupp i Users lista av Grupper med ändrad roll
-            db.Entry(NewRoleInGroup).State = System.Data.Entity.EntityState.Modified; //Entity state Modified
-            db.Entry(appUser).State = System.Data.Entity.EntityState.Modified; //Entity state Modified
-            db.SaveChanges();
-        }
+        //public void ChangeRoleOfUserInGroup(int? groupId, string userId)
+        //{
+        //    Group NewRoleInGroup = GetSpecificGroup(groupId); //Hämtat grupp
+        //    ApplicationUser appUser = GetSpecificUser(userId); //Hämta user från ID
+        //    NewRoleInGroup.Users.Add(appUser); //Lägg till User med ändrad roll i Gruppens lista av Users
+        //    appUser.Groups.Add(NewRoleInGroup); //Lägg till Grupp i Users lista av Grupper med ändrad roll
+        //    db.Entry(NewRoleInGroup).State = System.Data.Entity.EntityState.Modified; //Entity state Modified
+        //    db.Entry(appUser).State = System.Data.Entity.EntityState.Modified; //Entity state Modified
+        //    db.SaveChanges();
+        //}
         public Group CreateGroup(Group group)
         {
             db.Groups.Add(group);
