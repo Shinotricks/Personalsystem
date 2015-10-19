@@ -98,10 +98,10 @@ Hur komplext är kravet?<br>
 <strike>Skapa en repository.</strike><br>
 <strike>Skapa en vy för att visa en startmeny-modell.</strike><br>
 <strike>Skapa en funktion som lägger till ett företag.</strike><br>
-Skapa en funktion som lägger till ett företags ledning.<br>
+<strike>Skapa en funktion som lägger till ett företags ledning.</strike><br>
 <strike>Skapa en funktion som lägger till ett företags avdelningar.</strike><br>
 <strike>Skapa en funktion som lägger till en avdelnings grupper.</strike><br>
-Skapa en funktion som lägger till (bjuder in) personal i företaget.<br>
+<strike>Skapa en funktion som lägger till (bjuder in) personal i företaget.</strike><br>
 <strike>Skapa en vy för att visa företaget.</strike><br>
 Skapa en funktion som kan ändra roll på andra användare(kopplade till företaget) till chef eller arbetare.<br>
 Skapa en funktion som kan lägga till fler admin.<br>
@@ -137,12 +137,13 @@ Skapa en funktion som lägger ut arbetsschema till avdelningar med enbart en gru
 Skapa viewmodel till chef.<br>
 Snygga till arbetstider view<br><br>
 <strong>Peter</strong><br>
-Skapa en funktion som lägger till (bjuder in) personal i företaget (admin).<br>
 Skapa en funktion som kan ändra roll på andra användare(kopplade till företaget) till chef eller arbetare.<br>
 Skapa en funktion som kan lägga till fler admin.<br>
 Skapa en funktion som kan ta bort admin (owner).<br>
-Som admin, chef eller arbetare skall jag kunna återgå till sökande genom att tas bort från företaget.<br>
-Skapa en funktion som lägger till ett företags ledning.<br><br>
+Skapa en funktion som kan godkänna en ansökning och skicka ett meddelande till den sökande där hen kan välja att ta platsen eller avstå.<br>
+Skapa en funktion som kan avböja en ansökning och komma till en ruta där man kan komponera en förklaring och skicka denna till den sökande.<br>
+Skapa en funktion som kan kalla till intervju och komma till en ruta där man kan komponera en inbjudan och skicka denna till den sökande.<br>
+Som admin, chef eller arbetare skall jag kunna återgå till sökande genom att tas bort från företaget.<br><br>
 <strong>Christoffer</strong><br>
 Skapa en vy som visar olika ansökningar som ligger under ett ansvarsområde.<br>
 Skapa en vy för att visa ansökningar.<br>
