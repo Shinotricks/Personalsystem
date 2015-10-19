@@ -183,6 +183,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510161305155_Hej.cs" />
+    <Compile Include="Migrations\201510161305155_Hej.Designer.cs">
+      <DependentUpon>201510161305155_Hej.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CompanyModels.cs" />
     <Compile Include="Repositories\PersonalsystemRepository.cs" />
@@ -298,6 +302,7 @@
     <Content Include="Views\Department\CreateSchedule.cshtml" />
     <Content Include="Views\Group\InviteUserForGroup.cshtml" />
     <Content Include="Views\Group\ChangeRoleOfUserInGroup.cshtml" />
+    <Content Include="Views\Group\CreateSchedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Admin\" />
@@ -305,6 +310,11 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201510161305155_Hej.resx">
+      <DependentUpon>201510161305155_Hej.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

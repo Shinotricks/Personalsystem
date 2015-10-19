@@ -60,10 +60,11 @@ namespace Personalsystem.Controllers
             {
                 return HttpNotFound();
             }
-            var viewModel = new CreateScheduleViewModel
+            var viewModel = new CreateScheduleDepartmentViewModel
             {
                 Groups = groups
             };
+            ViewBag.DepartmentId = id;
 
             return View(viewModel);
         }

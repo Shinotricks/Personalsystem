@@ -28,9 +28,10 @@
             <td>
                 @Html.ActionLink(item.Name, "../Group/Index/", new { id = item.Id })
             </td>
-            @if (User.IsInRole("admin"))
+            @if (User.IsInRole("admin") || User.IsInRole("boss"))
             {
                 <td>
+                    @Html.ActionLink("Create Schedule", "CreateSchedule", new { id = item.Id }) |
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                     @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
