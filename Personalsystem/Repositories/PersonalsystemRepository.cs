@@ -288,6 +288,32 @@ namespace Personalsystem.Repositories
             return db.Groups.Single(d => d.Id == groupId);
         }
 
+        public IEnumerable<IndexGroupViewModel> IndexGroupViewModelByDepartmentId(int? id)
+        {
+            List<IndexGroupViewModel> viewModel = new List<IndexGroupViewModel>();
+
+            foreach (Group group in db.Departments.Single(u => u.Id == id).Groups.ToList())
+            {
+                    viewModel.Add(new IndexGroupViewModel
+                {
+                    Id = group.Id,
+                    Name = group.Name,
+                    DepartmentId = (int)id,
+                    CompanyId = group.Department.Company.Id
+                });
+            }
+            if (viewModel.Count == 0)
+            {
+                viewModel.Add(new IndexGroupViewModel
+                {
+                    Id = -1,
+                    DepartmentId = (int)id,
+                    CompanyId = db.Departments.Single(u => u.Id == id).Company.Id
+                });
+            }
+            return viewModel;
+        }
+
         public void AddUserToGroup(int? groupId, string AppId)
         {
             Group NewUserGroup = GetSpecificGroup(groupId); //Hämtat grupp

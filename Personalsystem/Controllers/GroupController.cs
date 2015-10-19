@@ -18,7 +18,7 @@ namespace Personalsystem.Controllers
         private PersonalsystemRepository repo = new PersonalsystemRepository();
 
         // GET: Groups
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? id, int? Cid)
         {
             if (id == null)
             {
@@ -26,7 +26,8 @@ namespace Personalsystem.Controllers
             }
             ViewBag.DepartmentId = id;
             ViewBag.DepartmentName = repo.GetSpecificDepartment(id).Name;
-            return View(repo.Groups());
+            ViewBag.CompanyId = Cid;
+            return View(repo.IndexGroupViewModelByDepartmentId(id));
         }
 
         // GET: Users

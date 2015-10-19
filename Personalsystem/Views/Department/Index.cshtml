@@ -26,7 +26,7 @@
     {
         <tr>
             <td>
-                @Html.ActionLink(item.Name, "../Group/Index/", new { id = item.Id })
+                @Html.ActionLink(item.Name, "../Group/Index/", new { id = item.Id }, new { id = ViewBag.CompanyId })
             </td>
             @if (User.IsInRole("admin") || User.IsInRole("boss"))
             {

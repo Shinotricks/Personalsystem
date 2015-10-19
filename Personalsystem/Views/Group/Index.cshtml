@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Personalsystem.Models.Group>
+﻿@model IEnumerable<Personalsystem.Viewmodels.IndexGroupViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -19,26 +19,30 @@
         </th>
         <th></th>
     </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.ActionLink(item.Name, "../Group/Users/", new { id = item.Id })
-            </td>
-            @if (User.IsInRole("admin") || User.IsInRole("boss"))
+    @{
+        if (Model.First().Id != -1)
+        {
+            foreach (var item in Model)
             {
-                <td>
-                    @Html.ActionLink("Create Schedule", "CreateSchedule", new { id = item.Id }) |
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.Name, "../Group/Users/", new { id = item.Id })
+                    </td>
+                    @if (User.IsInRole("admin") || User.IsInRole("boss"))
+                    {
+                        <td style="text-align:right">
+                            @Html.ActionLink("Create Schedule", "CreateSchedule", new { id = item.Id }) |
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    }
+                </tr>
             }
-        </tr>
+        }
     }
 
 </table>
 <div>
-    @Html.ActionLink("Back to Departments", "../Department/Index/", new { id = ViewBag.DepartmentId })
+    @Html.ActionLink("Back to Departments", "../Department/Index/", new { id = Model.First().CompanyId })
 </div>
