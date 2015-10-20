@@ -119,6 +119,12 @@ namespace Personalsystem.Repositories
             return viewModels;
 
         }
+
+        public void SetCv(string id, HttpPostedFileBase file)
+        {
+            db.Users.Where(i => i.Id == id).Single().CV = file;
+            db.SaveChanges();
+        }
         #endregion
 
         #region Jobstuff

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace Personalsystem.Viewmodels
 {
@@ -105,6 +106,9 @@ namespace Personalsystem.Viewmodels
         [Required]
         [Display(Name = "Group Name")]
         public string Name { get; set; }
+
+        [Display(Name = "CV")]
+        public HttpPostedFileBase CV { get; set; }
     }
 
     public class RegisterViewModel
