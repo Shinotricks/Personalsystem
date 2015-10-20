@@ -85,6 +85,10 @@ namespace Personalsystem.Models
         public string ApplicationText { get; set; }
         [Required]
         public DateTime Published { get; set; }
+        [Required]
+        public int JobId { get; set; }
+        [ForeignKey("JobId")]
+        public virtual Job Job { get; set; }
     }
 
     public class ScheduleDay
