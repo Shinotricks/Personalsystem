@@ -187,9 +187,9 @@
     <Compile Include="Migrations\201510161305155_Hej.Designer.cs">
       <DependentUpon>201510161305155_Hej.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201510200730093_thirtiary.cs" />
-    <Compile Include="Migrations\201510200730093_thirtiary.Designer.cs">
-      <DependentUpon>201510200730093_thirtiary.cs</DependentUpon>
+    <Compile Include="Migrations\201510200752069_CV.cs" />
+    <Compile Include="Migrations\201510200752069_CV.Designer.cs">
+      <DependentUpon>201510200752069_CV.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CompanyModels.cs" />
@@ -299,6 +299,7 @@
     <Content Include="Views\Jobs\Create.cshtml" />
     <Content Include="Views\Jobs\Delete.cshtml" />
     <Content Include="Views\Jobs\Details.cshtml" />
+    <Content Include="Views\Jobs\Edit.cshtml" />
     <Content Include="Views\Jobs\Index.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Group\Users.cshtml" />
@@ -306,7 +307,6 @@
     <Content Include="Views\Group\InviteUserForGroup.cshtml" />
     <Content Include="Views\Group\ChangeRoleOfUserInGroup.cshtml" />
     <Content Include="Views\Group\CreateSchedule.cshtml" />
-    <Content Include="Views\Jobs\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Admin\" />
@@ -319,8 +319,8 @@
     <EmbeddedResource Include="Migrations\201510161305155_Hej.resx">
       <DependentUpon>201510161305155_Hej.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510200730093_thirtiary.resx">
-      <DependentUpon>201510200730093_thirtiary.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201510200752069_CV.resx">
+      <DependentUpon>201510200752069_CV.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
