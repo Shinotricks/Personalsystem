@@ -103,9 +103,9 @@ Hur komplext är kravet?<br>
 <strike>Skapa en funktion som lägger till en avdelnings grupper.</strike><br>
 <strike>Skapa en funktion som lägger till (bjuder in) personal i företaget.</strike><br>
 <strike>Skapa en vy för att visa företaget.</strike><br>
-Skapa en funktion som kan ändra roll på andra användare(kopplade till företaget) till chef eller arbetare.<br>
-Skapa en funktion som kan lägga till fler admin.<br>
-Skapa en funktion som kan ta bort admin (owner).<br>
+<strike>Skapa en funktion som kan ändra roll på andra användare(kopplade till företaget) till chef eller arbetare.</strike><br>
+<strike>Skapa en funktion som kan lägga till fler admin.</strike><br>
+<strike>Skapa en funktion som kan ta bort admin (owner).</strike><br>
 Skapa en funktion som kan lägga ut nyheter.<br>
 Skapa en funktion som kan lägga till vilka nyheter som ska vara interna eller externa.<br>
 Skapa en funktion som kan ta bort användaren från företaget.<br>
@@ -137,9 +137,6 @@ Skapa en funktion som lägger ut arbetsschema till avdelningar med enbart en gru
 Skapa viewmodel till chef.<br>
 Snygga till arbetstider view<br><br>
 <strong>Peter</strong><br>
-Skapa en funktion som kan ändra roll på andra användare(kopplade till företaget) till chef eller arbetare.<br>
-Skapa en funktion som kan lägga till fler admin.<br>
-Skapa en funktion som kan ta bort admin (owner).<br>
 Skapa en funktion som kan godkänna en ansökning och skicka ett meddelande till den sökande där hen kan välja att ta platsen eller avstå.<br>
 Skapa en funktion som kan avböja en ansökning och komma till en ruta där man kan komponera en förklaring och skicka denna till den sökande.<br>
 Skapa en funktion som kan kalla till intervju och komma till en ruta där man kan komponera en inbjudan och skicka denna till den sökande.<br>
