@@ -70,25 +70,6 @@ namespace Personalsystem.Controllers
             }
         }
 
-        public ActionResult UploadCV()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult UploadCV(string id, HttpPostedFileBase file)
-        {
-            if(file != null && file.ContentLength > 0)
-            {
-                repo.SetCv(id, file);
-                var fileName = Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath("~/Content/CV"), fileName);
-                file.SaveAs(path);
-            }
-
-            return RedirectToAction("Index");
-        }
-
         //
         // GET: /Account/Login
         [AllowAnonymous]

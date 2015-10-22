@@ -14,8 +14,9 @@ namespace Personalsystem.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        [NotMapped]
-        public HttpPostedFileBase CV { get; set; }
+        public int? CvId { get; set; }
+        [ForeignKey("CvId")]
+        public virtual CV CV { get; set; }
 
         public int? AdressId { get; set; }
         [ForeignKey("AdressId")]
@@ -45,6 +46,8 @@ namespace Personalsystem.Models
             return new ApplicationDbContext();
         }
 
+        public DbSet<CV> CVs { get; set; }
+
         public DbSet<Adress> Adresses { get; set; }
 
         public System.Data.Entity.DbSet<Personalsystem.Models.Company> Companies { get; set; }
@@ -69,5 +72,12 @@ namespace Personalsystem.Models
         public string StreetNumber { get; set; }
         public string ZipCode { get; set; }
         public virtual ICollection<ApplicationUser> Tenants { get; set; }
+    }
+
+    public class CV
+    {
+        [Key]
+        public int Id { get; set; }
+        public string FileName { get; set; }
     }
 }

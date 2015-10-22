@@ -8,12 +8,16 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Personalsystem.Models;
 using Personalsystem.Viewmodels;
+using Personalsystem.Repositories;
+using System.IO;
 
 namespace Personalsystem.Controllers
 {
     [Authorize]
     public class ManageController : Controller
     {
+        private PersonalsystemRepository repo = new PersonalsystemRepository();
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -33,9 +37,9 @@ namespace Personalsystem.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -71,13 +75,45 @@ namespace Personalsystem.Controllers
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                //HasCV = repo.GetSpecificUser(userId).CV != null ? true : false
+                CV = repo.GetSpecificUser(userId).CV != null ? repo.GetSpecificUser(userId).CV : null
             };
 
             ViewBag.userId = userId;
 
             return View(model);
         }
+
+        [HttpPost]
+        public ActionResult UploadCV(string id, HttpPostedFileBase file)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+                repo.SaveCV(id, new CV { FileName = file.FileName });
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/CV"), fileName);
+                file.SaveAs(path);
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DeleteCV(string id)
+        {
+            if (ModelState.IsValid)
+            {
+                var cv = repo.GetSpecificUser(id).CV;
+                repo.DeleteCV(cv);
+
+                var fileName = Path.GetFileName(cv.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/CV"), fileName);
+
+                if (System.IO.File.Exists(path))
+                    System.IO.File.Delete(path);
+            }
+            return RedirectToAction("Index");
+        }
+
 
         //
         // POST: /Manage/RemoveLogin
@@ -335,7 +371,7 @@ namespace Personalsystem.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -386,6 +422,6 @@ namespace Personalsystem.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }
