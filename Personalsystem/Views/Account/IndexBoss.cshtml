@@ -33,9 +33,9 @@
         @*<th>
                 @Html.DisplayNameFor(model => model.IsMember)
             </th>*@
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.UserRole)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -63,11 +63,11 @@
             @*<td>
                     @Html.CheckBoxFor(model => item.IsMember)
                 </td>*@
-            <td>
+            @*<td>
                 @Html.DisplayFor(model => item.UserRole)
-            </td>
+            </td>*@
             <td>
-                @Html.ActionLink("Invite To Interview", "InviteUserToInterview", new { id = item.Email })
+                @*@Html.ActionLink("Invite To Interview", "../Manage/InviteUserToInterview", new { id = item.Id })*@
                 @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id=item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
