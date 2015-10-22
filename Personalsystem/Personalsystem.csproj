@@ -178,34 +178,23 @@
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobApplicationsController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201510161305155_Hej.cs" />
-    <Compile Include="Migrations\201510161305155_Hej.Designer.cs">
-      <DependentUpon>201510161305155_Hej.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510200752069_CV.cs" />
-    <Compile Include="Migrations\201510200752069_CV.Designer.cs">
-      <DependentUpon>201510200752069_CV.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510220708341_yo.cs" />
-    <Compile Include="Migrations\201510220708341_yo.Designer.cs">
-      <DependentUpon>201510220708341_yo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510220756008_CVnew.cs" />
-    <Compile Include="Migrations\201510220756008_CVnew.Designer.cs">
-      <DependentUpon>201510220756008_CVnew.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CompanyModels.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Repositories\PersonalsystemRepository.cs" />
     <Compile Include="TODOLIST\Todolist.cs" />
     <Compile Include="Viewmodels\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Viewmodels\ApplicationViewModel.cs" />
     <Compile Include="Viewmodels\JobViewModel.cs" />
     <Compile Include="Viewmodels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -218,6 +207,8 @@
     <Content Include="App_Data\aspnet-Personalsystem-20150929020746_log.ldf">
       <DependentUpon>aspnet-Personalsystem-20150929020746.mdf</DependentUpon>
     </Content>
+    <Content Include="bin\Personalsystem.dll" />
+    <Content Include="bin\Personalsystem.pdb" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -323,6 +314,11 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\Group\InviteUserToInterview.cshtml" />
+    <Content Include="Views\JobApplications\Create.cshtml" />
+    <Content Include="Views\JobApplications\Delete.cshtml" />
+    <Content Include="Views\JobApplications\Details.cshtml" />
+    <Content Include="Views\JobApplications\Edit.cshtml" />
+    <Content Include="Views\JobApplications\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Admin\" />
@@ -330,20 +326,6 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510161305155_Hej.resx">
-      <DependentUpon>201510161305155_Hej.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510200752069_CV.resx">
-      <DependentUpon>201510200752069_CV.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510220708341_yo.resx">
-      <DependentUpon>201510220708341_yo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510220756008_CVnew.resx">
-      <DependentUpon>201510220756008_CVnew.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
