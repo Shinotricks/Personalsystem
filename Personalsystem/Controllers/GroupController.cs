@@ -128,8 +128,8 @@ namespace Personalsystem.Controllers
             UserViewModel inviteVM = new UserViewModel();
             //Bind detta ID till Viewmodell
 
-            ViewBag.Name = user.UserName;
-            inviteVM.Name = user.UserName;
+            ViewBag.Id = user.Id;
+            //inviteVM.Id = user.Id;
             //Returna View med VM
             return View(inviteVM);
         }

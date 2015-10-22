@@ -319,6 +319,10 @@
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Delete.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Account\IndexBoss.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Group\InviteUserToInterview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Admin\" />

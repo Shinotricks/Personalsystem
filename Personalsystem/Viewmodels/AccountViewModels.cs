@@ -92,32 +92,26 @@ namespace Personalsystem.Viewmodels
         [Display(Name = "Zip Code")]
         public string ZipCode { get; set; }
 
-        [Required]
         [Display(Name = "Management member")]
         public bool IsMember { get; set; }
 
-        [Required]
         [Display(Name = "User Role")]
         public string UserRole { get; set; }
 
-        [Required]
         [Display(Name = "Company Name")]
         public string CName { get; set; }
 
-        [Required]
         [Display(Name = "Department ID")]
         public int DepartmentId { get; set; }
 
-        [Required]
         [Display(Name = "Department Name")]
         public string DName { get; set; }
 
         [Display(Name = "Group Id")]
-        public int Id { get; set; }
+        public int GId { get; set; }
 
-        [Required]
         [Display(Name = "Group Name")]
-        public string Name { get; set; }
+        public string GName { get; set; }
 
         [Display(Name = "CV")]
         public HttpPostedFileBase CV { get; set; }

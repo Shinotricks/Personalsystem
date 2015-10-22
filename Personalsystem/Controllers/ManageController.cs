@@ -114,6 +114,35 @@ namespace Personalsystem.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public ActionResult UploadTaskDocument(string id, HttpPostedFileBase file)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+                repo.SaveDocument(id, new CV { FileName = file.FileName });
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/CV"), fileName);
+                file.SaveAs(path);
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DeleteTaskDocument(string id)
+        {
+            if (ModelState.IsValid)
+            {
+                var cv = repo.GetSpecificUser(id).CV;
+                repo.DeleteDocument(cv);
+
+                var fileName = Path.GetFileName(cv.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Documents"), fileName);
+
+                if (System.IO.File.Exists(path))
+                    System.IO.File.Delete(path);
+            }
+            return RedirectToAction("Index");
+        }
+
 
         //
         // POST: /Manage/RemoveLogin
