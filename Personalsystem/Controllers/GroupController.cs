@@ -109,7 +109,51 @@ namespace Personalsystem.Controllers
             return View(repo.GetSpecificGroup(id).Schedule);
         }
 
-// GET: Group/InviteUsers
+        // GET: InviteToInterview
+        [Authorize(Roles = "admin")]
+        public ActionResult InviteUserToInterview(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationUser user = new ApplicationUser();
+            user = repo.GetSpecificUser(id);
+
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            //SKapa VM instans
+            UserViewModel inviteVM = new UserViewModel();
+            //Bind detta ID till Viewmodell
+
+            ViewBag.Name = user.UserName;
+            inviteVM.Name = user.UserName;
+            //Returna View med VM
+            return View(inviteVM);
+        }
+
+        // POST: InviteToInterview
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult InviteUserToInterview([Bind(Include = "Email, Number, Street, StreetNumber, ZipCode, City, UserRole")] UserViewModel invitedUser)
+        {
+            if (ModelState.IsValid)
+            {
+                //ViewBag.groupName = invitedUsers.Name;
+                //repo.AddUserToGroup(invitedUser.Name, invitedUser.SelectedUser);
+                //return RedirectToAction("../Group/Index/", depId);
+                return View();
+            }
+
+            //ViewBag.DepartmentId = new SelectList(repo.GetGroupsByDepartmentId, "Id", "Name", group.DepartmentId);
+            return View(invitedUser);
+        }
+
+        // GET: Group/InviteUsers
         [Authorize(Roles = "admin")]
         public ActionResult InviteUserForGroup(int? id)
         {

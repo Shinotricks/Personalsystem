@@ -112,6 +112,9 @@ namespace Personalsystem.Viewmodels
         [Display(Name = "Department Name")]
         public string DName { get; set; }
 
+        [Display(Name = "Group Id")]
+        public int Id { get; set; }
+
         [Required]
         [Display(Name = "Group Name")]
         public string Name { get; set; }

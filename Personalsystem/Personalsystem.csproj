@@ -192,6 +192,10 @@
     <Compile Include="Migrations\201510200752069_CV.Designer.cs">
       <DependentUpon>201510200752069_CV.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510220650425_Forth.cs" />
+    <Compile Include="Migrations\201510220650425_Forth.Designer.cs">
+      <DependentUpon>201510220650425_Forth.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CompanyModels.cs" />
     <Compile Include="Repositories\PersonalsystemRepository.cs" />
@@ -311,6 +315,7 @@
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Delete.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Account\IndexBoss.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Admin\" />
@@ -325,6 +330,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510200752069_CV.resx">
       <DependentUpon>201510200752069_CV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510220650425_Forth.resx">
+      <DependentUpon>201510220650425_Forth.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

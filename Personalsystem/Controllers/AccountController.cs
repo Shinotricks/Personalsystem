@@ -26,11 +26,18 @@ namespace Personalsystem.Controllers
         public AccountController()
         {
         }
-        // GET: Users
+        // GET: Användarlista
         public ActionResult index()
         {
             //var groups = repo.Groups.Include(g => g.Department);
             return View(repo.UserViewModels());
+        }
+
+        // GET: Chefslista
+        public ActionResult indexBoss()
+        {
+            //var groups = repo.Groups.Include(g => g.Department);
+            return View(repo.UserViewModelsApplicants());
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
