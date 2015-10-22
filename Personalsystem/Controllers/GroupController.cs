@@ -111,14 +111,15 @@ namespace Personalsystem.Controllers
 
         // GET: InviteToInterview
         [Authorize(Roles = "admin")]
-        public ActionResult InviteUserToInterview(string id)
+        public ActionResult InviteUserToInterview(string mail)
         {
-            if (id == null)
+            if (mail == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ApplicationUser user = new ApplicationUser();
-            user = repo.GetSpecificUser(id);
+            var uId = repo.ApplicationUsers().Single(m => m.Email == mail).Id;
+            user = repo.GetSpecificUser(uId);
 
             if (user == null)
             {
@@ -129,7 +130,7 @@ namespace Personalsystem.Controllers
             //Bind detta ID till Viewmodell
 
             ViewBag.Id = user.Id;
-            //inviteVM.Id = user.Id;
+            inviteVM.Email = repo.ApplicationUsers().Single(m => m.Email == mail).Email;
             //Returna View med VM
             return View(inviteVM);
         }

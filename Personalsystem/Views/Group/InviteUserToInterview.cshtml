@@ -1,0 +1,70 @@
+﻿@model Personalsystem.Viewmodels.UserViewModel
+@{
+    ViewBag.Title = "InviteUserToInterview";
+}
+
+<h2>Invite User To Interview</h2>
+<h3>@Model.Email</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h3>@Html.ViewBag.Name</h3>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+    <div class="col-md-offset-0 col-md-12">
+        @Html.DropDownListFor(model => model.SelectedUser, Model.Users, htmlAttributes: new { @class = "form-control" })
+    </div>
+            <hr />
+        </div>*@
+        <div class="col-md-12">
+            <h5>Write here</h5>
+            @*<input type="text" />*@
+            @Html.TextAreaFor(model => model.Text)
+            <hr />
+        </div>
+
+        @*<div class="col-md-12">
+            <h5>Give the document a name</h5>
+            @Html.EditorFor(model => model.Text)
+            <hr />
+        </div>*@
+        <div>
+            @if (Model.CV != null)
+            {
+                <a href="~/Content/CV/@Model.CV.FileName">@Model.CV.FileName</a>
+                <br />
+                @Html.Raw("[")
+                @Html.ActionLink("Delete", "DeleteCV", new { id = ViewBag.userId })
+                @Html.Raw("]")
+            }
+            else
+            {
+                using (Html.BeginForm("UploadCV", "Manage", new { id = ViewBag.userId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <input type="file" name="file" />
+                    <input type="submit" name="Submit" id="Submit" value="Upload to server" />
+                }
+            }
+        </div>
+        <div class="form-group">
+            <div class="col-md-8">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+            <hr />
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to Boss Index", "../Account/IndexBoss")
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

@@ -121,7 +121,7 @@ namespace Personalsystem.Controllers
             {
                 repo.SaveDocument(id, new CV { FileName = file.FileName });
                 var fileName = Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath("~/Content/CV"), fileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Documents"), fileName);
                 file.SaveAs(path);
             }
             return RedirectToAction("Index");
