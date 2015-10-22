@@ -61,6 +61,8 @@ namespace Personalsystem.Models
         public System.Data.Entity.DbSet<Personalsystem.Models.ScheduleWeek> ScheduleWeeks { get; set; }
 
         public System.Data.Entity.DbSet<Personalsystem.Viewmodels.EditJobViewModel> EditJobViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<Personalsystem.Models.JobApplication> JobApplications { get; set; }
     }
 
     public class Adress
