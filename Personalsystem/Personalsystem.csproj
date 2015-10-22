@@ -192,6 +192,14 @@
     <Compile Include="Migrations\201510200752069_CV.Designer.cs">
       <DependentUpon>201510200752069_CV.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510220708341_yo.cs" />
+    <Compile Include="Migrations\201510220708341_yo.Designer.cs">
+      <DependentUpon>201510220708341_yo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510220756008_CVnew.cs" />
+    <Compile Include="Migrations\201510220756008_CVnew.Designer.cs">
+      <DependentUpon>201510220756008_CVnew.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CompanyModels.cs" />
     <Compile Include="Repositories\PersonalsystemRepository.cs" />
@@ -325,6 +333,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510200752069_CV.resx">
       <DependentUpon>201510200752069_CV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510220708341_yo.resx">
+      <DependentUpon>201510220708341_yo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510220756008_CVnew.resx">
+      <DependentUpon>201510220756008_CVnew.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

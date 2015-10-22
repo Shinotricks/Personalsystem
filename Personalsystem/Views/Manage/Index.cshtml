@@ -17,7 +17,7 @@
             {
                 @Html.ActionLink("Change your password", "ChangePassword")
             }
-            else 
+            else
             {
                 @Html.ActionLink("Create", "SetPassword")
             }
@@ -28,15 +28,15 @@
             @Model.Logins.Count [
             @Html.ActionLink("Manage", "ManageLogins") ]
         </dd>
-        
-            @*Phone Numbers can used as a second factor of verification in a two-factor authentication system.
-             
-             See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-             
-             Uncomment the following block after you have set up two-factor authentication*@
-        
-        @*  
+
+        @*Phone Numbers can used as a second factor of verification in a two-factor authentication system.
+
+            See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+               for details on setting up this ASP.NET application to support two-factor authentication using SMS.
+
+            Uncomment the following block after you have set up two-factor authentication*@
+
+        @*
             <dt>Phone Number:</dt>
             <dd>
                 @(Model.PhoneNumber ?? "None") [
@@ -82,11 +82,22 @@
         </dd>
         <dt>CV:</dt>
         <dd>
-            @using (Html.BeginForm("UploadCV", "Account", new { id = ViewBag.userId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+            @if (Model.CV != null)
             {
-                <input type="file" name="file" />
-                <input type="submit" name="Submit" id="Submit" value="Upload" />
+                <a href="~/Content/CV/@Model.CV.FileName">@Model.CV.FileName</a>
+                <br />
+                @Html.Raw("[")
+                @Html.ActionLink("Delete", "DeleteCV", new { id = ViewBag.userId})
+                @Html.Raw("]")
             }
-        </dd>
-    </dl>
+            else
+            {
+                using (Html.BeginForm("UploadCV", "Manage", new { id = ViewBag.userId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <input type="file" name="file" />
+                    <input type="submit" name="Submit" id="Submit" value="Upload" />
+                }
+            }
+    </dd>
+</dl>
 </div>

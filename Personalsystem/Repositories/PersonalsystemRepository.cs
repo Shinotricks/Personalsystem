@@ -208,9 +208,15 @@ namespace Personalsystem.Repositories
 
         }
 
-        public void SetCv(string id, HttpPostedFileBase file)
+        public void SaveCV(string id, CV cv)
         {
-            db.Users.Where(i => i.Id == id).Single().CV = file;
+            db.Users.Single(i => i.Id == id).CV = cv;
+            db.SaveChanges();
+        }
+
+        public void DeleteCV(CV cv)
+        {
+            db.CVs.Remove(cv);
             db.SaveChanges();
         }
         #endregion
