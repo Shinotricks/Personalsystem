@@ -113,6 +113,9 @@ namespace Personalsystem.Viewmodels
         [Display(Name = "Group Name")]
         public string GName { get; set; }
 
+        [Display(Name = "Document Text")]
+        public string Text { get; set; }
+
         [Display(Name = "CV")]
         public HttpPostedFileBase CV { get; set; }
     }

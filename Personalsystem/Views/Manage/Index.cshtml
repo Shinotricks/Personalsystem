@@ -81,13 +81,13 @@
                 }*@
         </dd>
         <dt>CV:</dt>
-        <dd>
+        @*<dd>
             @if (Model.CV != null)
             {
                 <a href="~/Content/CV/@Model.CV.FileName">@Model.CV.FileName</a>
                 <br />
                 @Html.Raw("[")
-                @Html.ActionLink("Delete", "DeleteCV", new { id = ViewBag.userId})
+                @Html.ActionLink("Delete", "DeleteCV", new { id = ViewBag.userId })
                 @Html.Raw("]")
             }
             else
@@ -98,6 +98,6 @@
                     <input type="submit" name="Submit" id="Submit" value="Upload" />
                 }
             }
-    </dd>
-</dl>
+        </dd>*@
+    </dl>
 </div>
