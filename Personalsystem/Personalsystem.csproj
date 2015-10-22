@@ -188,6 +188,10 @@
     <Compile Include="Migrations\201510161305155_Hej.Designer.cs">
       <DependentUpon>201510161305155_Hej.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510200752069_CV.cs" />
+    <Compile Include="Migrations\201510200752069_CV.Designer.cs">
+      <DependentUpon>201510200752069_CV.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CompanyModels.cs" />
     <Compile Include="Repositories\PersonalsystemRepository.cs" />
@@ -318,6 +322,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201510161305155_Hej.resx">
       <DependentUpon>201510161305155_Hej.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510200752069_CV.resx">
+      <DependentUpon>201510200752069_CV.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

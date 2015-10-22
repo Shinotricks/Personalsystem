@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
+using System.Web;
 
 
 namespace Personalsystem.Models
@@ -13,10 +14,12 @@ namespace Personalsystem.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        [NotMapped]
+        public HttpPostedFileBase CV { get; set; }
+
         public int? AdressId { get; set; }
         [ForeignKey("AdressId")]
         public virtual Adress Adress { get; set; }
-
         public virtual ICollection<Company> Companies { get; set; }
         public virtual ICollection<Group> Groups { get; set; }
         public virtual ICollection<Job> JobsApplied { get; set; }
@@ -53,6 +56,8 @@ namespace Personalsystem.Models
         public System.Data.Entity.DbSet<Personalsystem.Models.Job> Jobs { get; set; }
 
         public System.Data.Entity.DbSet<Personalsystem.Models.ScheduleWeek> ScheduleWeeks { get; set; }
+
+        public System.Data.Entity.DbSet<Personalsystem.Viewmodels.EditJobViewModel> EditJobViewModels { get; set; }
     }
 
     public class Adress

@@ -18,4 +18,16 @@ namespace Personalsystem.Viewmodels
             public IEnumerable<SelectListItem> Company { get; set; }
             public int SelectedCompany { get; set; }
     }
+
+    public class EditJobViewModel
+    {
+        [Display(Name = "Job Name")]
+        public int id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public DateTime Deadline { get; set; }
+
+        public IEnumerable<SelectListItem> Company { get; set; }
+        public int SelectedCompany { get; set; }
+    }
 }

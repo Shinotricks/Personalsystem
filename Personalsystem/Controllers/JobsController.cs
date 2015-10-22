@@ -83,6 +83,13 @@ namespace Personalsystem.Controllers
             {
                 return HttpNotFound();
             }
+            var list = repo.Companies().Select(C => new SelectListItem
+            {
+                Text = C.Name,
+                Value = C.Id.ToString()
+            });
+            ViewBag.Companies = list;
+
             return View(job);
         }
 

@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using Personalsystem.Models;
 using Personalsystem.Viewmodels;
 using Personalsystem.Repositories;
+using System.IO;
 
 namespace Personalsystem.Controllers
 {
@@ -60,6 +61,25 @@ namespace Personalsystem.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        public ActionResult UploadCV()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UploadCV(string id, HttpPostedFileBase file)
+        {
+            if(file != null && file.ContentLength > 0)
+            {
+                repo.SetCv(id, file);
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/CV"), fileName);
+                file.SaveAs(path);
+            }
+
+            return RedirectToAction("Index");
         }
 
         //

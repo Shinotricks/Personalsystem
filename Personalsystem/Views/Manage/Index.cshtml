@@ -80,5 +80,13 @@
                     }
                 }*@
         </dd>
+        <dt>CV:</dt>
+        <dd>
+            @using (Html.BeginForm("UploadCV", "Account", new { id = ViewBag.userId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <input type="file" name="file" />
+                <input type="submit" name="Submit" id="Submit" value="Upload" />
+            }
+        </dd>
     </dl>
 </div>

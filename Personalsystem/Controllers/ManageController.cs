@@ -73,6 +73,9 @@ namespace Personalsystem.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+
+            ViewBag.userId = userId;
+
             return View(model);
         }
 
