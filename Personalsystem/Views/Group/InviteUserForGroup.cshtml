@@ -3,7 +3,7 @@
     ViewBag.Title = "InviteUserForGroup";
 }
 
-<h3>Invite User to</h3>
+<h3>Invite User to @Html.ViewBag.Name</h3>
 
 @using (Html.BeginForm())
 {
@@ -30,7 +30,7 @@
 }
 
 <div>
-   @Html.ActionLink("Back to List", "../Group/Index")
+   @Html.ActionLink("Back to Groups", "../Group/Index", new { id = Model.Id })
    
 </div>
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Personalsystem.Viewmodels
@@ -99,8 +100,16 @@ namespace Personalsystem.Viewmodels
         public string UserRole { get; set; }
 
         [Required]
-        [Display(Name = "Company ID")]
-        public int CompanyId { get; set; }
+        [Display(Name = "Company Name")]
+        public string CName { get; set; }
+
+        [Required]
+        [Display(Name = "Department ID")]
+        public int DepartmentId { get; set; }
+
+        [Required]
+        [Display(Name = "Department Name")]
+        public string DName { get; set; }
 
         [Required]
         [Display(Name = "Group Name")]

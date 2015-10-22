@@ -10,6 +10,8 @@ using System.Web.Security;
 using Personalsystem.Models;
 using Personalsystem.Repositories;
 using Personalsystem.Viewmodels;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
 
 namespace Personalsystem.Controllers
 {
@@ -39,8 +41,11 @@ namespace Personalsystem.Controllers
             }
             var group = repo.GetSpecificGroup(id);
 
+            if (group == null)
+            {
+                return HttpNotFound();
+            }
             ViewBag.GroupName = group.Name;
-            ViewBag.DepartmentId = group.DepartmentId;
             return View(repo.UserViewModelsByGroupId(id));
         }
 
@@ -105,7 +110,7 @@ namespace Personalsystem.Controllers
         }
 
 // GET: Group/InviteUsers
-        [Authorize(Roles = "admin, applicant")]
+        [Authorize(Roles = "admin")]
         public ActionResult InviteUserForGroup(int? id)
         {
             if (id == null)
@@ -124,11 +129,13 @@ namespace Personalsystem.Controllers
             //Bind detta ID till Viewmodell
 
             inviteVM.Id = group.Id;
+            inviteVM.Name = group.Name;
             inviteVM.Users = repo.ApplicationUsers().Where(g => g.Id == g.Id ).Select(u => new SelectListItem
             {
                 Text = u.UserName,
                 Value = u.Id
             });
+            ViewBag.Name = group.Name;
             //Returna View med VM
             return View(inviteVM);
         }
@@ -143,8 +150,11 @@ namespace Personalsystem.Controllers
             if (ModelState.IsValid)
             {
                 //ViewBag.groupName = invitedUsers.Name;
+                Group group = repo.GetSpecificGroup(invitedUser.Id);
+                int depId = group.DepartmentId;
                 repo.AddUserToGroup(invitedUser.Id, invitedUser.SelectedUser);
-                return RedirectToAction("../Group/Index");
+                //return RedirectToAction("../Group/Index/", depId);
+                return View();
             }
 
             //ViewBag.DepartmentId = new SelectList(repo.GetGroupsByDepartmentId, "Id", "Name", group.DepartmentId);
@@ -152,21 +162,31 @@ namespace Personalsystem.Controllers
         }
 
         // GET: Group/ChangeRoleOfUserInGroup
-        [Authorize(Roles = "admin, applicant")]
-        public ActionResult ChangeRoleOfUserInGroup()
+        [Authorize(Roles = "admin")]
+        public ActionResult ChangeRoleOfUserInGroup(string mail)
         {
             //SKapa VM instans
-            UserChangeRoleViewModel changeVM = new UserChangeRoleViewModel(); 
-            //Bind en user till Viewmodell
+            UserChangeRoleViewModel changeVM = new UserChangeRoleViewModel();
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            //Välj en user till Viewmodell
             //ViewBag.Name = changeVM.Name;
             changeVM.Users = repo.ApplicationUsers().Select(u => new SelectListItem
             {
                 Text = u.UserName,
                 Value = u.Id,
             });
-            ApplicationUser usr = repo.ApplicationUsers().First();
-            //Bind en role till Viewmodell
-            changeVM.Roles = repo.Roles().Select(r => new SelectListItem
+            //ApplicationUser usr = repo.ApplicationUsers().First();
+            //Välj vilken av users roll som skall ändras
+            //List<IdentityRole> cVM = new List<IdentityRole>();
+            changeVM.SelectedUser = repo.ApplicationUsers().Single(m => m.Email == mail).Id;
+            changeVM.OldRoles = userManager.GetRoles(changeVM.SelectedUser).Select(o => new SelectListItem
+            {
+                Text = o,
+                Value = o
+            });
+            //Välj en ny roll till Viewmodell
+            changeVM.Roles = repo.RolesList().Select(r => new SelectListItem
             {
                 Text = r.Name,
                 Value = r.Name
@@ -180,21 +200,25 @@ namespace Personalsystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ChangeRoleOfUserInGroup([Bind(Include = "SelectedUser, SelectedRole, OldRole")] UserChangeRoleViewModel changedRole)
+        public ActionResult ChangeRoleOfUserInGroup([Bind(Include = "SelectedUser, SelectedRole, SelectedOldRole")] UserChangeRoleViewModel changedRole)
         {
             if (ModelState.IsValid)
             {
                 //ViewBag.Name = changedRole.Name;
 
-                //ApplicationUser user = changedRole.SelectedUser;
-                var account = new AccountController();
-                //Roles.GetRolesForUser(User.Identity.Name);
+
+                ApplicationUser user = new ApplicationUser();
+                user.UserName = changedRole.SelectedUser;
+                //var account = new AccountController();
                 //var role = System.Web.Security.Roles.GetRolesForUser().Single(); 
                 //var role = account.UserManager.GetRoles(changedRole.SelectedUser.ToString());
-                repo.RemoveUserRole(changedRole.SelectedUser, changedRole.OldRole);
-
+                //repo.RemoveUserRole(user.UserName, changedRole.SelectedOldRoles);
+                if (changedRole.SelectedOldRole != null)
+                {
+                    repo.RemoveUserRole(changedRole.SelectedUser, changedRole.SelectedOldRole);
+                }
                 repo.AddUserRole(changedRole.SelectedUser, changedRole.SelectedRole);
-                return RedirectToAction("Index");
+                return RedirectToAction("Users");
             }
 
             //ViewBag.DepartmentId = new SelectList(repo.GetGroupsByDepartmentId, "Id", "Name", group.DepartmentId);
@@ -220,7 +244,7 @@ namespace Personalsystem.Controllers
             return View(group);
         }
         // GET: Groups/Create
-        [Authorize(Roles = "admin, applicant")]
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             //ViewBag.DepartmentId = new SelectList(repo.Groups, "Id", "Name");

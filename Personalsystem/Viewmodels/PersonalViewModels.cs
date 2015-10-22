@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using Personalsystem.Models;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Personalsystem.Viewmodels
 {
@@ -59,16 +60,16 @@ namespace Personalsystem.Viewmodels
 
         [Display(Name = "Company ID")]
         public int CompanyId { get; set; }
+        public ICollection<ApplicationUser> Users { get; set; }
+
     }
     public class UserInviteViewModel
     {
-        [Required]
         [Display(Name = "Group Id")]
         public int Id { get; set; }
 
-        //[Required]
-        //[Display(Name = "Group Name")]
-        //public string Name { get; set; }
+        [Display(Name = "Group Name")]
+        public string Name { get; set; }
 
         public IEnumerable<SelectListItem> Users { get; set; }
         public string SelectedUser { get; set; }
@@ -83,6 +84,23 @@ namespace Personalsystem.Viewmodels
         public string SelectedUser { get; set; }
         public IEnumerable<SelectListItem> Roles { get; set; }
         public string SelectedRole { get; set; }
+        public IEnumerable<SelectListItem> OldRoles { get; set; }
+        public string SelectedOldRole { get; set; }
+    }
+    public class RoleViewModel
+    {
+        [Display(Name = "Role Name")]
+        public string RoleName { get; set; }
+        //public string Description { get; set; }
+
+        public IEnumerable<SelectListItem> Roles { get; set; }
+        public string SelectedRole { get; set; }
         public string OldRole { get; set; }
+        public RoleViewModel() { }
+        //public RoleViewModel(ApplicationRole role)
+        //{
+        //    this.RoleName = role.Name;
+        //    this.Description = role.Description;
+        //}
     }
 }

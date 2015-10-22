@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Personalsystem.Viewmodels.RoleViewModel>
+
+@{
+    ViewBag.Title = "RoleIndex";
+}
+
+<h2>Role Index</h2>
+
+@if (User.IsInRole("applicant") || User.IsInRole("admin"))
+{
+    <p class="subadmin">
+        @Html.ActionLink("Create New", "Create", new { id = ViewBag.CompanyId })
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </th>
+        @if (User.IsInRole("admin"))
+        {
+            <th></th>
+        }
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.RoleName)
+            </td>
+            @if (User.IsInRole("admin") || User.IsInRole("boss"))
+            {
+                <td>
+                    @*@Html.ActionLink("Create Schedule", "CreateSchedule", new { id = item.Id }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                </td>
+            }
+        </tr>
+    }
+
+</table>
+
+<div>
+   @* @Html.ActionLink("Back to Groups", "../Group/Index/")*@
+</div>

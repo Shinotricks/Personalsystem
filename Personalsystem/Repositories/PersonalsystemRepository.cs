@@ -38,8 +38,8 @@ namespace Personalsystem.Repositories
             UserStore<ApplicationUser> userStore = new UserStore<ApplicationUser>(db);
             Microsoft.AspNet.Identity.UserManager<ApplicationUser> userManager = new Microsoft.AspNet.Identity.UserManager<ApplicationUser>(userStore);
             //var oldRole = System.Web.Security.Roles.GetRolesForUser().Single();
-            var account = new AccountController();
-            var oldRole = account.UserManager.GetRoles(id);
+            //var account = new AccountController();
+            //var oldRole = account.UserManager.GetRoles(id);
 
             userManager.RemoveFromRole(id, role);
             db.SaveChanges();
@@ -53,38 +53,126 @@ namespace Personalsystem.Repositories
             return db.Users.ToList();
         }
 
-        public List<IdentityRole> Roles()
+        public List<IdentityRole> RolesList()
         {
             return db.Roles.ToList();
         }
-         
+
+        public IdentityRole GetSpecificRole(string roleName)
+        {
+            return db.Roles.Single(r => r.Name == roleName);
+        }
+
+        public List<IdentityRole> AddRole(FormCollection collection)
+        {
+            db.Roles.Add(new Microsoft.AspNet.Identity.EntityFramework.IdentityRole()
+            {
+                Name = collection["RoleName"]
+            });
+            db.SaveChanges();
+            return db.Roles.ToList();
+        }
+
+        public IEnumerable<RoleViewModel> IndexRoleViewModel()
+        {
+            List<RoleViewModel> viewModel = new List<RoleViewModel>();
+
+            foreach (IdentityRole role in db.Roles.ToList())
+            {
+                viewModel.Add(new RoleViewModel
+                {
+                    RoleName = role.Name,
+                });
+            }
+            return viewModel;
+        }
+
         public IEnumerable<UserViewModel> UserViewModelsByGroupId(int? id)
         {
             List<UserViewModel> viewModels = new List<UserViewModel>();
-            foreach (ApplicationUser user in db.Groups.Single(u => u.Id == id).Users.ToList())
-            {
-                if (user.Adress != null)
+            Group group = db.Groups.Single(d => d.Id == id);
+            Department dep = db.Departments.Single(d => d.Id == group.DepartmentId);
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            ICollection<ApplicationUser> users = db.Groups.Single(u => u.Id == id).Users;
+            //IList<string> UserRoles = userManager.GetRoles(user.Id);
+
+                foreach (ApplicationUser user in users.ToList())
                 {
-                    viewModels.Add(new UserViewModel
+                    if (users.Count > 0)
                     {
-                        City = user.Adress.City,
-                        Email = user.Email,
-                        Number = user.PhoneNumber,
-                        Street = user.Adress.Street,
-                        StreetNumber = user.Adress.StreetNumber,
-                        ZipCode = user.Adress.ZipCode
-                        //UserRole = user.Roles.Single(r => r.UserId == user.Id)
-                    });
-                }
-                else
-                {
-                    viewModels.Add(new UserViewModel
+                    IList<string> UserRoles = userManager.GetRoles(user.Id);
+                    if (UserRoles.Count == 0)
                     {
-                        Email = user.Email,
-                        Number = user.PhoneNumber
-                    });
+                        if (user.Adress != null)
+                        {
+                            viewModels.Add(new UserViewModel
+                            {
+                                City = user.Adress.City,
+                                Email = user.Email,
+                                Number = user.PhoneNumber,
+                                Street = user.Adress.Street,
+                                StreetNumber = user.Adress.StreetNumber,
+                                ZipCode = user.Adress.ZipCode,
+                                DepartmentId = group.DepartmentId,
+                                DName = dep.Name,
+                                UserRole = ""
+                            });
+                        }
+                        else
+                        {
+                            viewModels.Add(new UserViewModel
+                            {
+                                Email = user.Email,
+                                Number = user.PhoneNumber,
+                                DepartmentId = group.DepartmentId,
+                                DName = dep.Name,
+                                UserRole = ""
+                            });
+                        }
+                    }
+                    foreach (string role in UserRoles)
+                    {
+                        if (user.Adress != null)
+                        {
+                            viewModels.Add(new UserViewModel
+                            {
+                                City = user.Adress.City,
+                                Email = user.Email,
+                                Number = user.PhoneNumber,
+                                Street = user.Adress.Street,
+                                StreetNumber = user.Adress.StreetNumber,
+                                ZipCode = user.Adress.ZipCode,
+                                DepartmentId = group.DepartmentId,
+                                DName = dep.Name,
+                                UserRole = role
+                            });
+                        }
+                        else
+                        {
+                            viewModels.Add(new UserViewModel
+                            {
+                                Email = user.Email,
+                                Number = user.PhoneNumber,
+                                DepartmentId = group.DepartmentId,
+                                DName = dep.Name,
+                                UserRole = role
+                            });
+                        }
+                    }  
+
+                    }
+                    else
+                    {
+                        viewModels.Add(new UserViewModel
+                        {
+                            Email = user.Email,
+                            Number = user.PhoneNumber,
+                            DepartmentId = group.DepartmentId,
+                            UserRole = ""
+                        });
+                    }
                 }
-            }
+
             return viewModels;
 
         }
@@ -299,7 +387,8 @@ namespace Personalsystem.Repositories
                     Id = group.Id,
                     Name = group.Name,
                     DepartmentId = (int)id,
-                    CompanyId = group.Department.Company.Id
+                    CompanyId = group.Department.Company.Id,
+                    Users = group.Users
                 });
             }
             if (viewModel.Count == 0)
@@ -308,7 +397,8 @@ namespace Personalsystem.Repositories
                 {
                     Id = -1,
                     DepartmentId = (int)id,
-                    CompanyId = db.Departments.Single(u => u.Id == id).Company.Id
+                    CompanyId = db.Departments.Single(u => u.Id == id).Company.Id,
+                    Users = null
                 });
             }
             return viewModel;

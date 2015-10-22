@@ -4,7 +4,7 @@
     ViewBag.Title = "Group Users";
 }
 
-<h3>Users for @ViewBag.GroupName</h3>
+<h3>Users for @ViewBag.GroupName in department @Model.FirstOrDefault().DName</h3>
 
 <table class="table">
     <tr>
@@ -27,6 +27,10 @@
         <th>
             @Html.DisplayNameFor(model => model.City)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserRole)
+        </th>
+        <th></th>
         <th></th>
     </tr>
 
@@ -34,7 +38,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(model => item.Email)
+                @Html.ValueFor(modelItem => item.Email)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Number)
@@ -51,10 +55,22 @@
             <td>
                 @Html.DisplayFor(model => item.City)
             </td>
+            <td>
+                @Html.DisplayFor(model => item.UserRole)
+            </td>
+            @if (User.IsInRole("admin"))
+            {
+                <td style="text-align:right">
+                    @Html.ActionLink("Change Role", "ChangeRoleOfUserinGroup", new { mail = item.Email })
+                </td>
+                <td style="text-align:right">
+                    @Html.ActionLink("Delete from Company", "DeleteFromCompany", new { mail = item.Email })
+                </td>
+            }
         </tr>
     }
 </table>
 
 <div>
-    @Html.ActionLink("Back to Groups", "../Group/Index/", new { id = ViewBag.DepartmentId })
+   @Html.ActionLink("Back to Groups", "../Group/Index/", new { Id = Model.FirstOrDefault().DepartmentId})
 </div>
